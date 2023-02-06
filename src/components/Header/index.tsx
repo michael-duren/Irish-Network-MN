@@ -24,9 +24,9 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 left-0 my-20 flex h-[10vh] min-h-[10rem] items-center justify-between  bg-white  ">
+    <header className="sticky top-0 left-0 my-12 flex h-[10vh]  min-h-[10rem] items-center justify-between border-b border-gray-300 bg-white pb-4 md:border-b-0  ">
       {/* Logo */}
-      <div className="relative h-40 w-40">
+      <div className="relative ml-6 mt-2 h-40 w-40">
         <Link className="" href="/">
           <Image src="/in-logo.svg" alt="Irish Network Logo" fill />
         </Link>
@@ -35,7 +35,7 @@ export default function Header() {
 
       <nav className="bg-white">
         <ul
-          className={`absolute left-0 z-[-1]  flex w-[100%]  flex-col space-y-8  rounded-md border-2 border-gray-300 bg-white p-8 shadow-md transition-all duration-500 ease-in md:static md:z-auto md:my-0 md:mr-8 md:w-auto md:flex-row md:space-x-8 md:space-y-0 md:border-none md:p-0 md:shadow-none ${
+          className={`absolute left-0   flex w-[100%]  flex-col space-y-8  rounded-md border-2 border-gray-300 bg-white p-8 shadow-md transition-all duration-500 ease-in md:static md:z-auto md:my-0 md:mr-8 md:w-auto md:flex-row md:space-x-8 md:space-y-0 md:border-none md:p-0 md:shadow-none ${
             isMenuOpen ? "top-[100%]" : "top-[-500%]"
           } `}
         >
