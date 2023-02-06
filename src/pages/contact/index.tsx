@@ -1,7 +1,12 @@
-export default function Contact() {
+import { type NextPage } from "next";
+import Banner from "../../components/Banner";
+
+const Contact: NextPage = () => {
   return (
     <section>
-      <h1>Contact Us</h1>
+      <Banner imagePath="/images/stools.jpg" title="Get in Touch!" />
     </section>
   );
-}
+};
+
+export default Contact;

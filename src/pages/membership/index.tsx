@@ -1,7 +1,12 @@
-export default function Membership() {
+import { type NextPage } from "next";
+import Banner from "../../components/Banner";
+
+const Membership: NextPage = () => {
   return (
     <section>
-      <h1>Membership coming soon</h1>
+      <Banner imagePath="/images/members.jpg" title="Membership Coming Soon!" />
     </section>
   );
-}
+};
+
+export default Membership;

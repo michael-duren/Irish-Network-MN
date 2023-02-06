@@ -24,7 +24,7 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 left-0 my-12 flex h-[10vh]  min-h-[10rem] items-center justify-between border-b border-gray-300 bg-white pb-4 md:border-b-0  ">
+    <header className="sticky top-0 left-0 z-10 my-12 flex h-[10vh] min-h-[10rem] items-center justify-between border-b border-gray-300 bg-white pb-4 md:border-b-0  ">
       {/* Logo */}
       <div className="relative ml-6 mt-2 h-40 w-40">
         <Link className="" href="/">
