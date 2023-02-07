@@ -1,7 +1,10 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 
+import { GiClover } from "react-icons/gi";
+
 import Banner from "../components/Banner";
+import HorizontalCard from "../components/HorizontalCard";
 
 const Home: NextPage = () => {
   return (
@@ -13,16 +16,30 @@ const Home: NextPage = () => {
       </Head>
       <section>
         <Banner imagePath="/images/bag-pipes.jpg" title="Welcome" />
-        <div className="mt-4 flex h-full flex-1 flex-col items-center justify-around space-x-4  md:flex-row">
-          <div className="m-2 min-h-[20rem] w-[20rem]  rounded-md border-2 border-solid border-gray-300 p-4">
-            Card 1
-          </div>
-          <div className="m-2 min-h-[20rem] w-[20rem]  rounded-md border-2 border-solid border-gray-300 p-4">
-            Card 2
-          </div>
-          <div className="m-2 min-h-[20rem] w-[20rem]  rounded-md border-2 border-solid border-gray-300 p-4">
-            Card 3
-          </div>
+        <div className="mx-4 my-12 flex h-full flex-1 flex-col items-center justify-around space-x-4  md:flex-row lg:justify-center lg:space-x-8">
+          <HorizontalCard>
+            <h2 className="border-b border-gray-300 p-4 text-2xl">Welcome</h2>
+            <GiClover className="text-[8rem]" />
+          </HorizontalCard>
+          <HorizontalCard>
+            <h2 className="border-b border-gray-300 p-4 text-2xl">
+              <span className="text-red-600">Who</span> We Are
+            </h2>
+            <p className="text-center">
+              An irish fellowship based in Twin-Cities Minnesota Cupidatat culpa
+              culpa Lorem minim duis eu reprehenderit velit occaecat.
+            </p>
+          </HorizontalCard>
+          <HorizontalCard>
+            <h2 className="border-b border-gray-300 p-4 text-2xl">
+              <span className="text-red-600">Our</span> Mission
+            </h2>
+            <p className="text-center">
+              Irish Network Minnesota creates opportunites for those in our
+              community to conenct, professionally and socially, with our
+              culture and heritage
+            </p>
+          </HorizontalCard>
         </div>
       </section>
     </>
