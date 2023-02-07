@@ -3,7 +3,7 @@ import { type NextPage } from "next";
 const ContactForm: NextPage = () => {
   return (
     <form
-      className="flex w-[75%] flex-col items-center space-y-8 rounded-3xl border-2 border-gray-300 p-8 shadow-xl transition-all duration-300 hover:border-gray-400 lg:w-[50%]"
+      className="flex w-[75%] flex-col items-center space-y-8 rounded-3xl border-2  p-8 shadow-xl transition-all duration-300 hover:border-gray-400 lg:w-[50%]"
       onSubmit={(e) => e.preventDefault()}
     >
       <div>

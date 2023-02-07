@@ -14,7 +14,7 @@ export default function Banner({ imagePath, title }: BannerProps) {
           src={imagePath}
           alt={`${title} background image`}
           fill
-          objectFit="cover"
+          style={{ objectFit: "cover" }}
           priority
         />
       </div>
