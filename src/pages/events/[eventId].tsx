@@ -1,6 +1,4 @@
-import { type NextPage } from "next";
-
-const EventPage: NextPage = () => {
+const EventPage = (): JSX.Element => {
   return (
     <section>
       <h1>Event</h1>

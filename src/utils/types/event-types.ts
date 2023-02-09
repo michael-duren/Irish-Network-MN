@@ -1,9 +1,9 @@
 export type EventPreviewCardType = {
   title: string;
-  date: string;
+  date: Date;
   time: string;
   location: string;
   excerpt: string;
-  image: string;
+  image?: string;
   slug: string;
 };

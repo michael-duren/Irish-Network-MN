@@ -25,7 +25,7 @@ const EventPreviewCard = ({
               <div className="pr-2 text-xl">
                 <IoCalendarNumberOutline />
               </div>
-              {date} @ {time}
+              {date.toLocaleDateString()} @ {time}
             </div>
             <address className="my-4 flex">
               <IoLocationOutline className="text-lg" />
@@ -34,13 +34,15 @@ const EventPreviewCard = ({
             <p>{excerpt}</p>
           </div>
           <div className="relative flex h-64 w-60 flex-col items-center  ">
-            <Image
-              className="rounded-lg"
-              src={image}
-              fill
-              style={{ objectFit: "cover" }}
-              alt={`Event Image for ${title}`}
-            />
+            {image && (
+              <Image
+                className="rounded-lg"
+                src={image}
+                fill
+                style={{ objectFit: "cover" }}
+                alt={`Event Image for ${title}`}
+              />
+            )}
           </div>
         </div>
       </Link>

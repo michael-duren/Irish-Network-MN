@@ -68,15 +68,24 @@ model VerificationToken {
 
 // Events
 model Event {
-    id            String  @id @default(cuid())
-    slug          String  @unique
-    title         String  @unique
-    address       String
-    date          String
-    time          String
-    description   String
-    text          String
-    featuredImage String?
+    id    String @id @default(cuid())
+    slug  String @unique
+    title String @unique
+
+    // event detail
+    time                  String
+    date                  DateTime
+    address               String
+    location              String
+    excerpt               String
+    description           String
+    additionalInformation String?
+    featuredImage         String?
+
+    // tickets
+    price      Float
+    ticketLink String
+    register   Boolean?
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
