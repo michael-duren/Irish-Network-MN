@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 
 import { IoMdClose } from "react-icons/io";
 import { GoThreeBars } from "react-icons/go";
+import AuthButton from "../AuthButton";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -24,7 +25,11 @@ export default function Header() {
   };
 
   return (
-    <header className="sticky top-0 left-0 z-10 my-12 flex h-[10vh] min-h-[10rem] items-center justify-between border-b border-gray-300 bg-white pb-4 md:border-b-0  ">
+    <header
+      className={`sticky top-0 left-0 z-10 my-12 flex h-[10vh] min-h-[10rem] items-center justify-between border-b border-gray-300 bg-white pb-4 md:border-b-0 ${
+        currentRoute == "/admin/console" ? "hidden" : ""
+      }`}
+    >
       {/* Logo */}
       <div className="relative ml-6 mt-2 h-40 w-40">
         <Link className="" href="/">
@@ -54,6 +59,9 @@ export default function Header() {
               </li>
             );
           })}
+          <li className="mx-2 p-2 md:p-0">
+            <AuthButton />
+          </li>
         </ul>
         {/* Hamburger */}
         <div
