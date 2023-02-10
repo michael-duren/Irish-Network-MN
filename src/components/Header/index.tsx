@@ -24,10 +24,12 @@ export default function Header() {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const allAuth = /admin\/console\/*/;
+
   return (
     <header
       className={`sticky top-0 left-0 z-10 my-12 flex h-[10vh] min-h-[10rem] items-center justify-between border-b border-gray-300 bg-white pb-4 md:border-b-0 ${
-        currentRoute == "/admin/console" ? "hidden" : ""
+        currentRoute.match(allAuth) ? "hidden" : ""
       }`}
     >
       {/* Logo */}

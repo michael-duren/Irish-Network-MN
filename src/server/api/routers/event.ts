@@ -1,21 +1,6 @@
 import slugify from "slugify";
-import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "../trpc";
-
-export const writeEventSchema = z.object({
-  title: z.string().min(5),
-  excerpt: z.string().min(10),
-  description: z.string().min(20),
-  time: z.string(),
-  date: z.date(),
-  address: z.string(),
-  location: z.string(),
-  additionalInformation: z.string().or(z.null()),
-  featuredImage: z.string().or(z.null()),
-  price: z.number(),
-  ticketLink: z.string(),
-  register: z.boolean(),
-});
+import { writeEventSchema } from "../../../components/WriteEventForm";
 
 export const eventRouter = createTRPCRouter({
   createEvent: publicProcedure

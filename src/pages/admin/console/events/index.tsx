@@ -9,10 +9,17 @@ const AdminConsoleEvents = () => {
     return (
       <section>
         <AuthHeader />
-        <SideNav />
-
-        <p>Edit events and image galery</p>
-        <button>Add event</button>
+        <div className="flex">
+          <SideNav />
+          <div className="m-6 flex flex-col">
+            <div className="flex items-center justify-center">
+              <h2>Events:</h2>
+              <div className="flex w-full flex-1 justify-end">
+                <button>Add Event</button>
+              </div>
+            </div>
+          </div>
+        </div>
       </section>
     );
   }

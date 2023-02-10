@@ -20,7 +20,7 @@ const SideNav = () => {
     },
     {
       name: "Events",
-      link: "/admin/console/dashboard",
+      link: "/admin/console/events",
       icon: BsCalendar2Event,
       size: 20,
     },
