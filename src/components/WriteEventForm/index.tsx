@@ -27,7 +27,7 @@ type WriteEventFormProps = {
   closeModal: Dispatch<SetStateAction<boolean>>;
 };
 
-type WriteEventFormData = z.infer<typeof writeEventSchema>;
+export type WriteEventFormData = z.infer<typeof writeEventSchema>;
 
 const WriteEventForm = ({ isOpen, closeModal }: WriteEventFormProps) => {
   const {
@@ -79,9 +79,6 @@ const WriteEventForm = ({ isOpen, closeModal }: WriteEventFormProps) => {
             </div>
             <div className="ml-4 flex flex-1 flex-col items-start justify-center space-y-4">
               <label htmlFor="date">Date</label>
-              <span className="font-thin text-red-600">
-                Must be formatted YY/MM/DD
-              </span>
               <input
                 className=" w-full rounded-xl  border border-gray-300 p-3 outline-none focus:border-gray-600"
                 id="date"

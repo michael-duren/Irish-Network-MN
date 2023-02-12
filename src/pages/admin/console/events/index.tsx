@@ -6,9 +6,12 @@ import { AiOutlinePlusCircle } from "react-icons/ai";
 import AuthHeader from "../../../../components/AuthHeader";
 import SideNav from "../../../../components/SideNav";
 import WriteEventForm from "../../../../components/WriteEventForm";
+import { api } from "../../../../utils/api";
+import AdminEventPreviewCard from "../../../../components/AdminEventPreviewCard";
 
 const AdminConsoleEvents = () => {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+  const getEvents = api.event.getEvents.useQuery();
 
   const { data: session } = useSession({ required: true });
   if (session?.user.role === "admin" && session.user) {
@@ -32,6 +35,14 @@ const AdminConsoleEvents = () => {
                     </div>
                   </button>
                 </div>
+              </div>
+              <div className="flex flex-col">
+                {getEvents.isSuccess &&
+                  getEvents.data.map((event) => {
+                    return (
+                      <AdminEventPreviewCard key={event.title} event={event} />
+                    );
+                  })}
               </div>
             </div>
           </div>

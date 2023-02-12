@@ -4,15 +4,26 @@ import Image from "next/image";
 import { IoCalendarNumberOutline } from "react-icons/io5";
 import { IoLocationOutline } from "react-icons/io5";
 
-import { type EventPreviewCardType } from "../../utils/types/event-types";
+import dayjs from "dayjs";
+import LocalizedFormat from "dayjs/plugin/localizedFormat";
 
 type EventPreviewCardProps = {
-  event: EventPreviewCardType;
+  event: {
+    title: string;
+    date: Date;
+    location: string;
+    excerpt: string;
+    featuredImage: string | null;
+    slug: string;
+    address: string;
+  };
 };
 
 const EventPreviewCard = ({
-  event: { title, date, time, location, excerpt, image, slug },
+  event: { title, date, location, excerpt, featuredImage, slug, address },
 }: EventPreviewCardProps) => {
+  dayjs.extend(LocalizedFormat);
+
   return (
     <div className="m-8">
       <Link href={`/events/${slug}`}>
@@ -25,19 +36,19 @@ const EventPreviewCard = ({
               <div className="pr-2 text-xl">
                 <IoCalendarNumberOutline />
               </div>
-              {date.toLocaleDateString()} @ {time}
+              {date.toLocaleDateString()} @ {dayjs(date).format("LT")}
             </div>
             <address className="my-4 flex">
               <IoLocationOutline className="text-lg" />
-              {location}
+              {location} {address}
             </address>
             <p>{excerpt}</p>
           </div>
           <div className="relative flex h-64 w-60 flex-col items-center  ">
-            {image && (
+            {featuredImage && (
               <Image
                 className="rounded-lg"
-                src={image}
+                src={featuredImage}
                 fill
                 style={{ objectFit: "cover" }}
                 alt={`Event Image for ${title}`}
