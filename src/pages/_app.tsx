@@ -2,6 +2,7 @@ import { type AppType } from "next/app";
 import { type Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 import { Poppins } from "@next/font/google";
+import { Toaster } from "react-hot-toast";
 
 import MainLayout from "../layouts";
 
@@ -21,6 +22,7 @@ const MyApp: AppType<{ session: Session | null }> = ({
 }) => {
   return (
     <SessionProvider session={session}>
+      <Toaster />
       <MainLayout>
         <main className={poppins.className}>
           <Component {...pageProps} />

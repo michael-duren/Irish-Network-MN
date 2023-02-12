@@ -1,7 +1,7 @@
 import type { Dispatch, SetStateAction } from "react";
 import { useForm } from "react-hook-form";
 import z from "zod";
-import Modal from "../Modal";
+import WideModal from "../WideModal";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { api } from "../../utils/api";
@@ -59,7 +59,7 @@ const WriteEventForm = ({ isOpen, closeModal }: WriteEventFormProps) => {
   };
   return (
     <div>
-      <Modal isOpen={isOpen} title={"Add Event"} closeModal={closeModal}>
+      <WideModal isOpen={isOpen} title={"Add Event"} closeModal={closeModal}>
         <form
           className="my-8 mx-4 flex flex-col justify-center space-y-8"
           // eslint-disable-next-line @typescript-eslint/no-misused-promises
@@ -207,7 +207,7 @@ const WriteEventForm = ({ isOpen, closeModal }: WriteEventFormProps) => {
             </button>
           </div>
         </form>
-      </Modal>
+      </WideModal>
     </div>
   );
 };

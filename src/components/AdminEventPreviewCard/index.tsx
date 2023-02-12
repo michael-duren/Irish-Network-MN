@@ -8,6 +8,9 @@ import { IoLocationOutline } from "react-icons/io5";
 import dayjs from "dayjs";
 import LocalizedFormat from "dayjs/plugin/localizedFormat";
 import DeleteWarningModal from "../DeleteWarningModal";
+import { api } from "../../utils/api";
+import toast from "react-hot-toast";
+import Spinner from "../Spinner";
 
 type EventPreviewCardProps = {
   event: {
@@ -18,14 +21,29 @@ type EventPreviewCardProps = {
     featuredImage: string | null;
     slug: string;
     address: string;
+    id: string;
   };
+  invalidate: () => Promise<void>;
 };
 
 const AdminEventPreviewCard = ({
-  event: { title, date, location, excerpt, featuredImage, slug, address },
+  event: { title, date, location, excerpt, featuredImage, slug, address, id },
+  invalidate,
 }: EventPreviewCardProps) => {
   const [warningModalOpen, setwarningModalOpen] = useState(false);
+
   dayjs.extend(LocalizedFormat);
+
+  const deleteEvent = api.event.deleteEvent.useMutation({
+    onSuccess: () => {
+      console.log("Event Deleted :(");
+      setwarningModalOpen(false);
+      toast.error(`Deleted Event ${title}!`);
+      async () => {
+        await invalidate();
+      };
+    },
+  });
 
   return (
     <div className="m-8 flex flex-col rounded-md border-2 border-gray-300 p-8 shadow-xl transition-all ease-in-out hover:border-gray-400 hover:shadow-gray-400">
@@ -73,10 +91,7 @@ const AdminEventPreviewCard = ({
             </button>
           </a>
         </Link>
-        <button
-          type="submit"
-          className="inline-flex justify-center rounded-md border border-transparent bg-orange-100 px-4 py-2 text-sm font-medium text-orange-900 hover:bg-orange-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2"
-        >
+        <button className="inline-flex justify-center rounded-md border border-transparent bg-orange-100 px-4 py-2 text-sm font-medium text-orange-900 hover:bg-orange-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2">
           Edit
         </button>
         <button
@@ -92,7 +107,24 @@ const AdminEventPreviewCard = ({
         setIsOpen={setwarningModalOpen}
         warning="Are you sure you want to delete this event?"
         title="WARNING"
-      />
+      >
+        <div className="mt-8 flex">
+          <button
+            type="button"
+            className="mx-8 inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
+            onClick={() => deleteEvent.mutate({ id })}
+          >
+            Yes, Delete
+          </button>
+          <button
+            type="submit"
+            className="inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2"
+            onClick={() => setwarningModalOpen(false)}
+          >
+            Heck No!
+          </button>
+        </div>
+      </DeleteWarningModal>
     </div>
   );
 };

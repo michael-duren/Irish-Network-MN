@@ -1,13 +1,10 @@
 import slugify from "slugify";
-import { createTRPCRouter, publicProcedure } from "../trpc";
+import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
 import { writeEventSchema } from "../../../components/WriteEventForm";
-import dayjs from "dayjs";
-import customParseFormat from "dayjs/plugin/customParseFormat";
-
-dayjs.extend(customParseFormat);
+import z from "zod";
 
 export const eventRouter = createTRPCRouter({
-  createEvent: publicProcedure
+  createEvent: protectedProcedure
     .input(writeEventSchema)
     .mutation(
       async ({
@@ -40,7 +37,7 @@ export const eventRouter = createTRPCRouter({
           data: {
             title,
             excerpt,
-            date: date,
+            date: new Date(date),
             description,
             address,
             location,
@@ -54,6 +51,18 @@ export const eventRouter = createTRPCRouter({
         });
       }
     ),
+  deleteEvent: protectedProcedure
+    .input(
+      z.object({
+        id: z.string(),
+      })
+    )
+    .mutation(async ({ ctx: { prisma }, input: { id } }) => {
+      await prisma.event.delete({
+        where: { id },
+      });
+    }),
+
   getEvents: publicProcedure.query(async ({ ctx: { prisma } }) => {
     const events = await prisma?.event.findMany({
       orderBy: {

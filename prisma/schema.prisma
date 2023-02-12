@@ -15,12 +15,6 @@ datasource db {
     shadowDatabaseUrl = env("SHADOW_DATABASE_URL")
 }
 
-model Example {
-    id        String   @id @default(cuid())
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-}
-
 // Necessary for Next auth
 model Account {
     id                String  @id @default(cuid())
@@ -86,6 +80,17 @@ model Event {
     price      Float
     ticketLink String
     register   Boolean?
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+}
+
+// Contact Submission
+model Contact {
+    id      String @id @default(cuid())
+    name    String
+    email   String
+    message String
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt

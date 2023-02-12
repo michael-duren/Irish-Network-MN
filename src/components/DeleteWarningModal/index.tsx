@@ -1,4 +1,4 @@
-import type { Dispatch, SetStateAction } from "react";
+import type { Dispatch, ReactNode, SetStateAction } from "react";
 import Modal from "../Modal";
 
 type DeleteWarningModalProps = {
@@ -6,6 +6,7 @@ type DeleteWarningModalProps = {
   setIsOpen: Dispatch<SetStateAction<boolean>>;
   warning: string;
   title: string;
+  children?: ReactNode;
 };
 
 const DeleteWarningModal = ({
@@ -13,10 +14,12 @@ const DeleteWarningModal = ({
   setIsOpen,
   warning,
   title,
+  children,
 }: DeleteWarningModalProps) => {
   return (
     <Modal isOpen={isOpen} closeModal={setIsOpen} title={title}>
       <p>{warning}</p>
+      {children}
     </Modal>
   );
 };

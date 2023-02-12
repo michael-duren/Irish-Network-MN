@@ -10,7 +10,7 @@ type ModalProps = {
   title: string;
 };
 
-const Modal = ({ isOpen, closeModal, children, title }: ModalProps) => {
+const WideModal = ({ isOpen, closeModal, children, title }: ModalProps) => {
   return (
     <Transition appear show={isOpen} as={Fragment}>
       <Dialog as="div" className="relative z-10" onClose={closeModal}>
@@ -37,7 +37,7 @@ const Modal = ({ isOpen, closeModal, children, title }: ModalProps) => {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <Dialog.Panel className="  transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
+              <Dialog.Panel className="w-full min-w-[30rem] max-w-[80vw]  transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all">
                 <div
                   onClick={() => closeModal(false)}
                   className="flex w-full items-center justify-end"
@@ -61,4 +61,4 @@ const Modal = ({ isOpen, closeModal, children, title }: ModalProps) => {
   );
 };
 
-export default Modal;
+export default WideModal;

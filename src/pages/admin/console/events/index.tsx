@@ -12,6 +12,10 @@ import AdminEventPreviewCard from "../../../../components/AdminEventPreviewCard"
 const AdminConsoleEvents = () => {
   const [isOpen, setIsOpen] = useState(false);
   const getEvents = api.event.getEvents.useQuery();
+  const eventRoute = api.useContext().event;
+  const invalidateCurrentEvents = async () => {
+    await eventRoute.getEvents.invalidate();
+  };
 
   const { data: session } = useSession({ required: true });
   if (session?.user.role === "admin" && session.user) {
@@ -40,7 +44,11 @@ const AdminConsoleEvents = () => {
                 {getEvents.isSuccess &&
                   getEvents.data.map((event) => {
                     return (
-                      <AdminEventPreviewCard key={event.title} event={event} />
+                      <AdminEventPreviewCard
+                        invalidate={invalidateCurrentEvents}
+                        key={event.title}
+                        event={event}
+                      />
                     );
                   })}
               </div>

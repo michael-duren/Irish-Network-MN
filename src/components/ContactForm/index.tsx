@@ -1,10 +1,48 @@
-import { type NextPage } from "next";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import z from "zod";
+import toast from "react-hot-toast";
+import { api } from "../../utils/api";
 
-const ContactForm: NextPage = () => {
+export const writeContactSchema = z.object({
+  name: z.string().min(5),
+  email: z.string().email(),
+  message: z.string().min(5),
+});
+
+type WriteContactFormData = z.infer<typeof writeContactSchema>;
+
+const ContactForm = () => {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<WriteContactFormData>({
+    resolver: zodResolver(writeContactSchema),
+  });
+
+  const createContact = api.contact.postContact.useMutation({
+    onSuccess: () => {
+      toast.success("Message Recieved 😎");
+      reset();
+    },
+    onError: (error) => {
+      toast.error("Oh No! Something went wrong 😥");
+      console.log(error);
+    },
+  });
+
+  const onSubmit = (data: WriteContactFormData) => {
+    createContact.mutate(data);
+    console.log(data);
+  };
+
   return (
     <form
       className="flex w-[75%] flex-col items-center space-y-8 rounded-3xl border-2  p-8 shadow-xl transition-all duration-300 hover:border-gray-400 lg:w-[50%]"
-      onSubmit={(e) => e.preventDefault()}
+      // eslint-disable-next-line @typescript-eslint/no-misused-promises
+      onSubmit={handleSubmit(onSubmit)}
     >
       <div>
         <label className="mr-8" htmlFor="name">
@@ -13,9 +51,9 @@ const ContactForm: NextPage = () => {
         <input
           className="w-64 rounded-lg border-2 border-gray-300 p-2 text-sm outline-none placeholder:text-gray-300 focus:border-gray-600"
           type="text"
-          name="name"
           id="name"
-          placeholder="Search..."
+          placeholder="John Doe"
+          {...register("name")}
         />
       </div>
       <div>
@@ -25,9 +63,9 @@ const ContactForm: NextPage = () => {
         <input
           className="w-64 rounded-lg border-2 border-gray-300 p-2 text-sm outline-none placeholder:text-gray-300 focus:border-gray-600"
           type="email"
-          name="email"
           id="email"
-          placeholder="@example.com"
+          placeholder="johndoe@example.com"
+          {...register("email")}
         />
       </div>
       <div className="flex flex-col">
@@ -40,10 +78,19 @@ const ContactForm: NextPage = () => {
           placeholder="Write your message here"
           cols={40}
           rows={10}
+          {...register("message")}
         />
       </div>
       <div>
-        <button className="rounded-lg border-2 border-gray-300 px-5 py-3 text-lg shadow-sm transition-all duration-300 hover:border-gray-400">
+        <button
+          type="submit"
+          className="rounded-lg border-2 border-gray-300 px-5 py-3 text-lg shadow-sm transition-all duration-300 hover:border-gray-400"
+          onClick={() => {
+            if (errors) {
+              console.log(errors);
+            }
+          }}
+        >
           Send
         </button>
       </div>
