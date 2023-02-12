@@ -18,7 +18,7 @@ const DeleteWarningModal = ({
 }: DeleteWarningModalProps) => {
   return (
     <Modal isOpen={isOpen} closeModal={setIsOpen} title={title}>
-      <p>{warning}</p>
+      <p className="font-bold">{warning}</p>
       {children}
     </Modal>
   );

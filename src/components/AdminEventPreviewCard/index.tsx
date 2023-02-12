@@ -10,7 +10,7 @@ import LocalizedFormat from "dayjs/plugin/localizedFormat";
 import DeleteWarningModal from "../DeleteWarningModal";
 import { api } from "../../utils/api";
 import toast from "react-hot-toast";
-import Spinner from "../Spinner";
+import EditButton from "../Buttons/EditButton";
 
 type EventPreviewCardProps = {
   event: {
@@ -83,46 +83,43 @@ const AdminEventPreviewCard = ({
       <div className="justify flex items-center space-x-4">
         <Link legacyBehavior href={`/events/${slug}`}>
           <a target="_blank">
-            <button
-              type="submit"
-              className="inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2"
-            >
+            <EditButton type="submit" color="green">
               View
-            </button>
+            </EditButton>
           </a>
         </Link>
-        <button className="inline-flex justify-center rounded-md border border-transparent bg-orange-100 px-4 py-2 text-sm font-medium text-orange-900 hover:bg-orange-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2">
+        <EditButton color="orange" type="button">
           Edit
-        </button>
-        <button
+        </EditButton>
+        <EditButton
           type="button"
-          className="mx-8 inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
+          color="red"
           onClick={() => setwarningModalOpen(true)}
         >
           Delete
-        </button>
+        </EditButton>
       </div>
       <DeleteWarningModal
         isOpen={warningModalOpen}
         setIsOpen={setwarningModalOpen}
-        warning="Are you sure you want to delete this event?"
+        warning={`Are you sure you want to delete the event ${title}?`}
         title="WARNING"
       >
-        <div className="mt-8 flex">
-          <button
+        <div className="mt-8 flex space-x-8">
+          <EditButton
             type="button"
-            className="mx-8 inline-flex justify-center rounded-md border border-transparent bg-red-100 px-4 py-2 text-sm font-medium text-red-900 hover:bg-red-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-red-500 focus-visible:ring-offset-2"
+            color="red"
             onClick={() => deleteEvent.mutate({ id })}
           >
-            Yes, Delete
-          </button>
-          <button
-            type="submit"
-            className="inline-flex justify-center rounded-md border border-transparent bg-green-100 px-4 py-2 text-sm font-medium text-green-900 hover:bg-green-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-green-500 focus-visible:ring-offset-2"
+            ⚠️ Yes, Delete
+          </EditButton>
+          <EditButton
+            type="button"
+            color="green"
             onClick={() => setwarningModalOpen(false)}
           >
-            Heck No!
-          </button>
+            ✔️ Heck No!
+          </EditButton>
         </div>
       </DeleteWarningModal>
     </div>
