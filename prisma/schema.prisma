@@ -74,7 +74,6 @@ model Event {
     title String @unique
 
     // event detail
-    time                  String
     date                  DateTime
     address               String
     location              String

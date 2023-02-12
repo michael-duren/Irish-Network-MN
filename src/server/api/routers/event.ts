@@ -1,6 +1,10 @@
 import slugify from "slugify";
 import { createTRPCRouter, publicProcedure } from "../trpc";
 import { writeEventSchema } from "../../../components/WriteEventForm";
+import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
+
+dayjs.extend(customParseFormat);
 
 export const eventRouter = createTRPCRouter({
   createEvent: publicProcedure
@@ -20,7 +24,6 @@ export const eventRouter = createTRPCRouter({
           ticketLink,
           register,
           date,
-          time,
         },
       }) => {
         const oldEvent = await prisma.event.findUnique({
@@ -37,14 +40,13 @@ export const eventRouter = createTRPCRouter({
           data: {
             title,
             excerpt,
-            date,
-            time,
+            date: date,
             description,
             address,
             location,
             additionalInformation,
             featuredImage,
-            price: isNaN(price) ? 0 : price,
+            price: isNaN(+price) ? 0 : +price,
             ticketLink,
             register,
             slug: slugify(title),
