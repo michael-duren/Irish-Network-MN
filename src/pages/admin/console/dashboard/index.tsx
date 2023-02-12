@@ -8,13 +8,15 @@ const AdminConsoleDashboard: NextPage = () => {
   const { data: session } = useSession({ required: true });
   if (session?.user.role === "admin" && session.user) {
     return (
-      <section>
-        <AuthHeader />
-        <SideNav />
+      <>
+        <section>
+          <AuthHeader />
+          <SideNav />
 
-        <p>Edit events and image galery</p>
-        <button>Add event</button>
-      </section>
+          <p>Edit events and image galery</p>
+          <button>Add event</button>
+        </section>
+      </>
     );
   }
 
