@@ -7,6 +7,7 @@ import { api } from "../../utils/api";
 export const writeContactSchema = z.object({
   name: z.string().min(5),
   email: z.string().email(),
+  title: z.string().min(4),
   message: z.string().min(5),
 });
 
@@ -22,7 +23,7 @@ const ContactForm = () => {
     resolver: zodResolver(writeContactSchema),
   });
 
-  const createContact = api.contact.postContact.useMutation({
+  const createContact = api.contact.postMessage.useMutation({
     onSuccess: () => {
       toast.success("Message Recieved 😎");
       reset();
@@ -34,8 +35,8 @@ const ContactForm = () => {
   });
 
   const onSubmit = (data: WriteContactFormData) => {
-    createContact.mutate(data);
     console.log(data);
+    createContact.mutate(data);
   };
 
   return (
@@ -66,6 +67,18 @@ const ContactForm = () => {
           id="email"
           placeholder="johndoe@example.com"
           {...register("email")}
+        />
+      </div>
+      <div>
+        <label className="mr-8" htmlFor="title">
+          Subject
+        </label>
+        <input
+          className="w-64 rounded-lg border-2 border-gray-300 p-2 text-sm outline-none placeholder:text-gray-300 focus:border-gray-600"
+          type="text"
+          id="title"
+          placeholder="Message Subject"
+          {...register("title")}
         />
       </div>
       <div className="flex flex-col">

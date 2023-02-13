@@ -6,6 +6,7 @@ import { GiHamburgerMenu } from "react-icons/gi";
 import { MdOutlineDashboard } from "react-icons/md";
 import { BsCalendar2Event, BsFileImage } from "react-icons/bs";
 import { AiOutlineTeam } from "react-icons/ai";
+import { FiMessageSquare } from "react-icons/fi";
 
 const SideNav = () => {
   const [open, setOpen] = useState(true);
@@ -34,6 +35,12 @@ const SideNav = () => {
       name: "Images",
       link: "/admin/console/images",
       icon: BsFileImage,
+      size: 20,
+    },
+    {
+      name: "Messages",
+      link: "/admin/console/messages",
+      icon: FiMessageSquare,
       size: 20,
     },
   ];

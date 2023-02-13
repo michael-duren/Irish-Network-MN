@@ -1,16 +1,23 @@
-import { createTRPCRouter, publicProcedure } from "../trpc";
+import { createTRPCRouter, publicProcedure, protectedProcedure } from "../trpc";
 import { writeContactSchema } from "../../../components/ContactForm";
 
 export const contactRouter = createTRPCRouter({
-  postContact: publicProcedure
+  postMessage: publicProcedure
     .input(writeContactSchema)
-    .mutation(async ({ ctx: { prisma }, input: { name, email, message } }) => {
-      await prisma.contact.create({
-        data: {
-          name,
-          email,
-          message,
-        },
-      });
-    }),
+    .mutation(
+      async ({ ctx: { prisma }, input: { name, email, message, title } }) => {
+        await prisma.contact.create({
+          data: {
+            name,
+            email,
+            message,
+            title,
+          },
+        });
+      }
+    ),
+  getAllMessages: protectedProcedure.query(async ({ ctx: { prisma } }) => {
+    const allMessages = await prisma.contact.findMany();
+    return allMessages;
+  }),
 });
