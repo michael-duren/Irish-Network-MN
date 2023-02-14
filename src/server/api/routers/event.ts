@@ -1,6 +1,6 @@
 import slugify from "slugify";
 import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
-import { writeEventSchema } from "../../../components/WriteEventForm";
+import { writeEventSchema } from "../../../components/Forms/WriteEventForm";
 import z from "zod";
 
 export const eventRouter = createTRPCRouter({

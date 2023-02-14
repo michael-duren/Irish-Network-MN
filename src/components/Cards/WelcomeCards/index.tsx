@@ -1,6 +1,6 @@
 import { GiClover } from "react-icons/gi";
 
-import HorizontalCard from "../../components/HorizontalCard";
+import HorizontalCard from "../HorizontalCard";
 
 const WelcomeCards = () => {
   return (

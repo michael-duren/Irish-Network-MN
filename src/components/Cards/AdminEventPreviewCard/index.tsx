@@ -7,13 +7,13 @@ import { IoLocationOutline } from "react-icons/io5";
 
 import dayjs from "dayjs";
 import LocalizedFormat from "dayjs/plugin/localizedFormat";
-import DeleteWarningModal from "../DeleteWarningModal";
-import { api } from "../../utils/api";
+import DeleteWarningModal from "../../Modals/DeleteWarningModal";
+import { api } from "../../../utils/api";
 import toast from "react-hot-toast";
 
-import GreenButton from "../Buttons/EditButton/GreenButton";
-import OrangeButton from "../Buttons/EditButton/OrangeButton";
-import RedButton from "../Buttons/EditButton/RedButton";
+import GreenButton from "../../Buttons/EditButton/GreenButton";
+import OrangeButton from "../../Buttons/EditButton/OrangeButton";
+import RedButton from "../../Buttons/EditButton/RedButton";
 
 type EventPreviewCardProps = {
   event: {

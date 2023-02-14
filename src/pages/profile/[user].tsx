@@ -4,9 +4,9 @@ import { getServerSession } from "next-auth";
 import { useSession } from "next-auth/react";
 import { authOptions } from "../../server/auth";
 
-import HorizontalCard from "../../components/HorizontalCard";
-import ProfileSideNav from "../../components/ProfileSideNav";
-import Spinner from "../../components/Spinner";
+import HorizontalCard from "../../components/Cards/HorizontalCard";
+import ProfileSideNav from "../../components/SideNavs/ProfileSideNav";
+import Spinner from "../../components/Spinners/Spinner";
 import { useState } from "react";
 
 const UserProfile = () => {

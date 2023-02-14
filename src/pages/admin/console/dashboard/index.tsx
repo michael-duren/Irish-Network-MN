@@ -2,7 +2,7 @@ import { type NextPage } from "next";
 import { useSession } from "next-auth/react";
 
 import AuthHeader from "../../../../components/Headers/AuthHeader";
-import AdminConsoleSideNav from "../../../../components/AdminConsoleSideNav";
+import AdminConsoleSideNav from "../../../../components/SideNavs/AdminConsoleSideNav";
 
 const AdminConsoleDashboard: NextPage = () => {
   const { data: session } = useSession({ required: true });

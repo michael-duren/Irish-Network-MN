@@ -4,10 +4,10 @@ import { useSession } from "next-auth/react";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 
 import AuthHeader from "../../../../components/Headers/AuthHeader";
-import AdminConsoleSideNav from "../../../../components/AdminConsoleSideNav";
-import WriteEventForm from "../../../../components/WriteEventForm";
+import AdminConsoleSideNav from "../../../../components/SideNavs/AdminConsoleSideNav";
+import WriteEventForm from "../../../../components/Forms/WriteEventForm";
 import { api } from "../../../../utils/api";
-import AdminEventPreviewCard from "../../../../components/AdminEventPreviewCard";
+import AdminEventPreviewCard from "../../../../components/Cards/AdminEventPreviewCard";
 
 const AdminConsoleEvents = () => {
   const [isOpen, setIsOpen] = useState(false);

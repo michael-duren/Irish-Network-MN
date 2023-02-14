@@ -1,6 +1,6 @@
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
-import RedButton from "../Buttons/EditButton/RedButton";
+import RedButton from "../../Buttons/EditButton/RedButton";
 
 type MessageCardProps = {
   message: {

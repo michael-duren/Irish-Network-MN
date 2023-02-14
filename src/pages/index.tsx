@@ -2,7 +2,7 @@ import { type NextPage } from "next";
 import Head from "next/head";
 
 import Banner from "../components/Banner";
-import WelcomeCards from "../components/WelcomeCards";
+import WelcomeCards from "../components/Cards/WelcomeCards";
 
 const Home: NextPage = () => {
   return (

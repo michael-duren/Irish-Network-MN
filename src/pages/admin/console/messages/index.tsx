@@ -1,8 +1,8 @@
 import { useSession } from "next-auth/react";
 
 import AuthHeader from "../../../../components/Headers/AuthHeader";
-import MessageCard from "../../../../components/MessageCard";
-import AdminConsoleSideNav from "../../../../components/AdminConsoleSideNav";
+import MessageCard from "../../../../components/Cards/MessageCard";
+import AdminConsoleSideNav from "../../../../components/SideNavs/AdminConsoleSideNav";
 import { api } from "../../../../utils/api";
 
 const AdminConsoleMessages = () => {

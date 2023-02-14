@@ -1,5 +1,5 @@
 import { createTRPCRouter, publicProcedure, protectedProcedure } from "../trpc";
-import { writeContactSchema } from "../../../components/ContactForm";
+import { writeContactSchema } from "../../../components/Forms/ContactForm";
 
 export const contactRouter = createTRPCRouter({
   postMessage: publicProcedure

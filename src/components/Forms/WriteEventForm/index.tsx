@@ -1,14 +1,14 @@
 import type { Dispatch, SetStateAction } from "react";
 import { useForm } from "react-hook-form";
 import z from "zod";
-import WideModal from "../WideModal";
+import WideModal from "../../WideModal";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { api } from "../../utils/api";
+import { api } from "../../../utils/api";
 import { toast } from "react-hot-toast";
 
-import GreenButton from "../Buttons/EditButton/GreenButton";
-import RedButton from "../Buttons/EditButton/RedButton";
+import GreenButton from "../../Buttons/EditButton/GreenButton";
+import RedButton from "../../Buttons/EditButton/RedButton";
 
 export const writeEventSchema = z.object({
   title: z.string().min(5),
