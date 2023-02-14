@@ -1,7 +1,7 @@
 import type { Dispatch, SetStateAction } from "react";
 import { useForm } from "react-hook-form";
 import z from "zod";
-import WideModal from "../../WideModal";
+import WideModal from "../../Modals/WideModal";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { api } from "../../../utils/api";

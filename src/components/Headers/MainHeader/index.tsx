@@ -6,7 +6,7 @@ import { useSession } from "next-auth/react";
 
 import { IoMdClose } from "react-icons/io";
 import { GoThreeBars } from "react-icons/go";
-import AuthButton from "../../AuthButton";
+import AuthButton from "../../Buttons/AuthButton";
 
 export default function MainHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
