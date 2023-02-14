@@ -195,7 +195,7 @@ const WriteEventForm = ({ isOpen, closeModal }: WriteEventFormProps) => {
           {/* Buttons */}
           <div className="space-x-8">
             <GreenButton type="submit" onClick={() => console.log(errors)}>
-              ✔️ Add Event
+              Add Event
             </GreenButton>
             <RedButton type="button" onClick={() => closeModal(false)}>
               Cancel

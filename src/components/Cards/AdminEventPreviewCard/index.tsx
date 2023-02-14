@@ -4,6 +4,7 @@ import Image from "next/image";
 
 import { IoCalendarNumberOutline } from "react-icons/io5";
 import { IoLocationOutline } from "react-icons/io5";
+import { GiBinoculars } from "react-icons/gi";
 
 import dayjs from "dayjs";
 import LocalizedFormat from "dayjs/plugin/localizedFormat";
@@ -86,7 +87,9 @@ const AdminEventPreviewCard = ({
       <div className="justify flex items-center space-x-4">
         <Link legacyBehavior href={`/events/${slug}`}>
           <a target="_blank">
-            <GreenButton type="submit">View</GreenButton>
+            <GreenButton icon={GiBinoculars} type="submit">
+              View
+            </GreenButton>
           </a>
         </Link>
         <OrangeButton type="button">Edit</OrangeButton>
@@ -102,10 +105,10 @@ const AdminEventPreviewCard = ({
       >
         <div className="mt-8 flex space-x-8">
           <RedButton type="button" onClick={() => deleteEvent.mutate({ id })}>
-            ⚠️ Yes, Delete
+            Yes, Delete
           </RedButton>
           <GreenButton type="button" onClick={() => setwarningModalOpen(false)}>
-            ✔️ Heck No!
+            Heck No!
           </GreenButton>
         </div>
       </DeleteWarningModal>

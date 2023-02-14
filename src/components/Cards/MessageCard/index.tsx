@@ -26,7 +26,7 @@ const MessageCard = ({
       <p>{message}</p>
       <p>{dayjs(createdAt).fromNow()}</p>
       <div className="mt-8 flex items-center justify-end">
-        <RedButton type="button">⚠️ Delete</RedButton>
+        <RedButton type="button">Delete</RedButton>
       </div>
     </div>
   );
