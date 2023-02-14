@@ -1,8 +1,8 @@
 import { type NextPage } from "next";
 import { useSession } from "next-auth/react";
 
-import AuthHeader from "../../../../components/AuthHeader";
-import SideNav from "../../../../components/SideNav";
+import AuthHeader from "../../../../components/Headers/AuthHeader";
+import AdminConsoleSideNav from "../../../../components/AdminConsoleSideNav";
 
 const AdminConsoleDashboard: NextPage = () => {
   const { data: session } = useSession({ required: true });
@@ -11,7 +11,7 @@ const AdminConsoleDashboard: NextPage = () => {
       <>
         <section>
           <AuthHeader />
-          <SideNav />
+          <AdminConsoleSideNav />
 
           <p>Edit events and image galery</p>
           <button>Add event</button>

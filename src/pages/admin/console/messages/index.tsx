@@ -1,8 +1,8 @@
 import { useSession } from "next-auth/react";
 
-import AuthHeader from "../../../../components/AuthHeader";
+import AuthHeader from "../../../../components/Headers/AuthHeader";
 import MessageCard from "../../../../components/MessageCard";
-import SideNav from "../../../../components/SideNav";
+import AdminConsoleSideNav from "../../../../components/AdminConsoleSideNav";
 import { api } from "../../../../utils/api";
 
 const AdminConsoleMessages = () => {
@@ -13,7 +13,7 @@ const AdminConsoleMessages = () => {
       <section>
         <AuthHeader />
         <div className="flex">
-          <SideNav />
+          <AdminConsoleSideNav />
 
           <div className="m-6 flex w-full flex-col">
             <div className="mb-8 flex items-center justify-center">

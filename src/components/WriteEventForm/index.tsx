@@ -6,7 +6,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import { api } from "../../utils/api";
 import { toast } from "react-hot-toast";
-import EditButton from "../Buttons/EditButton";
+
+import GreenButton from "../Buttons/EditButton/GreenButton";
+import RedButton from "../Buttons/EditButton/RedButton";
 
 export const writeEventSchema = z.object({
   title: z.string().min(5),
@@ -192,20 +194,12 @@ const WriteEventForm = ({ isOpen, closeModal }: WriteEventFormProps) => {
           </div>
           {/* Buttons */}
           <div className="space-x-8">
-            <EditButton
-              type="submit"
-              color="green"
-              onClick={() => console.log(errors)}
-            >
-              Add Event
-            </EditButton>
-            <EditButton
-              type="button"
-              color="red"
-              onClick={() => closeModal(false)}
-            >
+            <GreenButton type="submit" onClick={() => console.log(errors)}>
+              ✔️ Add Event
+            </GreenButton>
+            <RedButton type="button" onClick={() => closeModal(false)}>
               Cancel
-            </EditButton>
+            </RedButton>
           </div>
         </form>
       </WideModal>

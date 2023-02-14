@@ -51,6 +51,7 @@ model User {
     role          String?   @default("user")
     accounts      Account[]
     sessions      Session[]
+    membership    Boolean   @default(false)
 }
 
 model VerificationToken {

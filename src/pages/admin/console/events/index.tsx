@@ -3,8 +3,8 @@ import { useSession } from "next-auth/react";
 
 import { AiOutlinePlusCircle } from "react-icons/ai";
 
-import AuthHeader from "../../../../components/AuthHeader";
-import SideNav from "../../../../components/SideNav";
+import AuthHeader from "../../../../components/Headers/AuthHeader";
+import AdminConsoleSideNav from "../../../../components/AdminConsoleSideNav";
 import WriteEventForm from "../../../../components/WriteEventForm";
 import { api } from "../../../../utils/api";
 import AdminEventPreviewCard from "../../../../components/AdminEventPreviewCard";
@@ -24,7 +24,7 @@ const AdminConsoleEvents = () => {
         <section>
           <AuthHeader />
           <div className="flex">
-            <SideNav />
+            <AdminConsoleSideNav />
             <div className="m-6 flex w-full flex-col">
               <div className="flex items-center justify-center">
                 <h2 className="text-2xl underline">Events:</h2>

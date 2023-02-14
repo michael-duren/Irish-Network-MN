@@ -28,6 +28,8 @@ const config = {
       "cloudflare-ipfs.com",
       "source.unsplash.com",
       "cdn.discordapp.com",
+      "media.licdn.com",
+      "platform-lookaside.fbsbx.com",
     ],
   },
 };

@@ -2,22 +2,28 @@ import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { useSession } from "next-auth/react";
 
 import { IoMdClose } from "react-icons/io";
 import { GoThreeBars } from "react-icons/go";
-import AuthButton from "../AuthButton";
+import AuthButton from "../../AuthButton";
 
-export default function Header() {
+export default function MainHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router = useRouter();
   const currentRoute = router.route;
+  const { data: session, status } = useSession();
+  const showProfile = status === "authenticated" ? true : false;
+
+  const slug = session?.user.id ? session.user.id : "notfound";
 
   const links = [
-    { name: "Home", link: "/" },
-    { name: "About", link: "/about" },
-    { name: "Membership", link: "/membership" },
-    { name: "Events", link: "/events" },
-    { name: "Contact", link: "/contact" },
+    { name: "Home", link: "/", show: true },
+    { name: "About", link: "/about", show: true },
+    { name: "Membership", link: "/membership", show: true },
+    { name: "Events", link: "/events", show: true },
+    { name: "Contact", link: "/contact", show: true },
+    { name: "Profile", link: `/profile/${slug}`, show: showProfile },
   ];
 
   const onClickHandler = () => {
@@ -48,18 +54,22 @@ export default function Header() {
         >
           {/* Nav Link */}
           {links.map((link) => {
-            return (
-              <li
-                key={link.name}
-                className={`mx-2 p-2 text-xl font-extralight  duration-500 hover:text-red-600  md:text-xl ${
-                  currentRoute === link.link ? "text-red-700" : "text-gray-900"
-                }`}
-              >
-                <Link onClick={onClickHandler} href={link.link}>
-                  {link.name}
-                </Link>
-              </li>
-            );
+            if (link.show) {
+              return (
+                <li
+                  key={link.name}
+                  className={`mx-2 p-2 text-xl font-extralight  duration-500 hover:text-red-600  md:text-xl ${
+                    currentRoute === link.link
+                      ? "text-red-700"
+                      : "text-gray-900"
+                  }`}
+                >
+                  <Link onClick={onClickHandler} href={link.link}>
+                    {link.name}
+                  </Link>
+                </li>
+              );
+            }
           })}
           <li className="mx-2 p-2 md:p-0">
             <AuthButton />

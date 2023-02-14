@@ -10,7 +10,10 @@ import LocalizedFormat from "dayjs/plugin/localizedFormat";
 import DeleteWarningModal from "../DeleteWarningModal";
 import { api } from "../../utils/api";
 import toast from "react-hot-toast";
-import EditButton from "../Buttons/EditButton";
+
+import GreenButton from "../Buttons/EditButton/GreenButton";
+import OrangeButton from "../Buttons/EditButton/OrangeButton";
+import RedButton from "../Buttons/EditButton/RedButton";
 
 type EventPreviewCardProps = {
   event: {
@@ -83,21 +86,13 @@ const AdminEventPreviewCard = ({
       <div className="justify flex items-center space-x-4">
         <Link legacyBehavior href={`/events/${slug}`}>
           <a target="_blank">
-            <EditButton type="submit" color="green">
-              View
-            </EditButton>
+            <GreenButton type="submit">View</GreenButton>
           </a>
         </Link>
-        <EditButton color="orange" type="button">
-          Edit
-        </EditButton>
-        <EditButton
-          type="button"
-          color="red"
-          onClick={() => setwarningModalOpen(true)}
-        >
+        <OrangeButton type="button">Edit</OrangeButton>
+        <RedButton type="button" onClick={() => setwarningModalOpen(true)}>
           Delete
-        </EditButton>
+        </RedButton>
       </div>
       <DeleteWarningModal
         isOpen={warningModalOpen}
@@ -106,20 +101,12 @@ const AdminEventPreviewCard = ({
         title="WARNING"
       >
         <div className="mt-8 flex space-x-8">
-          <EditButton
-            type="button"
-            color="red"
-            onClick={() => deleteEvent.mutate({ id })}
-          >
+          <RedButton type="button" onClick={() => deleteEvent.mutate({ id })}>
             ⚠️ Yes, Delete
-          </EditButton>
-          <EditButton
-            type="button"
-            color="green"
-            onClick={() => setwarningModalOpen(false)}
-          >
+          </RedButton>
+          <GreenButton type="button" onClick={() => setwarningModalOpen(false)}>
             ✔️ Heck No!
-          </EditButton>
+          </GreenButton>
         </div>
       </DeleteWarningModal>
     </div>

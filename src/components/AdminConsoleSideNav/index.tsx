@@ -8,7 +8,7 @@ import { BsCalendar2Event, BsFileImage } from "react-icons/bs";
 import { AiOutlineTeam } from "react-icons/ai";
 import { FiMessageSquare } from "react-icons/fi";
 
-const SideNav = () => {
+const AdminConsoleSideNav = () => {
   const [open, setOpen] = useState(true);
 
   const menus = [
@@ -92,4 +92,4 @@ const SideNav = () => {
   );
 };
 
-export default SideNav;
+export default AdminConsoleSideNav;

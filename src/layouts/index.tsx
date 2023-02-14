@@ -1,11 +1,11 @@
 import type { PropsWithChildren } from "react";
 
-import Header from "../components/Header";
+import MainHeader from "../components/Headers/MainHeader";
 
 export default function MainLayout({ children }: PropsWithChildren) {
   return (
     <div className="flex h-full w-full flex-col">
-      <Header />
+      <MainHeader />
       {children}
     </div>
   );
