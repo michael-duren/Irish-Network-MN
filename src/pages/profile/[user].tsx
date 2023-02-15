@@ -1,24 +1,34 @@
-import type { GetServerSideProps } from "next";
 import Image from "next/image";
-import { getServerSession } from "next-auth";
+
 import { useSession } from "next-auth/react";
-import { authOptions } from "../../server/auth";
 
 import HorizontalCard from "../../components/Cards/HorizontalCard";
 import ProfileSideNav from "../../components/SideNavs/ProfileSideNav";
-import Spinner from "../../components/Spinners/Spinner";
+import Spinner from "../../components/Spinners";
 import { useState } from "react";
+import { api } from "../../utils/api";
+import { useRouter } from "next/router";
 
 const UserProfile = () => {
-  const { data: session } = useSession();
   const [profileState, setProfileState] = useState<"account" | "membership">(
     "account"
+  );
+
+  const router = useRouter();
+  console.log(router.query.user);
+
+  const { data: session } = useSession({ required: true });
+
+  const user = api.user.getProvider.useQuery(
+    { userId: router.query.user as string },
+    {
+      enabled: !!router.query.user,
+    }
   );
 
   if (!session?.user) {
     return <Spinner />;
   }
-
   return (
     <section className="h-full w-full overflow-scroll">
       <div className="flex  justify-center">
@@ -44,7 +54,10 @@ const UserProfile = () => {
                     </div>
                   )}
                   <h1 className="text-2xl">{session?.user.name}</h1>
-                  <p>Email: {session.user.email}</p>
+                  <div className="text-sm text-gray-600">
+                    <p>Signed in with: {user.data?.accounts[0]?.provider}</p>
+                    <p>Email: {session.user.email}</p>
+                  </div>
                 </div>
                 <div className="flex flex-col">
                   <div className="mx-4 mt-4 flex min-h-[10rem] w-[20vw] min-w-[20rem] flex-col items-center justify-around  rounded-md border-2 border-solid border-gray-300  bg-white p-8 shadow-xl transition-all duration-300 hover:border-gray-400">
@@ -71,18 +84,3 @@ const UserProfile = () => {
 };
 
 export default UserProfile;
-
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const session = await getServerSession(ctx.req, ctx.res, authOptions);
-  const slug = ctx.params?.user as string;
-
-  if (session?.user.id !== slug) {
-    return {
-      notFound: true,
-    };
-  }
-
-  return {
-    props: {},
-  };
-};

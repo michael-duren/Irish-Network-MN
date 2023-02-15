@@ -48,10 +48,15 @@ model User {
     email         String?   @unique
     emailVerified DateTime?
     image         String?
-    role          String?   @default("user")
+    role          Role      @default(USER)
     accounts      Account[]
     sessions      Session[]
     membership    Boolean   @default(false)
+}
+
+enum Role {
+    USER
+    ADMIN
 }
 
 model VerificationToken {

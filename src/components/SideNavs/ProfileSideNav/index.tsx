@@ -52,7 +52,7 @@ const ProfileSideNav = ({
           <h2>Membership</h2>
         </div>
         {/* Admin Page */}
-        {session.user.role === "admin" ? (
+        {session.user.role === "ADMIN" ? (
           <Link
             href="/admin/console/dashboard"
             className={`group flex items-center gap-3 rounded-md p-2 text-sm font-medium hover:bg-gray-100 `}

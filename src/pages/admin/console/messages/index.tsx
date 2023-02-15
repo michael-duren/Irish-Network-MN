@@ -8,7 +8,7 @@ import { api } from "../../../../utils/api";
 const AdminConsoleMessages = () => {
   const { data: session } = useSession({ required: true });
   const getMessages = api.contact.getAllMessages.useQuery();
-  if (session?.user.role === "admin" && session.user) {
+  if (session?.user.role === "ADMIN" && session.user) {
     return (
       <section>
         <AuthHeader />
