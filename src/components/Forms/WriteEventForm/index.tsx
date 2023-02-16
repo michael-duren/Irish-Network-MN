@@ -1,3 +1,4 @@
+import { useState } from "react";
 import type { Dispatch, SetStateAction } from "react";
 import { useForm } from "react-hook-form";
 import z from "zod";
@@ -7,6 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { api } from "../../../utils/api";
 import { toast } from "react-hot-toast";
 
+import UploadImage from "../../Buttons/UploadImage";
 import GreenButton from "../../Buttons/EditButton/GreenButton";
 import RedButton from "../../Buttons/EditButton/RedButton";
 
@@ -33,6 +35,7 @@ type WriteEventFormProps = {
 export type WriteEventFormData = z.infer<typeof writeEventSchema>;
 
 const WriteEventForm = ({ isOpen, closeModal }: WriteEventFormProps) => {
+  const [imageUrl, setImageUrl] = useState("");
   const {
     register,
     handleSubmit,
@@ -58,7 +61,7 @@ const WriteEventForm = ({ isOpen, closeModal }: WriteEventFormProps) => {
   });
 
   const onSubmit = (data: WriteEventFormData) => {
-    createEvent.mutate(data);
+    createEvent.mutate({ ...data, featuredImage: imageUrl });
   };
   return (
     <div>
@@ -140,14 +143,7 @@ const WriteEventForm = ({ isOpen, closeModal }: WriteEventFormProps) => {
           {/* image and register */}
           <div className="flex flex-col items-center justify-around space-x-8 md:flex-row">
             <div className="flex w-full flex-col items-start justify-center space-x-4 space-y-4">
-              <label htmlFor="image">Image</label>
-              <input
-                type="text"
-                id="image"
-                className=" w-full rounded-xl  border border-gray-300 p-3 outline-none focus:border-gray-600"
-                placeholder=""
-                {...register("featuredImage")}
-              />
+              <UploadImage setImageUrl={setImageUrl} />
             </div>
             <div className="flex flex-col items-start justify-start space-x-4 space-y-4">
               <label htmlFor="register">Attendees must register?</label>

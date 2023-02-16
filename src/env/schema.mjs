@@ -27,6 +27,8 @@ export const serverSchema = z.object({
   GOOGLE_CLIENT_SECRET: z.string(),
   LINKEDIN_CLIENT_ID: z.string(),
   LINKEDIN_CLIENT_SECRET: z.string(),
+  SUPABASE_PUBLIC_URL: z.string(),
+  SUPABASE_SECRET_KEY: z.string(),
 });
 
 /**
@@ -47,6 +49,8 @@ export const serverEnv = {
   GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
   LINKEDIN_CLIENT_ID: process.env.LINKEDIN_CLIENT_ID,
   LINKEDIN_CLIENT_SECRET: process.env.LINKEDIN_CLIENT_SECRET,
+  SUPABASE_PUBLIC_URL: process.env.SUPABASE_PUBLIC_URL,
+  SUPABASE_SECRET_KEY: process.env.SUPABASE_SECRET_KEY,
 };
 
 /**

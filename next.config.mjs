@@ -30,6 +30,7 @@ const config = {
       "cdn.discordapp.com",
       "media.licdn.com",
       "platform-lookaside.fbsbx.com",
+      "gpncezkvubukxrrsxtnt.supabase.co",
     ],
   },
 };

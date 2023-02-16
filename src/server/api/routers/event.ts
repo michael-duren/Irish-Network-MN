@@ -1,7 +1,16 @@
+import { createClient } from "@supabase/supabase-js";
+import isDataURI from "validator/lib/isDataURI";
+import { decode } from "base64-arraybuffer";
 import slugify from "slugify";
+import z from "zod";
+import { randomUUID } from "crypto";
+
 import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
 import { writeEventSchema } from "../../../components/Forms/WriteEventForm";
-import z from "zod";
+import { env } from "../../../env/server.mjs";
+import { TRPCError } from "@trpc/server";
+
+const supabase = createClient(env.SUPABASE_PUBLIC_URL, env.SUPABASE_SECRET_KEY);
 
 export const eventRouter = createTRPCRouter({
   createEvent: protectedProcedure
@@ -72,4 +81,36 @@ export const eventRouter = createTRPCRouter({
 
     return events;
   }),
+  uploadImage: protectedProcedure
+    .input(
+      z.object({
+        imageBase64DataURI: z.string().refine((val: string) => isDataURI(val), {
+          message: "Image should be in data URI format",
+        }),
+      })
+    )
+    .mutation(async ({ input: { imageBase64DataURI } }) => {
+      const imageBase64Str = imageBase64DataURI.replace(/^.+,/, "");
+
+      const { data: uploadedImage, error } = await supabase.storage
+        .from("public")
+        .upload(`events/${randomUUID()}`, decode(imageBase64Str), {
+          cacheControl: "3600",
+          upsert: true,
+        });
+
+      if (error) {
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: `Something went wrong! ${error.message}`,
+        });
+      }
+
+      const {
+        data: { publicUrl },
+      } = supabase.storage.from("images").getPublicUrl(uploadedImage.path);
+      console.log(uploadedImage.path);
+
+      return publicUrl.replace(/images/, "public");
+    }),
 });
