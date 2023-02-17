@@ -2,11 +2,7 @@ import HorizontalCard from "../HorizontalCard";
 
 const WelcomeCards = () => {
   return (
-    <div className=" mx-4 my-12 flex h-full flex-1 flex-col flex-wrap items-center justify-around md:flex-row md:justify-center md:space-x-8">
-      {/* <HorizontalCard width="w-[20rem] max-w-[25rem] ">
-        <h2 className="border-b border-gray-300 p-4 text-2xl">Welcome</h2>
-        <GiClover className="text-[8rem]" />
-      </HorizontalCard> */}
+    <div className="mx-4 my-16  flex h-full flex-1 flex-col flex-wrap items-center justify-center md:flex-row md:justify-center ">
       <HorizontalCard width="md:w-[40rem]  md:h-[30rem]">
         <h2 className="mb-4  border-b border-gray-300 p-4 text-2xl">
           Irish Network <span className="text-red-600">MN</span>

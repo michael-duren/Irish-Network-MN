@@ -110,7 +110,7 @@ const EventPage = () => {
             </div>
           </div>
           {/* Event Image and Additional Contet */}
-          <div className="flex flex-col items-center justify-center space-y-4 rounded-lg border-2 px-6 py-8 shadow-md">
+          <div className="flex flex-col items-center justify-center space-y-4 rounded-lg border-2 border-gray-300 px-6 py-8 shadow-md">
             {/* Image */}
             <div className="relative h-80 min-h-[20rem] w-full flex-1 rounded-lg bg-gradient-to-b  from-gray-300 via-gray-100 to-transparent shadow-sm">
               <Image

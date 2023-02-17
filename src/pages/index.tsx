@@ -22,7 +22,7 @@ const Home: NextPage = () => {
           imagePath="/images/bag-pipes.jpg"
           title="Welcome"
         />
-        <div className="">
+        <div>
           <WelcomeCards />
         </div>
       </section>
