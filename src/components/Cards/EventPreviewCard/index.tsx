@@ -40,7 +40,7 @@ const EventPreviewCard = ({
             </div>
             <address className="my-4 flex">
               <IoLocationOutline className="text-lg" />
-              {location} {address}
+              {location} <br /> {address}
             </address>
             <p>{excerpt}</p>
           </div>

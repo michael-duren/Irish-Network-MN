@@ -81,6 +81,20 @@ export const eventRouter = createTRPCRouter({
 
     return events;
   }),
+  getSingleEvent: publicProcedure
+    .input(
+      z.object({
+        slug: z.string(),
+      })
+    )
+    .query(async ({ ctx: { prisma }, input: { slug } }) => {
+      const event = await prisma.event.findUnique({
+        where: {
+          slug,
+        },
+      });
+      return event;
+    }),
   uploadImage: protectedProcedure
     .input(
       z.object({

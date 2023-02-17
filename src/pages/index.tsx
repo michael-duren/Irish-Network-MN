@@ -15,10 +15,16 @@ const Home: NextPage = () => {
         />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <section className="relative ">
-        <Banner imagePath="/images/bag-pipes.jpg" title="Welcome" />
-
-        <WelcomeCards />
+      <section className="relative">
+        <Banner
+          top="top-[30%]"
+          left="left-[10%]"
+          imagePath="/images/bag-pipes.jpg"
+          title="Welcome"
+        />
+        <div className="md:absolute md:top-60">
+          <WelcomeCards />
+        </div>
       </section>
     </>
   );

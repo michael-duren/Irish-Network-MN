@@ -30,7 +30,7 @@ const ProfileSideNav = ({
         {/* Account */}
         <div
           onClick={() => setProfileState("account")}
-          className={`group flex cursor-pointer items-center gap-3 rounded-md p-2 text-sm font-medium transition-all duration-500 hover:bg-gray-100 hover:text-base  ${
+          className={`group flex cursor-pointer items-center gap-3 rounded-md p-2 text-sm font-medium transition-all duration-500 hover:bg-gray-100 active:scale-95  ${
             profileState === "account" ? "text-black" : "text-gray-600"
           } `}
         >
@@ -42,7 +42,7 @@ const ProfileSideNav = ({
         {/* Membership */}
         <div
           onClick={() => setProfileState("membership")}
-          className={`group flex cursor-pointer items-center gap-3 rounded-md p-2 text-sm font-medium transition-all duration-500  hover:bg-gray-100 hover:text-base ${
+          className={`group flex cursor-pointer items-center gap-3 rounded-md p-2 text-sm font-medium transition-all duration-500  hover:bg-gray-100 active:scale-95 ${
             profileState === "membership" ? "text-black" : "text-gray-600"
           }`}
         >
@@ -55,7 +55,7 @@ const ProfileSideNav = ({
         {session.user.role === "ADMIN" ? (
           <Link
             href="/admin/console/dashboard"
-            className={`group flex items-center gap-3 rounded-md p-2 text-sm font-medium hover:bg-gray-100 `}
+            className={`group flex items-center gap-3 rounded-md p-2 text-sm font-medium text-gray-600 hover:bg-gray-100 active:text-black `}
           >
             <div>
               <MdOutlineAdminPanelSettings size={25} />

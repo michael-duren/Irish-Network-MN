@@ -143,6 +143,9 @@ const WriteEventForm = ({ isOpen, closeModal }: WriteEventFormProps) => {
           {/* image and register */}
           <div className="flex flex-col items-center justify-around space-x-8 md:flex-row">
             <div className="flex w-full flex-col items-start justify-center space-x-4 space-y-4">
+              <label id="event-image" htmlFor="event-image" className="block">
+                <span className="">Event Image</span>
+              </label>
               <UploadImage setImageUrl={setImageUrl} />
             </div>
             <div className="flex flex-col items-start justify-start space-x-4 space-y-4">
