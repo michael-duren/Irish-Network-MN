@@ -58,7 +58,7 @@ export default function MainHeader() {
               return (
                 <li
                   key={link.name}
-                  className={`mx-2 p-2 text-xl font-extralight  duration-500 hover:text-red-600  md:text-xl ${
+                  className={`mx-2 p-2 font-extralight  duration-500 hover:text-red-600 ${
                     currentRoute === link.link
                       ? "text-red-700"
                       : "text-gray-900"
