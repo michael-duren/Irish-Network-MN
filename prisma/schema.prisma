@@ -83,7 +83,7 @@ model Event {
     featuredImage         String?
 
     // tickets
-    price      Float
+    price      String
     ticketLink String
     register   Boolean?
 

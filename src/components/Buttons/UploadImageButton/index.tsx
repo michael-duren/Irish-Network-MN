@@ -1,17 +1,18 @@
 import { useState } from "react";
 import type { Dispatch, SetStateAction } from "react";
-import { api } from "../../../utils/api";
 import toast from "react-hot-toast";
+
+import { api } from "../../../utils/api";
 
 type UploadImageProps = {
   setImageUrl: Dispatch<SetStateAction<string>>;
 };
 
-const UploadImage = ({ setImageUrl }: UploadImageProps) => {
+const UploadImageButton = ({ setImageUrl }: UploadImageProps) => {
   const { mutateAsync: uploadImageToServer, isLoading: isImageLoading } =
     api.event.uploadImage.useMutation({
       onSuccess: () => {
-        toast.success("YOU DID IT 🎉");
+        toast.success("Successfully Uploaded Image 🎉");
       },
       onError: (error) => console.log(error),
     });
@@ -25,8 +26,8 @@ const UploadImage = ({ setImageUrl }: UploadImageProps) => {
     if (e.target.files && e.target.files[0]) {
       const i = e.target.files[0];
 
-      if (i.size > 2.5 * 1000000) {
-        return toast.error("Image may not be bigger than 2.5MB");
+      if (i.size > 1.5 * 1000000) {
+        return toast.error("Image may not be bigger than 1.5MB");
       }
 
       setImage(i);
@@ -52,7 +53,7 @@ const UploadImage = ({ setImageUrl }: UploadImageProps) => {
   return (
     <input
       id="event-image-button"
-      className="block w-full text-sm text-slate-500 file:mr-4 file:cursor-pointer file:rounded-full file:border-0 file:bg-violet-50 file:py-2 file:px-4 file:text-sm file:font-semibold file:text-violet-700 hover:file:bg-violet-200 file:active:scale-95"
+      className="block w-full text-sm text-slate-500 file:mr-4 file:cursor-pointer file:rounded-full file:border-0 file:bg-red-50 file:py-2 file:px-4 file:text-sm file:font-semibold file:text-red-700 hover:file:bg-red-200 file:active:scale-95"
       name="event-image"
       type="file"
       accept="image/*"
@@ -63,7 +64,7 @@ const UploadImage = ({ setImageUrl }: UploadImageProps) => {
   );
 };
 
-export default UploadImage;
+export default UploadImageButton;
 
 {
   /* <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white" for="file_input">Upload file</label>

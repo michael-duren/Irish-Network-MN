@@ -52,7 +52,7 @@ export const eventRouter = createTRPCRouter({
             location,
             additionalInformation,
             featuredImage,
-            price: isNaN(+price) ? 0 : +price,
+            price,
             ticketLink,
             register,
             slug: slugify(title),

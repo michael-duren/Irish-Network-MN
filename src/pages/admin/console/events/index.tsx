@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useSession } from "next-auth/react";
-import UploadImage from "../../../../components/Buttons/UploadImage";
+import UploadImageButton from "../../../../components/Buttons/UploadImageButton";
 
 import { AiOutlinePlusCircle } from "react-icons/ai";
 

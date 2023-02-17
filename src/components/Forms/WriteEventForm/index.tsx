@@ -1,27 +1,36 @@
 import { useState } from "react";
 import type { Dispatch, SetStateAction } from "react";
-import { useForm } from "react-hook-form";
-import z from "zod";
-import WideModal from "../../Modals/WideModal";
-import { zodResolver } from "@hookform/resolvers/zod";
-
-import { api } from "../../../utils/api";
+import { Controller, useForm } from "react-hook-form";
+import "react-quill/dist/quill.snow.css";
 import { toast } from "react-hot-toast";
+import z from "zod";
+import { zodResolver } from "@hookform/resolvers/zod";
+import dynamic from "next/dynamic";
 
-import UploadImage from "../../Buttons/UploadImage";
+import WideModal from "../../Modals/WideModal";
+import { api } from "../../../utils/api";
+
+import UploadImageButton from "../../Buttons/UploadImageButton";
 import GreenButton from "../../Buttons/EditButton/GreenButton";
 import RedButton from "../../Buttons/EditButton/RedButton";
 
+const ReactQuill = dynamic(() => import("react-quill"), {
+  ssr: false,
+});
+
 export const writeEventSchema = z.object({
   title: z.string().min(5),
-  excerpt: z.string().min(5),
-  description: z.string().min(5),
-
+  excerpt: z.string().min(10),
+  description: z.string().min(2).default("Description"),
   date: z.string(),
   address: z.string(),
   location: z.string(),
-  additionalInformation: z.string().or(z.undefined()),
-  featuredImage: z.string().or(z.undefined()),
+  additionalInformation: z.string().default("None"),
+  featuredImage: z
+    .string()
+    .default(
+      "https://gpncezkvubukxrrsxtnt.supabase.co/storage/v1/object/public/public/events/Irish-Network-Logo.jpeg"
+    ),
   price: z.string(),
   ticketLink: z.string(),
   register: z.boolean(),
@@ -40,6 +49,7 @@ const WriteEventForm = ({ isOpen, closeModal }: WriteEventFormProps) => {
     register,
     handleSubmit,
     reset,
+    control,
     formState: { errors },
   } = useForm<WriteEventFormData>({
     resolver: zodResolver(writeEventSchema),
@@ -62,6 +72,7 @@ const WriteEventForm = ({ isOpen, closeModal }: WriteEventFormProps) => {
 
   const onSubmit = (data: WriteEventFormData) => {
     createEvent.mutate({ ...data, featuredImage: imageUrl });
+    console.log(data.description);
   };
   return (
     <div>
@@ -107,14 +118,22 @@ const WriteEventForm = ({ isOpen, closeModal }: WriteEventFormProps) => {
               />
             </div>
             <div className="flex w-full flex-1 flex-col items-start justify-center space-x-4 space-y-4">
-              <label htmlFor="date">Address</label>
-              <input
-                className="w-full rounded-xl  border border-gray-300 p-3 text-xs outline-none focus:border-gray-600 md:text-base"
-                id="address"
-                type={"text"}
-                placeholder="1569 Grand Ave, St Paul, MN 55105"
-                {...register("address")}
-              />
+              <label htmlFor="address">Address</label>
+              <Controller
+                name="address"
+                control={control}
+                render={({ field }) => (
+                  <div>
+                    <ReactQuill
+                      {...field}
+                      placeholder="Event summary"
+                      onChange={(value) => field.onChange(value)}
+                      theme="snow"
+                      value={field.value}
+                    />
+                  </div>
+                )}
+              ></Controller>
             </div>
           </div>
           {/* price, ticket link */}
@@ -125,7 +144,7 @@ const WriteEventForm = ({ isOpen, closeModal }: WriteEventFormProps) => {
                 type="text"
                 id="price"
                 className=" w-full rounded-xl  border border-gray-300 p-3 outline-none focus:border-gray-600"
-                placeholder="0.00"
+                placeholder="$20.00"
                 {...register("price")}
               />
             </div>
@@ -146,7 +165,7 @@ const WriteEventForm = ({ isOpen, closeModal }: WriteEventFormProps) => {
               <label id="event-image" htmlFor="event-image" className="block">
                 <span className="">Event Image</span>
               </label>
-              <UploadImage setImageUrl={setImageUrl} />
+              <UploadImageButton setImageUrl={setImageUrl} />
             </div>
             <div className="flex flex-col items-start justify-start space-x-4 space-y-4">
               <label htmlFor="register">Attendees must register?</label>
@@ -162,34 +181,75 @@ const WriteEventForm = ({ isOpen, closeModal }: WriteEventFormProps) => {
           {/* Event Summary */}
           <div className="space-y-4">
             <label htmlFor="excerpt">Event Summary</label>
-            <textarea
-              id="excerpt"
-              className="h-full w-full rounded-xl border border-gray-300 p-3 outline-none focus:border-gray-600"
-              placeholder="Event Summary"
-              {...register("excerpt")}
-            />
+            <Controller
+              name="excerpt"
+              control={control}
+              render={({ field }) => (
+                <div>
+                  <ReactQuill
+                    style={{
+                      height: "5rem",
+                      marginBottom: "2rem",
+                      borderRadius: "50%",
+                    }}
+                    {...field}
+                    placeholder="Event summary"
+                    onChange={(value) => field.onChange(value)}
+                    theme="snow"
+                    value={field.value}
+                  />
+                </div>
+              )}
+            ></Controller>
           </div>
           {/* Description */}
           <div className="space-y-4">
             <label htmlFor="description">Description</label>
-            <textarea
-              id="description"
-              className="h-full w-full rounded-xl border border-gray-300 p-3 outline-none focus:border-gray-600"
-              placeholder="Event Details"
-              rows={10}
-              {...register("description")}
-            />
+
+            <Controller
+              name="description"
+              control={control}
+              render={({ field }) => (
+                <div>
+                  <ReactQuill
+                    style={{
+                      height: "10rem",
+                      marginBottom: "2rem",
+                      borderRadius: "50%",
+                    }}
+                    {...field}
+                    placeholder="Event description"
+                    onChange={(value) => field.onChange(value)}
+                    theme="snow"
+                    value={field.value}
+                  />
+                </div>
+              )}
+            ></Controller>
           </div>
           {/* additionalInformation */}
           <div className="space-y-4">
             <label htmlFor="additionalInformation">Addiontal Information</label>
-            <input
-              type="text"
-              id="additionalInformation"
-              className="h-full w-full rounded-xl border border-gray-300 p-3 outline-none focus:border-gray-600"
-              placeholder="..."
-              {...register("additionalInformation")}
-            />
+            <Controller
+              name="additionalInformation"
+              control={control}
+              render={({ field }) => (
+                <div>
+                  <ReactQuill
+                    style={{
+                      width: "100%",
+                      marginBottom: "2rem",
+                      borderRadius: "50%",
+                    }}
+                    {...field}
+                    placeholder="Additional information, i.e. links, registering details, etc."
+                    onChange={(value) => field.onChange(value)}
+                    theme="snow"
+                    value={field.value}
+                  />
+                </div>
+              )}
+            ></Controller>
           </div>
           {/* Buttons */}
           <div className="space-x-8">

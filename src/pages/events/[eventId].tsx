@@ -12,6 +12,7 @@ import { FiMapPin } from "react-icons/fi";
 import { api } from "../../utils/api";
 import Spinner from "../../components/Spinners";
 import GreenButton from "../../components/Buttons/EditButton/GreenButton";
+import { Interweave } from "interweave";
 
 dayjs.extend(LocalizedFormat);
 
@@ -38,7 +39,7 @@ const EventPage = () => {
     <section className="mb-8">
       <Link
         href="/events"
-        className="ml-16 flex cursor-pointer items-center justify-start text-lg text-gray-600 hover:text-gray-900"
+        className="ml-16 flex cursor-pointer items-center justify-start text-lg text-red-400 hover:text-gray-900"
       >
         <IoMdArrowRoundBack className="mr-2" />
         <p>Back</p>
@@ -104,8 +105,8 @@ const EventPage = () => {
                 </div>
               </div>
               {/* description */}
-              <div className="py-8 px-2 text-sm font-normal leading-6">
-                <p>{event?.description}</p>
+              <div className="prose py-8 px-2 text-sm font-normal leading-6 lg:prose-xl">
+                <Interweave content={event.description} />
               </div>
             </div>
           </div>
