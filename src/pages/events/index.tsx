@@ -11,7 +11,7 @@ const Events: NextPage = () => {
 
   return (
     <section>
-      <Banner imagePath="/images/balcony2.jpg" title="Events" />
+      <Banner imagePath="/images/events.jpeg.webp" title="Events" />
       <div className="m-8 flex flex-col items-center">
         {getEvents.isLoading && <Spinner />}
 

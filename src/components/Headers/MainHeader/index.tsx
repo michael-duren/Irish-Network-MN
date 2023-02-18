@@ -19,10 +19,11 @@ export default function MainHeader() {
 
   const links = [
     { name: "Home", link: "/", show: true },
-    { name: "About", link: "/about", show: true },
-    { name: "Membership", link: "/membership", show: true },
+    { name: "Team", link: "/team", show: true },
+    { name: "News", link: "/news", show: true },
     { name: "Events", link: "/events", show: true },
     { name: "Contact", link: "/contact", show: true },
+    { name: "Membership", link: "/membership", show: true },
     { name: "Profile", link: `/profile/${slug}`, show: showProfile },
   ];
 
@@ -58,9 +59,9 @@ export default function MainHeader() {
               return (
                 <li
                   key={link.name}
-                  className={`mx-2 p-2 font-extralight  duration-500 hover:text-red-600 ${
+                  className={`mx-2 p-2 font-light  duration-500 hover:text-red-500 ${
                     currentRoute === link.link
-                      ? "text-red-700"
+                      ? "text-red-400"
                       : "text-gray-900"
                   }`}
                 >

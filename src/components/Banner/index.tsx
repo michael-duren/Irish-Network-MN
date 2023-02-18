@@ -24,7 +24,7 @@ export default function Banner({ imagePath, title, top, left }: BannerProps) {
         <h1
           className={`absolute ${top ? top : "top-[50%]"} ${
             left ? left : "left-[50%]"
-          } p-6 text-2xl text-gray-100 md:text-3xl `}
+          } p-6 text-4xl text-gray-100 md:text-3xl `}
         >
           {title}
         </h1>

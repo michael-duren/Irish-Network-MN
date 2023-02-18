@@ -1,7 +1,7 @@
 import { type NextPage } from "next";
 import Banner from "../../components/Banner";
 
-const About: NextPage = () => {
+const Team: NextPage = () => {
   return (
     <section>
       <Banner imagePath="/images/train.jpg" title="About Us" />
@@ -9,4 +9,4 @@ const About: NextPage = () => {
   );
 };
 
-export default About;
+export default Team;
