@@ -39,7 +39,7 @@ const EventPage = () => {
     <section className="mb-8">
       <Link
         href="/events"
-        className="ml-16 flex cursor-pointer items-center justify-start text-lg text-red-400 hover:text-gray-900"
+        className="ml-16 flex cursor-pointer items-center justify-start text-lg text-red-400 hover:text-red-500"
       >
         <IoMdArrowRoundBack className="mr-2" />
         <p>Back</p>
@@ -68,18 +68,20 @@ const EventPage = () => {
                 </p>
               </div>
               {/* Location Address */}
-              <div className="flex space-x-4">
+              <div className="prose flex space-x-4">
                 <FiMapPin size={20} />
                 <div className="flex flex-col">
                   <div className="font-light">{event?.location}</div>
-                  <address className="">{event?.address}</address>
+                  <address className="">
+                    <Interweave content={event.address} />
+                  </address>
                 </div>
               </div>
               {/* tickets, price, etc */}
               <div className="flex items-center space-x-4">
                 <HiOutlineTicket size={20} />
                 <div className="flex items-center justify-around space-x-10">
-                  <div>${event?.price}</div>
+                  <div>{event?.price}</div>
                   <div className="hover:font-normal hover:text-gray-800">
                     {event?.ticketLink && (
                       <a
@@ -105,7 +107,7 @@ const EventPage = () => {
                 </div>
               </div>
               {/* description */}
-              <div className="prose py-8 px-2 text-sm font-normal leading-6 lg:prose-xl">
+              <div className="prose py-8 px-2 text-sm font-normal leading-6 ">
                 <Interweave content={event.description} />
               </div>
             </div>
@@ -124,12 +126,12 @@ const EventPage = () => {
             </div>
 
             {/* Additional Content */}
-            <div className="flex  flex-col rounded-lg border-2 px-6 py-8 shadow-md">
+            <div className=" flex flex-col  rounded-lg border-2 px-6 py-8 shadow-md ">
               <div>
                 <h3>Additional Content</h3>
               </div>
-              <div>
-                <p>{event?.additionalInformation}</p>
+              <div className="prose">
+                <Interweave content={event.additionalInformation} />
               </div>
             </div>
           </div>

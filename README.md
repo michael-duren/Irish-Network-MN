@@ -1,28 +1,66 @@
-# Create T3 App
 
-This is a [T3 Stack](https://create.t3.gg/) project bootstrapped with `create-t3-app`.
+# Irish Network MN
 
-## What's next? How do I make an app with this?
+Built with React, Next.js, Typescript, tRPC, Prisma, Tailwind CSS, NextAuth, Supabase, PostgreSQL. 
 
-We try to keep this project as simple as possible, so you can start with just the scaffolding we set up for you, and add additional things later when they become necessary.
+## Features
+- User-profiles and schemas and implemented role-based login for users and admins. 
 
-If you are not familiar with the different technologies used in this project, please refer to the respective docs. If you still are in the wind, please join our [Discord](https://t3.gg/discord) and ask for help.
+- OAUTH Providers include: Discord, Facebook, Google, and LinkedIn
 
-- [Next.js](https://nextjs.org)
-- [NextAuth.js](https://next-auth.js.org)
-- [Prisma](https://prisma.io)
-- [Tailwind CSS](https://tailwindcss.com)
-- [tRPC](https://trpc.io)
+- Check Prisma folder to see all Data Models
 
-## Learn More
+- Admin panel for board members to edit event details, board member profiles, and images for the event image gallery. 
 
-To learn more about the [T3 Stack](https://create.t3.gg/), take a look at the following resources:
+- Standard user profiles include membership sign-up, status, and cancellation options. Users can register for events and see their current registration status in user profile. 
 
-- [Documentation](https://create.t3.gg/)
-- [Learn the T3 Stack](https://create.t3.gg/en/faq#what-learning-resources-are-currently-available) — Check out these awesome tutorials
+- Determine business needs for member subscriptions, price, and product detail. 
 
-You can check out the [create-t3-app GitHub repository](https://github.com/t3-oss/create-t3-app) — your feedback and contributions are welcome!
 
-## How do I deploy this?
 
-Follow our deployment guides for [Vercel](https://create.t3.gg/en/deployment/vercel), [Netlify](https://create.t3.gg/en/deployment/netlify) and [Docker](https://create.t3.gg/en/deployment/docker) for more information.
+### Features still to be Built
+- Checkout system for handling electronic payments with Stripe. 
+- Team page
+- News page
+- News form on Admin Panel 
+- Image gallery
+## Screenshots
+
+![App Screenshot](https://gpncezkvubukxrrsxtnt.supabase.co/storage/v1/object/public/public/documentation/home.png)
+![](https://gpncezkvubukxrrsxtnt.supabase.co/storage/v1/object/public/public/documentation/user-profile.png)
+![](https://gpncezkvubukxrrsxtnt.supabase.co/storage/v1/object/public/public/documentation/admin-console.png)
+
+
+## Run Locally
+
+Clone the project
+
+```bash
+  git clone https://github.com/michael-duren/Irish-Network-MN.git
+```
+
+Go to the project directory
+
+```bash
+  cd my-project
+```
+
+Install dependencies
+
+```bash
+  npm install
+```
+
+Start the server
+
+```bash
+  npm run dev
+```
+
+
+## Tech Stack
+
+**Client:** React, Next.js, TailwindCSS
+
+**Server:** Next.js, Next-Auth, tRPC, Prisma, PostgreSQL
+

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { Interweave } from "interweave";
 
 import { IoCalendarNumberOutline } from "react-icons/io5";
 import { IoLocationOutline } from "react-icons/io5";
@@ -38,11 +39,15 @@ const EventPreviewCard = ({
               </div>
               {date.toLocaleDateString()} @ {dayjs(date).format("LT")}
             </div>
-            <address className="my-4 flex">
+            <address className=" my-4 flex ">
               <IoLocationOutline className="text-lg" />
-              {location} <br /> {address}
+              <div>
+                <div>{location}</div>
+                <Interweave content={address} />
+              </div>
             </address>
-            <p>{excerpt}</p>
+
+            <Interweave content={excerpt} />
           </div>
           <div className="relative flex h-64 w-60 flex-col items-center  ">
             {featuredImage && (

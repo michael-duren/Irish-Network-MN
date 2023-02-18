@@ -17,6 +17,7 @@ import toast from "react-hot-toast";
 import GreenButton from "../../Buttons/EditButton/GreenButton";
 import OrangeButton from "../../Buttons/EditButton/OrangeButton";
 import RedButton from "../../Buttons/EditButton/RedButton";
+import { Interweave } from "interweave";
 
 type EventPreviewCardProps = {
   event: {
@@ -79,12 +80,19 @@ const AdminEventPreviewCard = ({
             </div>
             {date.toLocaleDateString()} @ {dayjs(date).format("LT")}
           </div>
-          <address className="my-4 flex">
+          <address className=" my-4 flex">
             <IoLocationOutline className="text-lg" />
-            {location}
-            <br /> {address}
+            <div className="flex flex-col">
+              <div>{location}</div>
+
+              <div className="prose">
+                <Interweave content={address} />
+              </div>
+            </div>
           </address>
-          <p>{excerpt}</p>
+          <p className="prose">
+            <Interweave content={excerpt} />
+          </p>
         </div>
         <div className="relative flex h-64 w-60 flex-col items-center  ">
           {featuredImage && (

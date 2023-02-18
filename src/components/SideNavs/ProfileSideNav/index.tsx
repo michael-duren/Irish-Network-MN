@@ -23,9 +23,7 @@ const ProfileSideNav = ({
   profileState,
 }: ProfileSideNavProps) => {
   return (
-    <div
-      className={`flex rounded-3xl border-2 border-gray-300 bg-white py-8 px-4 duration-500`}
-    >
+    <div className={`flex rounded-3xl  bg-white py-8 px-4 duration-500`}>
       <div className="mt-4 flex flex-col space-y-4 ">
         {/* Account */}
         <div
