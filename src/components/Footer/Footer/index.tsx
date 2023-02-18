@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import MainButton from "../../Buttons/MainButton";
 import FooterItemsContainer from "../FooterItemsContainer";
 
 const Footer = () => {
@@ -8,15 +9,15 @@ const Footer = () => {
         <h1 className="text-3xl font-semibold md:mb-0 md:w-2/5 lg:text-4xl lg:leading-normal">
           Irish Network <span className="text-red-400">MN</span>
         </h1>
-        <div>
+        <div className="flex">
           <input
             type="text"
             placeholder="Enter your email"
             className="w=full mr-1 rounded py-2.5 px-2 text-gray-800 focus:outline-none sm:mr-5 sm:w-72 lg:mb-0"
           />
-          <button className="mt-4 rounded-md bg-red-400 px-5 py-2.5 text-white duration-300 hover:bg-red-500 active:scale-95 lg:mt-0">
-            Join Newsletter
-          </button>
+          <div className="mt-4 lg:mt-0">
+            <MainButton type="submit">Join Newsletter</MainButton>
+          </div>
         </div>
       </div>
       <FooterItemsContainer />

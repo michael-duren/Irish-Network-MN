@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import z from "zod";
 import toast from "react-hot-toast";
 import { api } from "../../../utils/api";
+import SecondaryButton from "../../Buttons/SecondaryButton";
 
 export const writeContactSchema = z.object({
   name: z.string().min(5),
@@ -95,9 +96,8 @@ const ContactForm = () => {
         />
       </div>
       <div>
-        <button
+        <SecondaryButton
           type="submit"
-          className="rounded-lg border-2 border-gray-300 px-5 py-3 text-lg shadow-sm transition-all duration-300 hover:border-gray-400"
           onClick={() => {
             if (errors) {
               console.log(errors);
@@ -105,7 +105,7 @@ const ContactForm = () => {
           }}
         >
           Send
-        </button>
+        </SecondaryButton>
       </div>
     </form>
   );
