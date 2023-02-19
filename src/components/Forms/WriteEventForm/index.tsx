@@ -13,26 +13,35 @@ import { api } from "../../../utils/api";
 import UploadImageButton from "../../Buttons/UploadImageButton";
 import GreenButton from "../../Buttons/EditButton/GreenButton";
 import RedButton from "../../Buttons/EditButton/RedButton";
+import Required from "../Required";
 
 const ReactQuill = dynamic(() => import("react-quill"), {
   ssr: false,
 });
 
 export const writeEventSchema = z.object({
-  title: z.string().min(5),
-  excerpt: z.string().min(10),
-  description: z.string().min(2).default("Description"),
-  date: z.string(),
-  address: z.string(),
-  location: z.string(),
-  additionalInformation: z.string().default("None"),
+  title: z
+    .string()
+    .min(6, { message: "Title must be at least 6 character(s)" }),
+  excerpt: z
+    .string()
+    .min(40, { message: "Summary must be at least 40 characters" }),
+  description: z
+    .string()
+    .min(200, { message: "Description must be at least 200 character(s)" }),
+  date: z.string().min(4, { message: "Date and Time cannot be empty" }),
+  address: z.string().min(6, { message: "Address cannot be empty" }),
+  location: z.string().min(6, { message: "Location cannot be empty" }),
+  additionalInformation: z.string().or(z.undefined()),
   featuredImage: z
     .string()
     .default(
       "https://gpncezkvubukxrrsxtnt.supabase.co/storage/v1/object/public/public/events/Irish-Network-Logo.jpeg"
     ),
-  price: z.string(),
-  ticketLink: z.string(),
+  price: z.string().min(2, {
+    message: "Price cannot be empty, if event is free write 'Free'",
+  }),
+  ticketLink: z.string().or(z.undefined()),
   register: z.boolean(),
 });
 
@@ -85,7 +94,9 @@ const WriteEventForm = ({ isOpen, closeModal }: WriteEventFormProps) => {
           {/* Title Date */}
           <div className=" flex items-center justify-around space-x-4">
             <div className="mr-8 flex flex-1 flex-col items-start justify-center space-x-4 space-y-4">
-              <label htmlFor="title">Title</label>
+              <label htmlFor="title">
+                <Required /> Title
+              </label>
               <input
                 type="text"
                 id="title"
@@ -93,9 +104,12 @@ const WriteEventForm = ({ isOpen, closeModal }: WriteEventFormProps) => {
                 placeholder="Title"
                 {...register("title")}
               />
+              <p className="text-red-500">{errors.title?.message}</p>
             </div>
             <div className="ml-4 flex flex-1 flex-col items-start justify-center space-y-4">
-              <label htmlFor="date">Date</label>
+              <label htmlFor="date">
+                <Required /> Date
+              </label>
               <input
                 className=" w-full rounded-xl  border border-gray-300 p-3 outline-none focus:border-gray-600"
                 id="date"
@@ -103,12 +117,15 @@ const WriteEventForm = ({ isOpen, closeModal }: WriteEventFormProps) => {
                 placeholder="YY/MM/DD"
                 {...register("date")}
               />
+              <p className="text-red-500">{errors.date?.message}</p>
             </div>
           </div>
           {/* Location Address */}
           <div className="flex flex-col items-center justify-around space-x-4 md:flex-row">
             <div className="flex w-full flex-1 flex-col items-start justify-center space-x-4 space-y-4">
-              <label htmlFor="location">Location</label>
+              <label htmlFor="location">
+                <Required /> Location
+              </label>
               <input
                 type="text"
                 id="location"
@@ -116,9 +133,12 @@ const WriteEventForm = ({ isOpen, closeModal }: WriteEventFormProps) => {
                 placeholder="Dunn Bros"
                 {...register("location")}
               />
+              <p className="text-red-500">{errors.location?.message}</p>
             </div>
             <div className="flex w-full flex-1 flex-col items-start justify-center space-x-4 space-y-4">
-              <label htmlFor="address">Address</label>
+              <label htmlFor="address">
+                <Required /> Address
+              </label>
               <Controller
                 name="address"
                 control={control}
@@ -133,13 +153,16 @@ const WriteEventForm = ({ isOpen, closeModal }: WriteEventFormProps) => {
                     />
                   </div>
                 )}
-              ></Controller>
+              />{" "}
+              <p className="text-red-500">{errors.address?.message}</p>
             </div>
           </div>
           {/* price, ticket link */}
           <div className="flex flex-col items-center justify-around space-x-8 md:flex-row">
             <div className="flex w-full flex-1 flex-col items-start justify-center space-x-4 space-y-4">
-              <label htmlFor="price">Price</label>
+              <label htmlFor="price">
+                <Required /> Price
+              </label>
               <input
                 type="text"
                 id="price"
@@ -147,6 +170,7 @@ const WriteEventForm = ({ isOpen, closeModal }: WriteEventFormProps) => {
                 placeholder="$20.00"
                 {...register("price")}
               />
+              <p className="text-red-500">{errors.price?.message}</p>
             </div>
             <div className="flex w-full flex-1 flex-col items-start justify-center space-x-4 space-y-4">
               <label htmlFor="ticketLink">Ticket Link</label>
@@ -180,12 +204,15 @@ const WriteEventForm = ({ isOpen, closeModal }: WriteEventFormProps) => {
 
           {/* Event Summary */}
           <div className="space-y-4">
-            <label htmlFor="excerpt">Event Summary</label>
+            <label htmlFor="excerpt">
+              <Required /> Event Summary
+            </label>
+
             <Controller
               name="excerpt"
               control={control}
               render={({ field }) => (
-                <div>
+                <div className="mb-4">
                   <ReactQuill
                     style={{
                       height: "5rem",
@@ -200,11 +227,14 @@ const WriteEventForm = ({ isOpen, closeModal }: WriteEventFormProps) => {
                   />
                 </div>
               )}
-            ></Controller>
+            />
+            <p className="text-red-500">{errors.excerpt?.message}</p>
           </div>
           {/* Description */}
           <div className="space-y-4">
-            <label htmlFor="description">Description</label>
+            <label htmlFor="description">
+              <Required /> Description
+            </label>
 
             <Controller
               name="description"
@@ -226,6 +256,7 @@ const WriteEventForm = ({ isOpen, closeModal }: WriteEventFormProps) => {
                 </div>
               )}
             ></Controller>
+            <p className="mt-4 text-red-500">{errors.description?.message}</p>
           </div>
           {/* additionalInformation */}
           <div className="space-y-4">
@@ -250,6 +281,10 @@ const WriteEventForm = ({ isOpen, closeModal }: WriteEventFormProps) => {
                 </div>
               )}
             ></Controller>
+            <div className="text-xs">
+              <Required />{" "}
+              <span className="text-gray-400">denotes required fields</span>
+            </div>
           </div>
           {/* Buttons */}
           <div className="space-x-8">
