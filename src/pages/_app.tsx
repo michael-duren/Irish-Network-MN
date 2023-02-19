@@ -3,8 +3,10 @@ import { type Session } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 import { Poppins } from "@next/font/google";
 import { Toaster } from "react-hot-toast";
+import NextNProgress from "nextjs-progressbar";
 
 import MainLayout from "../layouts";
+import AdminContextProvider from "../context/AdminContext";
 
 import { api } from "../utils/api";
 
@@ -22,12 +24,15 @@ const MyApp: AppType<{ session: Session | null }> = ({
 }) => {
   return (
     <SessionProvider session={session}>
-      <Toaster />
-      <MainLayout>
-        <main className={poppins.className}>
-          <Component {...pageProps} />
-        </main>
-      </MainLayout>
+      <AdminContextProvider>
+        <NextNProgress color="rgb(248 113 113)" />
+        <Toaster />
+        <MainLayout>
+          <main className={poppins.className}>
+            <Component {...pageProps} />
+          </main>
+        </MainLayout>
+      </AdminContextProvider>
     </SessionProvider>
   );
 };

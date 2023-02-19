@@ -2,7 +2,7 @@ import { type NextPage } from "next";
 
 import Banner from "../../components/Banner";
 import EventPreviewCard from "../../components/Cards/EventPreviewCard";
-import Spinner from "../../components/Spinners";
+import Spinner from "../../components/Spinners/Spinner";
 
 import { api } from "../../utils/api";
 

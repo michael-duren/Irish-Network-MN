@@ -10,7 +10,7 @@ import { ImCheckboxUnchecked } from "react-icons/im";
 import { FiMapPin } from "react-icons/fi";
 
 import { api } from "../../utils/api";
-import Spinner from "../../components/Spinners";
+import Spinner from "../../components/Spinners/Spinner";
 import GreenButton from "../../components/Buttons/EditButton/GreenButton";
 import { Interweave } from "interweave";
 

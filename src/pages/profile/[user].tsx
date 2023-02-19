@@ -2,7 +2,7 @@ import { useSession } from "next-auth/react";
 
 import HorizontalCard from "../../components/Cards/HorizontalCard";
 import ProfileSideNav from "../../components/SideNavs/ProfileSideNav";
-import Spinner from "../../components/Spinners";
+import Spinner from "../../components/Spinners/Spinner";
 import { useState } from "react";
 import { api } from "../../utils/api";
 import { useRouter } from "next/router";
