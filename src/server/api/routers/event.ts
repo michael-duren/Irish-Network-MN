@@ -5,7 +5,11 @@ import slugify from "slugify";
 import z from "zod";
 import { randomUUID } from "crypto";
 
-import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
+import {
+  createTRPCRouter,
+  publicProcedure,
+  protectedAdminProcedure,
+} from "../trpc";
 import { writeEventSchema } from "../../../components/Forms/WriteEventForm";
 import { env } from "../../../env/server.mjs";
 import { TRPCError } from "@trpc/server";
@@ -13,7 +17,7 @@ import { TRPCError } from "@trpc/server";
 const supabase = createClient(env.SUPABASE_PUBLIC_URL, env.SUPABASE_SECRET_KEY);
 
 export const eventRouter = createTRPCRouter({
-  createEvent: protectedProcedure
+  createEvent: protectedAdminProcedure
     .input(writeEventSchema)
     .mutation(
       async ({
@@ -60,7 +64,7 @@ export const eventRouter = createTRPCRouter({
         });
       }
     ),
-  deleteEvent: protectedProcedure
+  deleteEvent: protectedAdminProcedure
     .input(
       z.object({
         id: z.string(),
@@ -95,7 +99,7 @@ export const eventRouter = createTRPCRouter({
       });
       return event;
     }),
-  uploadImage: protectedProcedure
+  uploadImage: protectedAdminProcedure
     .input(
       z.object({
         imageBase64DataURI: z.string().refine((val: string) => isDataURI(val), {

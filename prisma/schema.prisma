@@ -84,7 +84,7 @@ model Event {
 
     // tickets
     price      String
-    ticketLink String
+    ticketLink String?
     register   Boolean
 
     createdAt DateTime @default(now())
