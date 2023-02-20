@@ -3,7 +3,14 @@ import { createElement } from "react";
 
 import { AiFillEdit } from "react-icons/ai";
 
-const OrangeButton = ({ children, onClick, type, icon, size }: ButtonProps) => {
+const OrangeButton = ({
+  children,
+  onClick,
+  type,
+  icon,
+  size,
+  additionalStyle,
+}: ButtonProps) => {
   const onClickHandler = onClick
     ? onClick
     : () => {
@@ -15,7 +22,10 @@ const OrangeButton = ({ children, onClick, type, icon, size }: ButtonProps) => {
   return (
     <button
       type={type}
-      className={`inline-flex justify-center rounded-md border border-transparent bg-orange-100 px-4 py-2 text-sm font-medium text-orange-900 hover:bg-orange-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 active:scale-95`}
+      className={`inline-flex justify-center rounded-md border border-transparent bg-orange-100 px-4 py-2 text-sm font-medium text-orange-900 hover:bg-orange-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-orange-500 focus-visible:ring-offset-2 active:scale-95 ${
+        additionalStyle ? additionalStyle : ""
+      }`}
+      // eslint-disable-next-line @typescript-eslint/no-misused-promises
       onClick={onClickHandler}
     >
       {icon ? (

@@ -6,10 +6,11 @@ import { type Session } from "next-auth";
 
 import {
   MdOutlineAdminPanelSettings,
-  MdOutlineCardMembership,
+  MdOutlineSettings,
+  MdOutlineAccountCircle,
 } from "react-icons/md";
 
-import { VscAccount } from "react-icons/vsc";
+import { BiLinkExternal } from "react-icons/bi";
 
 type ProfileSideNavProps = {
   session: Session;
@@ -33,7 +34,7 @@ const ProfileSideNav = ({
           } `}
         >
           <div>
-            <VscAccount size={20} />
+            <MdOutlineAccountCircle size={25} />
           </div>
           <h2>Account</h2>
         </div>
@@ -45,20 +46,24 @@ const ProfileSideNav = ({
           }`}
         >
           <div>
-            <MdOutlineCardMembership size={25} />
+            <MdOutlineSettings size={25} />
           </div>
-          <h2>Membership</h2>
+          <h2>Settings</h2>
         </div>
         {/* Admin Page */}
         {session.user.role === "ADMIN" ? (
           <Link
             href="/admin/console/dashboard"
+            target={"_blank"}
             className={`group flex items-center gap-3 rounded-md p-2 text-sm font-medium text-gray-600 hover:bg-gray-100 active:text-black `}
           >
             <div>
               <MdOutlineAdminPanelSettings size={25} />
             </div>
-            <h2 className={`whitespace-pre duration-500 `}>Admin</h2>
+            <h2 className={`flex whitespace-pre duration-500`}>
+              Admin <BiLinkExternal />
+            </h2>
+            <div></div>
           </Link>
         ) : (
           <div></div>

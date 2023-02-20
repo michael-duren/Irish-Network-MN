@@ -11,4 +11,5 @@ export type ButtonProps = {
   onClick?: () => void | Dispatch<SetStateAction<boolean>> | Promise<undefined>;
   icon?: IconType;
   size?: number;
+  additionalStyle?: string;
 };
