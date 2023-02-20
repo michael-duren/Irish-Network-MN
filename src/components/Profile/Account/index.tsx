@@ -8,7 +8,7 @@ type AccountProps = {
 
 const Account = ({ session }: AccountProps) => {
   return (
-    <div className=" flex flex-col rounded-3xl text-gray-900  lg:flex-row">
+    <>
       <div className="mx-4  flex h-full min-h-[30rem] w-[30vw] min-w-[20rem] max-w-[80rem] flex-col items-center justify-around rounded-3xl   bg-white p-8 shadow-xl transition-all duration-300 ">
         <div className="relative flex h-40 w-40 items-center justify-center rounded-full  bg-slate-300">
           <BsFillPersonFill className="text-slate-700" size={100} />
@@ -20,18 +20,7 @@ const Account = ({ session }: AccountProps) => {
           </div>
         </div>
       </div>
-      {/* aside */}
-      <div className="flex flex-col justify-evenly">
-        <div className="mx-4 flex min-h-[10rem] w-[20vw] min-w-[20rem] flex-col items-center justify-around  rounded-3xl   bg-white p-8 shadow-xl transition-all duration-300 ">
-          <h3>Membership</h3>
-          <p className="text-xs">Your memebership is not currently active</p>
-        </div>
-        <div className="mx-4 mt-4 flex min-h-[10rem] w-[20vw] min-w-[20rem] flex-col items-center justify-around  rounded-3xl border-2 border-solid   bg-white p-8 shadow-xl transition-all duration-300">
-          <h3>Upcoming Events</h3>
-          <p className="text-xs">You have no upcoming events</p>
-        </div>
-      </div>
-    </div>
+    </>
   );
 };
 

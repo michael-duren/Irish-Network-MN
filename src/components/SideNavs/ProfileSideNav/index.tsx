@@ -14,8 +14,8 @@ import { BiLinkExternal } from "react-icons/bi";
 
 type ProfileSideNavProps = {
   session: Session;
-  setProfileState: Dispatch<SetStateAction<"account" | "membership">>;
-  profileState: "account" | "membership";
+  setProfileState: Dispatch<SetStateAction<"account" | "settings">>;
+  profileState: "account" | "settings";
 };
 
 const ProfileSideNav = ({
@@ -40,9 +40,9 @@ const ProfileSideNav = ({
         </div>
         {/* Membership */}
         <div
-          onClick={() => setProfileState("membership")}
+          onClick={() => setProfileState("settings")}
           className={`group flex cursor-pointer items-center gap-3 rounded-md p-2 text-sm font-medium transition-all duration-500  hover:bg-gray-100 active:scale-95 ${
-            profileState === "membership" ? "text-black" : "text-gray-600"
+            profileState === "settings" ? "text-black" : "text-gray-600"
           }`}
         >
           <div>
