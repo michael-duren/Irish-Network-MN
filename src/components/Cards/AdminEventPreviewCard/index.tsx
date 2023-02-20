@@ -18,6 +18,7 @@ import GreenButton from "../../Buttons/EditButton/GreenButton";
 import OrangeButton from "../../Buttons/EditButton/OrangeButton";
 import RedButton from "../../Buttons/EditButton/RedButton";
 import { Interweave } from "interweave";
+import EditEventForm from "../../Forms/EditEventForm";
 
 type EventPreviewCardProps = {
   event: {
@@ -38,13 +39,13 @@ const AdminEventPreviewCard = ({
   invalidate,
 }: EventPreviewCardProps) => {
   const [warningModalOpen, setwarningModalOpen] = useState(false);
+  const [editEventModalOpen, setEditEventModalOpen] = useState(false);
   const [showEditOptions, setShowEditOptions] = useState(false);
 
   dayjs.extend(LocalizedFormat);
 
   const deleteEvent = api.event.deleteEvent.useMutation({
     onSuccess: () => {
-      console.log("Event Deleted :(");
       setwarningModalOpen(false);
       toast.error(`Deleted Event ${title}!`);
       async () => {
@@ -117,7 +118,12 @@ const AdminEventPreviewCard = ({
                 </GreenButton>
               </a>
             </Link>
-            <OrangeButton type="button">Edit</OrangeButton>
+            <OrangeButton
+              onClick={() => setEditEventModalOpen(true)}
+              type="button"
+            >
+              Edit
+            </OrangeButton>
             <RedButton type="button" onClick={() => setwarningModalOpen(true)}>
               Delete
             </RedButton>
@@ -145,6 +151,11 @@ const AdminEventPreviewCard = ({
           </GreenButton>
         </div>
       </DeleteWarningModal>
+      <EditEventForm
+        isOpen={editEventModalOpen}
+        closeModal={setEditEventModalOpen}
+        slug={slug}
+      />
     </div>
   );
 };

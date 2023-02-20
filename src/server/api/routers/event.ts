@@ -64,6 +64,18 @@ export const eventRouter = createTRPCRouter({
         });
       }
     ),
+  updateEvent: protectedAdminProcedure
+    .input(writeEventSchema)
+    .mutation(async ({ ctx: { prisma }, input }) => {
+      await prisma.event.update({
+        where: {
+          title: input.title,
+        },
+        data: {
+          ...input,
+        },
+      });
+    }),
   deleteEvent: protectedAdminProcedure
     .input(
       z.object({

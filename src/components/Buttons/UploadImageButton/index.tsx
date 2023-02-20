@@ -3,16 +3,20 @@ import type { Dispatch, SetStateAction } from "react";
 import toast from "react-hot-toast";
 
 import { api } from "../../../utils/api";
+import Spinner from "../../Spinners/Spinner";
 
 type UploadImageProps = {
   setImageUrl: Dispatch<SetStateAction<string>>;
 };
 
 const UploadImageButton = ({ setImageUrl }: UploadImageProps) => {
+  const [isDisabled, setIsDisabled] = useState<boolean>(false);
+
   const { mutateAsync: uploadImageToServer, isLoading: isImageLoading } =
     api.event.uploadImage.useMutation({
       onSuccess: () => {
         toast.success("Successfully Uploaded Image 🎉");
+        setIsDisabled(true);
       },
       onError: (error) => console.log(error),
     });
@@ -51,16 +55,30 @@ const UploadImageButton = ({ setImageUrl }: UploadImageProps) => {
   };
 
   return (
-    <input
-      id="event-image-button"
-      className="block w-full text-sm text-slate-500 file:mr-4 file:cursor-pointer file:rounded-full file:border-0 file:bg-red-50 file:py-2 file:px-4 file:text-sm file:font-semibold file:text-red-700 hover:file:bg-red-200 file:active:scale-95"
-      name="event-image"
-      type="file"
-      accept="image/*"
-      onChange={onChangeImage}
-      disabled={isImageLoading}
-      multiple={false}
-    />
+    <div>
+      {isImageLoading ? (
+        <div>
+          <Spinner color="text-red-400" size="text-2xl">
+            Uploading Image...
+          </Spinner>
+        </div>
+      ) : (
+        <input
+          id="event-image-button"
+          className={`block w-full text-sm text-slate-500 file:mr-4 file:cursor-pointer file:rounded-full file:border-0  file:py-2 file:px-4 file:text-sm file:font-semibold ${
+            isDisabled
+              ? " file:bg-gray-300 file:text-gray-700 hover:file:bg-gray-200 "
+              : " file:bg-green-50 file:text-green-700 hover:file:bg-green-200 "
+          } file:active:scale-95`}
+          name="event-image"
+          type="file"
+          accept="image/*"
+          onChange={onChangeImage}
+          disabled={isDisabled}
+          multiple={false}
+        />
+      )}
+    </div>
   );
 };
 
