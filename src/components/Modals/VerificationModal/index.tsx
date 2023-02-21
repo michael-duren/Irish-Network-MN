@@ -4,24 +4,24 @@ import Modal from "../Modal";
 type DeleteWarningModalProps = {
   isOpen: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
-  warning: string;
+  message?: string;
   title: string;
   children?: ReactNode;
 };
 
-const DeleteWarningModal = ({
+const VerificationModal = ({
   isOpen,
   setIsOpen,
-  warning,
+  message,
   title,
   children,
 }: DeleteWarningModalProps) => {
   return (
     <Modal isOpen={isOpen} closeModal={setIsOpen} title={title}>
-      <p className="font-bold">{warning}</p>
+      {message && <p className="font-bold">{message}</p>}
       {children}
     </Modal>
   );
 };
 
-export default DeleteWarningModal;
+export default VerificationModal;

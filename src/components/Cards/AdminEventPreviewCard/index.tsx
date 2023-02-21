@@ -10,7 +10,7 @@ import { AiOutlineClose } from "react-icons/ai";
 
 import dayjs from "dayjs";
 import LocalizedFormat from "dayjs/plugin/localizedFormat";
-import DeleteWarningModal from "../../Modals/DeleteWarningModal";
+import VerificationModal from "../../Modals/VerificationModal";
 import { api } from "../../../utils/api";
 import toast from "react-hot-toast";
 
@@ -136,10 +136,10 @@ const AdminEventPreviewCard = ({
           </div>
         </div>
       )}
-      <DeleteWarningModal
+      <VerificationModal
         isOpen={warningModalOpen}
         setIsOpen={setwarningModalOpen}
-        warning={`Are you sure you want to delete the event ${title}?`}
+        message={`Are you sure you want to delete the event ${title}?`}
         title="WARNING"
       >
         <div className="mt-8 flex space-x-8">
@@ -150,7 +150,7 @@ const AdminEventPreviewCard = ({
             Heck No!
           </GreenButton>
         </div>
-      </DeleteWarningModal>
+      </VerificationModal>
       <EditEventForm
         isOpen={editEventModalOpen}
         closeModal={setEditEventModalOpen}

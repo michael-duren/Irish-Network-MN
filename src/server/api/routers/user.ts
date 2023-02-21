@@ -2,6 +2,16 @@ import { createTRPCRouter, protectedProcedure } from "../trpc";
 import z from "zod";
 
 export const userRouter = createTRPCRouter({
+  updateEmail: protectedProcedure
+    .input(z.object({ userId: z.string(), newEmail: z.string().email() }))
+    .mutation(async ({ ctx: { prisma }, input: { userId, newEmail } }) => {
+      await prisma.user.update({
+        where: { id: userId },
+        data: {
+          email: newEmail,
+        },
+      });
+    }),
   deleteAccount: protectedProcedure
     .input(z.object({ userId: z.string() }))
     .mutation(async ({ ctx: { prisma }, input: { userId } }) => {

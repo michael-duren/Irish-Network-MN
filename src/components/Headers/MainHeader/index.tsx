@@ -35,7 +35,7 @@ export default function MainHeader() {
 
   return (
     <header
-      className={`sticky top-0 left-0 z-10 my-12 flex h-[10vh] min-h-[10rem] items-center justify-between border-b border-gray-300 bg-white pb-4 md:border-b-0 ${
+      className={`sticky top-0 left-0 z-10 my-4 flex h-[10vh] min-h-[10rem] items-center justify-between border-b border-gray-300 bg-white pb-4 md:border-b-0 ${
         currentRoute.match(allAuth) ? "hidden" : ""
       }`}
     >
@@ -59,7 +59,7 @@ export default function MainHeader() {
               return (
                 <li
                   key={link.name}
-                  className={`mx-2 p-2 font-light  duration-500 hover:text-red-500 ${
+                  className={`mx-2 p-2 font-light duration-500 hover:text-red-500 xl:text-xl ${
                     currentRoute === link.link
                       ? "text-red-400"
                       : "text-gray-900"
