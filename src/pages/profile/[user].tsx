@@ -1,10 +1,7 @@
 import { useSession } from "next-auth/react";
-
 import ProfileSideNav from "../../components/SideNavs/ProfileSideNav";
 import Spinner from "../../components/Spinners/Spinner";
 import { useState } from "react";
-import { api } from "../../utils/api";
-import { useRouter } from "next/router";
 import Account from "../../components/Profile/Account";
 import Settings from "../../components/Profile/Settings";
 import { Transition } from "@headlessui/react";
@@ -15,18 +12,8 @@ const UserProfile = () => {
   );
   const accountIsShowing = profileState === "account";
   const settingsIsShowing = profileState === "settings";
-
-  const router = useRouter();
-
   const { data: session } = useSession({ required: true });
 
-  const user = api.user.getProvider.useQuery(
-    { userId: router.query.user as string },
-    {
-      enabled: !!router.query.user,
-    }
-  );
-  user.data?.accounts;
   if (!session?.user) {
     return <Spinner />;
   }
@@ -45,7 +32,6 @@ const UserProfile = () => {
           <div className="flex flex-col space-y-4 rounded-3xl text-gray-900 lg:flex-row  lg:space-y-0">
             {/* account */}
             <Transition
-              appear={true}
               show={accountIsShowing}
               enter="transition-opacity transform duration-[400ms]"
               enterFrom="opacity-0 rotate-[-120deg]"
@@ -58,7 +44,6 @@ const UserProfile = () => {
             </Transition>
             {/* settings */}
             <Transition
-              appear={true}
               show={settingsIsShowing}
               enter="transition-opacity duration-300"
               enterFrom="opacity-0"

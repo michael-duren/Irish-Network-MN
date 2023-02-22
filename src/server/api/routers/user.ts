@@ -2,6 +2,18 @@ import { createTRPCRouter, protectedProcedure } from "../trpc";
 import z from "zod";
 
 export const userRouter = createTRPCRouter({
+  getEmail: protectedProcedure
+    .input(z.object({ userId: z.string() }))
+    .query(async ({ ctx: { prisma }, input: { userId } }) => {
+      return await prisma.user.findUnique({
+        where: {
+          id: userId,
+        },
+        select: {
+          email: true,
+        },
+      });
+    }),
   updateEmail: protectedProcedure
     .input(z.object({ userId: z.string(), newEmail: z.string().email() }))
     .mutation(async ({ ctx: { prisma }, input: { userId, newEmail } }) => {

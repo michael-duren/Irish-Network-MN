@@ -15,10 +15,14 @@ type AccountProps = {
 };
 
 const Settings = ({ session }: AccountProps) => {
+  const router = useRouter();
   // Update functions
   const updateEmail = api.user.updateEmail.useMutation({
     onSuccess: () => {
       toast.success("EMAIL UPDATED 🥳");
+      setTimeout(() => {
+        router.reload();
+      }, 2000);
     },
     onError: () => {
       toast.error("OOPS! We hit a snag 😬");
@@ -39,8 +43,6 @@ const Settings = ({ session }: AccountProps) => {
     void signOut({ callbackUrl: "http://localhost:3000/" });
     toast.error("Deleted account 😞");
   };
-
-  const router = useRouter();
 
   const settings = [
     {

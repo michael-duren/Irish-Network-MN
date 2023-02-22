@@ -1,16 +1,11 @@
 import { useState } from "react";
-
 import { AiOutlinePlusCircle } from "react-icons/ai";
-
 import AuthHeader from "../../../../components/Headers/AuthHeader";
 import AdminConsoleSideNav from "../../../../components/SideNavs/AdminConsoleSideNav";
 import WriteEventForm from "../../../../components/Forms/WriteEventForm";
 import { api } from "../../../../utils/api";
 import AdminEventPreviewCard from "../../../../components/Cards/AdminEventPreviewCard";
-import { getServerSession } from "next-auth";
-import type { GetServerSideProps, GetServerSidePropsContext } from "next";
-import { prisma } from "../../../../server/db";
-import { authOptions } from "../../../../server/auth";
+import { requireAdmin } from "../../../../utils/ssrHelpers";
 
 const AdminConsoleEvents = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -64,37 +59,7 @@ const AdminConsoleEvents = () => {
 
 export default AdminConsoleEvents;
 
-export const getServerSideProps: GetServerSideProps = async (
-  ctx: GetServerSidePropsContext
-) => {
-  const session = await getServerSession(ctx.req, ctx.res, authOptions);
-
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/", //back to home
-        permanent: false,
-      },
-    };
-  }
-
-  const result = await prisma.user.findUnique({
-    where: { id: session.user.id },
-    select: { role: true },
-  });
-
-  if (result?.role !== "ADMIN") {
-    return {
-      redirect: {
-        destination: `/`, // again route to home,
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: {
-      session,
-    },
-  };
-};
+// eslint-disable-next-line @typescript-eslint/require-await
+export const getServerSideProps = requireAdmin(async () => {
+  return { props: {} };
+});

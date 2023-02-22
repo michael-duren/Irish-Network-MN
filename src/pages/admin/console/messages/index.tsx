@@ -1,13 +1,8 @@
-import type { GetServerSideProps, GetServerSidePropsContext } from "next";
-
 import AuthHeader from "../../../../components/Headers/AuthHeader";
 import MessageCard from "../../../../components/Cards/MessageCard";
 import AdminConsoleSideNav from "../../../../components/SideNavs/AdminConsoleSideNav";
 import { api } from "../../../../utils/api";
-
-import { getServerSession } from "next-auth";
-import { prisma } from "../../../../server/db";
-import { authOptions } from "../../../../server/auth";
+import { requireAdmin } from "../../../../utils/ssrHelpers";
 
 const AdminConsoleMessages = () => {
   const getMessages = api.contact.getAllMessages.useQuery();
@@ -36,37 +31,7 @@ const AdminConsoleMessages = () => {
 
 export default AdminConsoleMessages;
 
-export const getServerSideProps: GetServerSideProps = async (
-  ctx: GetServerSidePropsContext
-) => {
-  const session = await getServerSession(ctx.req, ctx.res, authOptions);
-
-  if (!session) {
-    return {
-      redirect: {
-        destination: "/", //back to home
-        permanent: false,
-      },
-    };
-  }
-
-  const result = await prisma.user.findUnique({
-    where: { id: session.user.id },
-    select: { role: true },
-  });
-
-  if (result?.role !== "ADMIN") {
-    return {
-      redirect: {
-        destination: `/`, // again route to home,
-        permanent: false,
-      },
-    };
-  }
-
-  return {
-    props: {
-      session,
-    },
-  };
-};
+// eslint-disable-next-line @typescript-eslint/require-await
+export const getServerSideProps = requireAdmin(async () => {
+  return { props: {} };
+});
