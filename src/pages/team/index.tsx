@@ -1,11 +1,13 @@
 import type { GetStaticProps } from "next";
+import Image from "next/image";
 import Banner from "../../components/Banner";
 import { createProxySSGHelpers } from "@trpc/react-query/ssg";
 import { createInnerTRPCContext } from "../../server/api/trpc";
 import { appRouter } from "../../server/api/root";
 import superjson from "superjson";
 import { Team } from "@prisma/client";
-import Image from "next/image";
+import TeamteamMemberCard from "../../components/Cards/TeamMemberCard";
+import MainButton from "../../components/Buttons/MainButton";
 
 // eslint-disable-next-line @typescript-eslint/require-await
 export const getStaticProps: GetStaticProps = async () => {
@@ -21,11 +23,15 @@ export const getStaticProps: GetStaticProps = async () => {
   // seperate teams
   const officers = res.filter((team) => team.position === "OFFICER");
   const directors = res.filter((team) => team.position === "DIRECTOR");
+  const advisors = res.filter((team) => team.position === "ADVISORY");
+  const volunteers = res.filter((team) => team.position === "VOLUNTEER");
 
   return {
     props: {
       directors,
       officers,
+      advisors,
+      volunteers,
     },
     revalidate: 10,
   };
@@ -34,77 +40,91 @@ export const getStaticProps: GetStaticProps = async () => {
 const Team = ({
   officers,
   directors,
+  advisors,
+  volunteers,
 }: {
   officers: Team[];
   directors: Team[];
+  advisors: Team[];
+  volunteers: Team[];
 }) => {
-  console.log(directors);
   return (
     <section>
-      <Banner imagePath="/images/train.jpg" title="About Us" />
+      <Banner imagePath="/images/train.jpg" title="Meet the Team!" />
+      {/* Officers */}
       <div className="m-16 h-full">
-        <h2 className="text-lg">Officers</h2>
-        <div className="grid gap-10 lg:grid-cols-4">
-          {officers.map((member) => {
+        <h2 className="mb-16 text-4xl text-red-400">Officers</h2>
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
+          {officers.map((teamMember) => {
             return (
-              <div
-                className="col-span-2 rounded-xl border-2 border-gray-400  shadow-xl"
-                key={member.id}
-              >
-                <div className="m-8 space-y-4">
-                  <div className="grid grid-cols-7">
-                    <div className="relative col-span-3 h-60 rounded-xl border-2 bg-slate-300">
-                      {member.imageUrl && (
-                        <Image
-                          src={member.imageUrl}
-                          alt={`${member.name}`}
-                          fill
-                          style={{ objectFit: "cover" }}
-                          className="rounded-xl"
-                        />
-                      )}
-                    </div>
-
-                    <div className="col-span-4 flex flex-col justify-evenly rounded-xl rounded-l-none bg-slate-900/90 py-6 text-center text-slate-200">
-                      <h3 className="mt-4 mb-2 text-3xl font-light">
-                        {member.name}
-                      </h3>
-                      <h3 className="text-xl text-red-500">{member.title}</h3>
-                    </div>
-                  </div>
-                  <div>{member.occupation}</div>
-                </div>
-              </div>
+              <TeamteamMemberCard key={teamMember.id} teamMember={teamMember} />
             );
           })}
         </div>
-        <h2 className="text-lg">Directors</h2>
-        <div className="flex items-center justify-center">
-          <div className="grid gap-10 lg:grid-cols-4">
-            {directors.map((member) => {
-              return (
-                <div className=" border-2 border-gray-400" key={member.id}>
-                  <div className="m-8 space-y-4">
-                    <div className="relative h-60  rounded-xl">
-                      {member.imageUrl && (
-                        <Image
-                          src={member.imageUrl}
-                          alt={`${member.name}`}
-                          fill
-                          className="rounded-xl"
-                          style={{ objectFit: "contain" }}
-                        />
-                      )}
-                    </div>
-
-                    <h3 className="h-10 bg-slate-900/50 text-slate-200">
-                      {member.name}
-                    </h3>
-                    <div>{member.occupation}</div>
+      </div>
+      {/* Directors & Advisory & Volunteers */}
+      <div className="m-16 h-full">
+        <h2 className="mb-8 text-4xl text-red-400">Directors</h2>
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
+          {directors.map((teamMember) => {
+            return (
+              <TeamteamMemberCard key={teamMember.id} teamMember={teamMember} />
+            );
+          })}
+          {/* Advisory & Volunteers */}
+          <div className="card max-h-[30rem] border-2 border-gray-900 bg-gray-900 text-white shadow-xl lg:col-span-2">
+            <figure className="relative h-40">
+              <Image
+                src={"/images/balcony2.jpg"}
+                alt={"volunteer"}
+                fill
+                style={{ objectFit: "cover" }}
+              />
+            </figure>
+            <div className="grid overflow-x-scroll">
+              <div className="flex">
+                <div className="card-body col-span-1">
+                  <h2 className="card-title">Advisory Board of Directors</h2>
+                  <p className="text-secondary-color/70">
+                    <ul>
+                      {advisors.map((advisor) => {
+                        return (
+                          <li className="my-4 font-light" key={advisor.id}>
+                            {advisor.name}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </p>
+                </div>
+                <div className="card-body col-span-1">
+                  <div>
+                    <h2 className="card-title">Our Essential Volunteers</h2>
+                    <p className="text-secondary-color/70">
+                      <ul>
+                        {volunteers.map((volunteer) => {
+                          return (
+                            <li className="my-4 font-light" key={volunteer.id}>
+                              {volunteer.name}
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </p>
                   </div>
                 </div>
-              );
-            })}
+
+                <div className="card-body col-span-1">
+                  <div className="h-10 space-y-4">
+                    <h2 className="card-title">Interested in Volunteering?</h2>
+                    <p className="text-secondary-color/70">
+                      Join the fun and sign up to become a volunteer!
+                    </p>
+                    <MainButton type="button">Sign Up</MainButton>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
