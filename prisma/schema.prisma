@@ -67,6 +67,23 @@ model VerificationToken {
     @@unique([identifier, token])
 }
 
+model Team {
+    id              String   @id @default(cuid())
+    name            String
+    title           String?
+    occupation      String?
+    irishConnection String?
+    imageUrl        String?
+    position        Position
+}
+
+enum Position {
+    OFFICER
+    DIRECTOR
+    ADVISORY
+    VOLUNTEER
+}
+
 // Events
 model Event {
     id    String @id @default(cuid())
