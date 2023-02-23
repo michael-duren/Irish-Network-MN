@@ -5,7 +5,7 @@ import { createProxySSGHelpers } from "@trpc/react-query/ssg";
 import { createInnerTRPCContext } from "../../server/api/trpc";
 import { appRouter } from "../../server/api/root";
 import superjson from "superjson";
-import { Team } from "@prisma/client";
+import { Team as TeamPage } from "@prisma/client";
 import TeamteamMemberCard from "../../components/Cards/TeamMemberCard";
 import MainButton from "../../components/Buttons/MainButton";
 
@@ -18,7 +18,7 @@ export const getStaticProps: GetStaticProps = async () => {
   });
 
   // get team
-  const res: Team[] = await ssg.team.getTeam.fetch();
+  const res: TeamPage[] = await ssg.team.getTeam.fetch();
 
   // seperate teams
   const officers = res.filter((team) => team.position === "OFFICER");
@@ -37,16 +37,16 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-const Team = ({
+const TeamPage = ({
   officers,
   directors,
   advisors,
   volunteers,
 }: {
-  officers: Team[];
-  directors: Team[];
-  advisors: Team[];
-  volunteers: Team[];
+  officers: TeamPage[];
+  directors: TeamPage[];
+  advisors: TeamPage[];
+  volunteers: TeamPage[];
 }) => {
   return (
     <section>
@@ -72,7 +72,7 @@ const Team = ({
             );
           })}
           {/* Advisory & Volunteers */}
-          <div className="card max-h-[30rem] border-2 border-gray-900 bg-gray-900 text-white shadow-xl lg:col-span-2">
+          <div className="card h-[50rem] border-2 border-gray-900 bg-gray-900 text-white shadow-xl md:col-span-2 md:max-h-[30rem] md:min-h-max">
             <figure className="relative h-40">
               <Image
                 src={"/images/balcony2.jpg"}
@@ -81,9 +81,9 @@ const Team = ({
                 style={{ objectFit: "cover" }}
               />
             </figure>
-            <div className="grid overflow-x-scroll">
-              <div className="flex">
-                <div className="card-body col-span-1">
+            <div>
+              <div className="pb:4 flex flex-col md:flex-row">
+                <div className="card-body ">
                   <h2 className="card-title">Advisory Board of Directors</h2>
                   <p className="text-secondary-color/70">
                     <ul>
@@ -97,7 +97,7 @@ const Team = ({
                     </ul>
                   </p>
                 </div>
-                <div className="card-body col-span-1">
+                <div className="card-body">
                   <div>
                     <h2 className="card-title">Our Essential Volunteers</h2>
                     <p className="text-secondary-color/70">
@@ -114,11 +114,12 @@ const Team = ({
                   </div>
                 </div>
 
-                <div className="card-body col-span-1">
-                  <div className="h-10 space-y-4">
+                <div className="card-body">
+                  <div className="h-10 space-y-4 pb-4">
                     <h2 className="card-title">Interested in Volunteering?</h2>
                     <p className="text-secondary-color/70">
-                      Join the fun and sign up to become a volunteer!
+                      Join the fun and sign up to become a volunteer! We&apos;ll
+                      let you know when another event comes up.
                     </p>
                     <MainButton type="button">Sign Up</MainButton>
                   </div>
@@ -132,4 +133,4 @@ const Team = ({
   );
 };
 
-export default Team;
+export default TeamPage;

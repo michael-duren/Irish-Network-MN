@@ -21,23 +21,29 @@ const TeamteamMemberCard = ({ teamMember }: TeamMemberCardProps) => {
       <div className="tabs text-white">
         <div
           onClick={() => setSelectedTab("Name")}
-          className={`tabs-lifted tab tab-lg ${
-            selectedTab === "Name" ? "tab-active" : ""
+          className={`tabs-lifted tab tab-lg hover:text-secondary-color/70  ${
+            selectedTab === "Name"
+              ? " tab-active text-secondary-color/80 "
+              : "text-secondary-color/30"
           }`}
         >
           Name
         </div>
         <div
-          className={`tabs-lifted tab tab-lg ${
-            selectedTab === "Occupation" ? "tab-active" : ""
+          className={`tabs-lifted tab tab-lg hover:text-secondary-color/70 ${
+            selectedTab === "Occupation"
+              ? " tab-active text-secondary-color/80 "
+              : "text-secondary-color/30"
           }`}
           onClick={() => setSelectedTab("Occupation")}
         >
           Work
         </div>
         <div
-          className={`tabs-lifted tab tab-lg ${
-            selectedTab === "History" ? "tab-active" : ""
+          className={`tabs-lifted tab tab-lg hover:text-secondary-color/70 ${
+            selectedTab === "History"
+              ? " tab-active text-secondary-color/80 "
+              : "text-secondary-color/30"
           }`}
           onClick={() => setSelectedTab("History")}
         >
