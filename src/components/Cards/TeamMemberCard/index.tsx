@@ -16,14 +16,14 @@ const TeamteamMemberCard = ({ teamMember }: TeamMemberCardProps) => {
   >("Name");
 
   return (
-    <div className="card max-h-[30rem] border-2 border-gray-900 bg-gray-900 text-white shadow-xl">
+    <div className="card max-h-[40rem] max-w-md border-2 border-gray-900 bg-gray-800 text-white shadow-xl">
       {/* Tabs-Menu */}
-      <div className="tabs text-white">
+      <div className="tabs my-4 flex justify-center">
         <div
           onClick={() => setSelectedTab("Name")}
           className={`tabs-lifted tab tab-lg hover:text-secondary-color/70  ${
             selectedTab === "Name"
-              ? " tab-active text-secondary-color/80 "
+              ? " tab-active text-secondary-color/70 "
               : "text-secondary-color/30"
           }`}
         >
@@ -32,7 +32,7 @@ const TeamteamMemberCard = ({ teamMember }: TeamMemberCardProps) => {
         <div
           className={`tabs-lifted tab tab-lg hover:text-secondary-color/70 ${
             selectedTab === "Occupation"
-              ? " tab-active text-secondary-color/80 "
+              ? " tab-active text-secondary-color/70 "
               : "text-secondary-color/30"
           }`}
           onClick={() => setSelectedTab("Occupation")}
@@ -42,7 +42,7 @@ const TeamteamMemberCard = ({ teamMember }: TeamMemberCardProps) => {
         <div
           className={`tabs-lifted tab tab-lg hover:text-secondary-color/70 ${
             selectedTab === "History"
-              ? " tab-active text-secondary-color/80 "
+              ? " tab-active text-secondary-color/70 "
               : "text-secondary-color/30"
           }`}
           onClick={() => setSelectedTab("History")}
@@ -53,7 +53,7 @@ const TeamteamMemberCard = ({ teamMember }: TeamMemberCardProps) => {
       {/* Name */}
       {selectedTab === "Name" && (
         <>
-          <figure className="relative h-80">
+          <figure className="relative h-[30rem]">
             {teamMember.imageUrl ? (
               <Image
                 src={teamMember.imageUrl}

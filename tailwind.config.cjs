@@ -10,5 +10,6 @@ module.exports = {
   daisyui: {
     themes: false,
     base: true,
+    logs: false,
   },
 };

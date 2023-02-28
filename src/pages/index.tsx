@@ -9,10 +9,7 @@ const Home: NextPage = () => {
     <>
       <Head>
         <title>Irish Network MN</title>
-        <meta
-          name="description"
-          content="Irish Network of Minnesota Welcomes you"
-        />
+        <meta name="description" content="Irish Network of Minnesota Welcomes you" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <section className="">

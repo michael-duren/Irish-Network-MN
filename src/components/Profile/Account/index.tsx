@@ -11,7 +11,7 @@ const Account = ({ session }: AccountProps) => {
 
   return (
     <>
-      <div className="mx-4  flex h-full min-h-[30rem] w-[30vw] min-w-[20rem] max-w-[80rem] flex-col items-center justify-around rounded-3xl   bg-white p-8 shadow-xl transition-all duration-300 ">
+      <div className="mx-4 flex h-full min-h-[30rem] w-[30vw] min-w-[20rem] max-w-[80rem] flex-col items-center justify-around rounded-3xl   bg-white p-8 shadow-xl transition-all duration-300 ">
         <div className="relative flex h-40 w-40 items-center justify-center rounded-full  bg-[#0098A7]">
           {initial ? (
             <div className="text-7xl text-[#FEFDFC]">{initial}</div>
