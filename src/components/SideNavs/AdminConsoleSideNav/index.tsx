@@ -7,6 +7,7 @@ import { MdOutlineDashboard } from "react-icons/md";
 import { BsCalendar2Event, BsFileImage } from "react-icons/bs";
 import { AiOutlineTeam } from "react-icons/ai";
 import { FiMessageSquare } from "react-icons/fi";
+import { IoNewspaperOutline } from "react-icons/io5";
 
 const AdminConsoleSideNav = () => {
   const [open, setOpen] = useState(true);
@@ -23,6 +24,12 @@ const AdminConsoleSideNav = () => {
       name: "Events",
       link: "/admin/console/events",
       icon: BsCalendar2Event,
+      size: 20,
+    },
+    {
+      name: "News",
+      link: "/admin/console/news",
+      icon: IoNewspaperOutline,
       size: 20,
     },
     {
@@ -47,16 +54,10 @@ const AdminConsoleSideNav = () => {
 
   return (
     <div
-      className={`min-h-screen  bg-black px-4 text-gray-200 duration-500 ${
-        open ? "w-72" : "w-16"
-      }`}
+      className={`min-h-screen  bg-black px-4 text-gray-200 duration-500 ${open ? "w-72" : "w-16"}`}
     >
       <div className="flex justify-end py-3 ">
-        <GiHamburgerMenu
-          size={26}
-          className="cursor-pointer"
-          onClick={() => setOpen(!open)}
-        />
+        <GiHamburgerMenu size={26} className="cursor-pointer" onClick={() => setOpen(!open)} />
       </div>
       <div className="mt-4 flex flex-col space-y-4 ">
         {menus?.map((menu, i) => {

@@ -9,7 +9,7 @@ const AuthHeader = () => {
       <h2 className="text-2xl">Admin Console</h2>
       <h2 className="w-[20rem]">Irish Network MN</h2>
       <div className="flex w-full items-center justify-end space-x-8">
-        <h2>Welcome, {session?.user.name}</h2>
+        <h2>{session?.user.name}</h2>
 
         <div className="relative h-20 w-20 rounded-full  bg-slate-300">
           {session?.user.name && session.user.image && (
