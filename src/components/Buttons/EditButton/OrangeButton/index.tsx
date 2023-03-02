@@ -3,14 +3,7 @@ import { createElement } from "react";
 
 import { AiFillEdit } from "react-icons/ai";
 
-const OrangeButton = ({
-  children,
-  onClick,
-  type,
-  icon,
-  size,
-  additionalStyle,
-}: ButtonProps) => {
+const OrangeButton = ({ children, onClick, type, icon, size, additionalStyle }: ButtonProps) => {
   const onClickHandler = onClick
     ? onClick
     : () => {
