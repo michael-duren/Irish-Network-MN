@@ -20,15 +20,9 @@ const ReactQuill = dynamic(() => import("react-quill"), {
 });
 
 export const writeEventSchema = z.object({
-  title: z
-    .string()
-    .min(6, { message: "Title must be at least 6 character(s)" }),
-  excerpt: z
-    .string()
-    .min(40, { message: "Summary must be at least 40 characters" }),
-  description: z
-    .string()
-    .min(200, { message: "Description must be at least 200 character(s)" }),
+  title: z.string().min(6, { message: "Title must be at least 6 character(s)" }),
+  excerpt: z.string().min(40, { message: "Summary must be at least 40 characters" }),
+  description: z.string().min(200, { message: "Description must be at least 200 character(s)" }),
   date: z.string().min(4, { message: "Date and Time cannot be empty" }),
   address: z.string().min(6, { message: "Address cannot be empty" }),
   location: z.string().min(6, { message: "Location cannot be empty" }),
@@ -189,7 +183,7 @@ const WriteEventForm = ({ isOpen, closeModal }: WriteEventFormProps) => {
               <label id="event-image" htmlFor="event-image" className="block">
                 <span className="">Event Image</span>
               </label>
-              <UploadImageButton setImageUrl={setImageUrl} />
+              <UploadImageButton setImageUrl={setImageUrl} directory={"events"} />
             </div>
             <div className="flex flex-col items-start justify-start space-x-4 space-y-4">
               <label htmlFor="register">Attendees must register?</label>
@@ -282,8 +276,7 @@ const WriteEventForm = ({ isOpen, closeModal }: WriteEventFormProps) => {
               )}
             ></Controller>
             <div className="text-xs">
-              <Required />{" "}
-              <span className="text-gray-400">denotes required fields</span>
+              <Required /> <span className="text-gray-400">denotes required fields</span>
             </div>
           </div>
           {/* Buttons */}

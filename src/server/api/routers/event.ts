@@ -117,14 +117,15 @@ export const eventRouter = createTRPCRouter({
         imageBase64DataURI: z.string().refine((val: string) => isDataURI(val), {
           message: "Image should be in data URI format",
         }),
+        directory: z.string(),
       })
     )
-    .mutation(async ({ input: { imageBase64DataURI } }) => {
+    .mutation(async ({ input: { imageBase64DataURI, directory } }) => {
       const imageBase64Str = imageBase64DataURI.replace(/^.+,/, "");
 
       const { data: uploadedImage, error } = await supabase.storage
         .from("public")
-        .upload(`events/${randomUUID()}`, decode(imageBase64Str), {
+        .upload(`${directory}/${randomUUID()}`, decode(imageBase64Str), {
           cacheControl: "3600",
           upsert: true,
         });

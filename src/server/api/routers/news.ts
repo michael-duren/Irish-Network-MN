@@ -1,5 +1,7 @@
+import slugify from "slugify";
 import { z } from "zod";
-import { createTRPCRouter, publicProcedure } from "../trpc";
+import { writeNewsPostSchema } from "../../../components/Forms/WriteNewsPostForm";
+import { createTRPCRouter, protectedAdminProcedure, publicProcedure } from "../trpc";
 
 export const newsRouter = createTRPCRouter({
   getNewsPost: publicProcedure
@@ -18,4 +20,26 @@ export const newsRouter = createTRPCRouter({
     const allNewsPosts = await prisma.news.findMany();
     return allNewsPosts;
   }),
+  createNewsPost: protectedAdminProcedure
+    .input(writeNewsPostSchema)
+    .mutation(async ({ ctx: { prisma }, input: { title, body, date, featuredImage } }) => {
+      const oldPost = await prisma.news.findUnique({
+        where: {
+          title,
+        },
+      });
+      if (oldPost) {
+        return;
+      }
+      const dateObject = date ? new Date(date) : new Date();
+      await prisma.news.create({
+        data: {
+          title,
+          body,
+          date: dateObject,
+          featuredImage,
+          slug: slugify(title),
+        },
+      });
+    }),
 });

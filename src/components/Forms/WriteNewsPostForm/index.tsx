@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Image from "next/image";
 import type { Dispatch, SetStateAction } from "react";
 import { Controller, useForm } from "react-hook-form";
 import "react-quill/dist/quill.snow.css";
@@ -20,7 +21,7 @@ const ReactQuill = dynamic(() => import("react-quill"), {
 });
 
 export const writeNewsPostSchema = z.object({
-  title: z.string().min(6, { message: "Title must be at least 6 character(s)" }),
+  title: z.string().min(4, { message: "Title must be at least 4 character(s)" }),
   body: z.string().min(200, { message: "Description must be at least 200 character(s)" }),
   date: z.string().or(z.undefined()),
   featuredImage: z
@@ -38,7 +39,9 @@ type WriteNewsPostFormProps = {
 export type WriteNewsPostFormData = z.infer<typeof writeNewsPostSchema>;
 
 const WriteNewsPostForm = ({ isOpen, closeModal }: WriteNewsPostFormProps) => {
-  const [imageUrl, setImageUrl] = useState("");
+  const [imageUrl, setImageUrl] = useState(
+    "https://gpncezkvubukxrrsxtnt.supabase.co/storage/v1/object/public/public/events/Irish-Network-Logo.jpeg"
+  );
   const {
     register,
     handleSubmit,
@@ -49,23 +52,23 @@ const WriteNewsPostForm = ({ isOpen, closeModal }: WriteNewsPostFormProps) => {
     resolver: zodResolver(writeNewsPostSchema),
   });
 
-  // const newsRoute = api.useContext().news;
+  const newsRoute = api.useContext().news;
 
-  // const createnews = api.news.createnews.useMutation({
-  //   onSuccess: () => {
-  //     toast.success("Created news!");
-  //     closeModal(false);
-  //     reset();
-  //     void newsRoute.getnewss.invalidate();
-  //   },
-  //   onError: (error) => {
-  //     toast.error("Oh No! We ran into a problem");
-  //     console.log(error);
-  //   },
-  // });
+  const createnews = api.news.createNewsPost.useMutation({
+    onSuccess: () => {
+      toast.success("Created news!");
+      closeModal(false);
+      reset();
+      void newsRoute.getAllNewsPosts.invalidate();
+    },
+    onError: (error) => {
+      toast.error("Oh No! We ran into a problem");
+      console.log(error);
+    },
+  });
 
   const onSubmit = (data: WriteNewsPostFormData) => {
-    console.log(data);
+    createnews.mutate({ ...data, featuredImage: imageUrl });
   };
   return (
     <div>
@@ -77,7 +80,7 @@ const WriteNewsPostForm = ({ isOpen, closeModal }: WriteNewsPostFormProps) => {
         >
           {/* Title Date */}
           <div className=" flex items-center justify-around space-x-4">
-            <div className="mr-8 flex flex-1 flex-col items-start justify-center space-x-4 space-y-4">
+            <div className="mr-8 flex flex-1 flex-col items-start justify-center  space-y-4">
               <label htmlFor="title">
                 <Required /> Title
               </label>
@@ -95,7 +98,7 @@ const WriteNewsPostForm = ({ isOpen, closeModal }: WriteNewsPostFormProps) => {
                 <Required /> Date
               </label>
               <input
-                className=" w-full rounded-xl  border border-gray-300 p-3 outline-none focus:border-gray-600"
+                className="w-full rounded-xl  border border-gray-300 p-3 outline-none focus:border-gray-600"
                 id="date"
                 type={"datetime-local"}
                 placeholder="YY/MM/DD"
@@ -104,13 +107,27 @@ const WriteNewsPostForm = ({ isOpen, closeModal }: WriteNewsPostFormProps) => {
               <p className="text-red-500">{errors.date?.message}</p>
             </div>
           </div>
-          {/* image and register */}
-          <div className="flex flex-col items-center justify-around space-x-8 md:flex-row">
-            <div className="flex w-full flex-col items-start justify-center space-x-4 space-y-4">
-              <label id="news-image" htmlFor="news-image" className="block">
-                <span className="">news Image</span>
+          {/* Image */}
+          <div className="flex items-center justify-around">
+            <div className="flex w-full flex-col items-start justify-center  space-y-4">
+              <label id="news-image" className="flex flex-col" htmlFor="news-image">
+                <span className="">Post Image</span>
+                <span className="font-thin">Defaults to logo</span>
               </label>
-              <UploadImageButton setImageUrl={setImageUrl} />
+              <div className="flex items-center justify-center">
+                <UploadImageButton directory={"news"} setImageUrl={setImageUrl} />
+                <div className="relative h-20 w-20">
+                  <Image
+                    src={imageUrl}
+                    alt={"Post Image"}
+                    sizes="(max-width: 768px) 40vw,
+              (max-width: 1200px) 50vw,
+              33vw"
+                    fill
+                    style={{ objectFit: "contain" }}
+                  />
+                </div>
+              </div>
             </div>
           </div>
           {/* Body */}
@@ -131,7 +148,7 @@ const WriteNewsPostForm = ({ isOpen, closeModal }: WriteNewsPostFormProps) => {
                       borderRadius: "50%",
                     }}
                     {...field}
-                    placeholder="news description"
+                    placeholder="Post..."
                     onChange={(value) => field.onChange(value)}
                     theme="snow"
                     value={field.value}
@@ -144,7 +161,7 @@ const WriteNewsPostForm = ({ isOpen, closeModal }: WriteNewsPostFormProps) => {
           {/* Buttons */}
           <div className="space-x-8">
             <GreenButton type="submit" onClick={() => console.log(errors)}>
-              Add news
+              Post
             </GreenButton>
             <RedButton type="button" onClick={() => closeModal(false)}>
               Cancel

@@ -7,9 +7,10 @@ import Spinner from "../../Spinners/Spinner";
 
 type UploadImageProps = {
   setImageUrl: Dispatch<SetStateAction<string>>;
+  directory: string;
 };
 
-const UploadImageButton = ({ setImageUrl }: UploadImageProps) => {
+const UploadImageButton = ({ setImageUrl, directory }: UploadImageProps) => {
   const [isDisabled, setIsDisabled] = useState<boolean>(false);
 
   const { mutateAsync: uploadImageToServer, isLoading: isImageLoading } =
@@ -45,6 +46,7 @@ const UploadImageButton = ({ setImageUrl }: UploadImageProps) => {
         if (fileReader.result) {
           const imageUrl = await uploadImageToServer({
             imageBase64DataURI: fileReader.result as string,
+            directory,
           });
 
           setImageUrl(imageUrl);
