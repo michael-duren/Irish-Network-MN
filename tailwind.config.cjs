@@ -6,7 +6,11 @@ module.exports = {
       colors: { "secondary-color": "#ffffff19", "primary-red": "red-400" },
     },
   },
-  plugins: [require("@tailwindcss/typography"), require("daisyui")],
+  plugins: [
+    require("@tailwindcss/typography"),
+    require("daisyui"),
+    require("@tailwindcss/line-clamp"),
+  ],
   daisyui: {
     themes: false,
     base: true,

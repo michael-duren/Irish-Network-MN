@@ -21,20 +21,29 @@ const NewsCard = ({ post }: NewsCardProps) => {
   console.log(stringDate);
 
   return (
-    <div className="card card-side mx-2 flex h-[20rem] border-2 bg-base-100 shadow-xl">
-      <figure className="relative h-[20rem] min-w-[10rem]">
-        <Image src={post.featuredImage} alt="post image" fill />
+    <div className="mx-2 my-4 flex max-w-[40rem] flex-col items-center rounded-2xl border-2  bg-base-100 shadow-xl md:flex-row ">
+      <figure className="relative my-4 mx-2 min-h-[20rem] min-w-[20rem] max-w-[20rem]  rounded-3xl">
+        <Image
+          src={post.featuredImage}
+          className="rounded-3xl"
+          style={{ objectFit: "cover" }}
+          alt="post image"
+          fill
+        />
       </figure>
-      <div className=" card-body">
-        <h2 className="card-title">{post.title}</h2>
-        <p className="max-w-20 max-h-[10rem] overflow-hidden overflow-ellipsis">
-          <Interweave noHtml content={post.body} />
-        </p>
-        <div className="card-actions flex items-center justify-start space-x-2">
+      <div className="mx-4 my-6 flex flex-col ">
+        <h2 className="text-2xl text-gray-700">{post.title}</h2>
+        <div className="mt-8 flex flex-col items-start">
+          <p className="mb-8 text-sm leading-6 text-gray-600 line-clamp-6">
+            <Interweave content={post.body} />
+          </p>
+
           <div className="mr-8 text-sm font-light">
             <i>{stringDate}</i>
           </div>
-          <MainButton type="button">Read More</MainButton>
+          <div className="flex w-full justify-end  space-x-2">
+            <MainButton type="button">Read More</MainButton>
+          </div>
         </div>
       </div>
     </div>

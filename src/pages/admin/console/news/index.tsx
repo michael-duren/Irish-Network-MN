@@ -5,6 +5,7 @@ import AdminConsoleSideNav from "../../../../components/SideNavs/AdminConsoleSid
 import { api } from "../../../../utils/api";
 import { requireAdmin } from "../../../../utils/ssrHelpers";
 import WriteNewsPostForm from "../../../../components/Forms/WriteNewsPostForm";
+import NewsCard from "../../../../components/Cards/NewsCard";
 
 const AdminConsoleNews = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,18 +37,19 @@ const AdminConsoleNews = () => {
                 </button>
               </div>
             </div>
-            {/* <div className="flex flex-col"> */}
-            {/*   {getNewsPosts.isSuccess && */}
-            {/*     getNewsPosts.data.map((news) => { */}
-            {/*       return ( */}
-            {/*         <AdminEventPreviewCard */}
-            {/*           invalidate={invalidateCurrentEvents} */}
-            {/*           key={news.title} */}
-            {/*           event={news} */}
-            {/*         /> */}
-            {/*       ); */}
-            {/*     })} */}
-            {/* </div> */}
+            {/*  */}
+            <div className="flex flex-col">
+              <div className="mt-8">
+                {getNewsPosts.isSuccess &&
+                  getNewsPosts.data.map((news) => {
+                    return (
+                      <div className="my-8">
+                        <NewsCard post={news} />
+                      </div>
+                    );
+                  })}
+              </div>
+            </div>
           </div>
         </div>
       </section>
