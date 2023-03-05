@@ -3,6 +3,8 @@ import { z } from "zod";
 import { writeNewsPostSchema } from "../../../components/Forms/WriteNewsPostForm";
 import { createTRPCRouter, protectedAdminProcedure, publicProcedure } from "../trpc";
 
+const LIMIT = 4;
+
 export const newsRouter = createTRPCRouter({
   getNewsPost: publicProcedure
     .input(
@@ -16,8 +18,21 @@ export const newsRouter = createTRPCRouter({
       });
       return newsPost;
     }),
+  getRecentPosts: publicProcedure.query(async ({ ctx: { prisma } }) => {
+    const recentPosts = await prisma.news.findMany({
+      orderBy: {
+        date: "desc",
+      },
+      take: LIMIT,
+    });
+    return recentPosts;
+  }),
   getAllNewsPosts: publicProcedure.query(async ({ ctx: { prisma } }) => {
-    const allNewsPosts = await prisma.news.findMany();
+    const allNewsPosts = await prisma.news.findMany({
+      orderBy: {
+        date: "desc",
+      },
+    });
     return allNewsPosts;
   }),
   createNewsPost: protectedAdminProcedure
@@ -40,6 +55,18 @@ export const newsRouter = createTRPCRouter({
           featuredImage,
           slug: slugify(title),
         },
+      });
+    }),
+
+  deleteNewsPost: protectedAdminProcedure
+    .input(
+      z.object({
+        id: z.string(),
+      })
+    )
+    .mutation(async ({ ctx: { prisma }, input: { id } }) => {
+      await prisma.event.delete({
+        where: { id },
       });
     }),
 });

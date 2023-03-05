@@ -1,13 +1,16 @@
 import { useState } from "react";
 
 import Banner from "../../components/Banner";
-import NewsCard from "../../components/Cards/NewsCard";
+import NewsPreviewCard from "../../components/Cards/NewsPreviewCard";
+import Spinner from "../../components/Spinners/Spinner";
 import { api } from "../../utils/api";
 
 const News = () => {
   const [postMenu, setPostMenu] = useState<"recent" | "all">("recent");
-  const newsPosts = api.news.getAllNewsPosts.useQuery();
-  const newsPostsData = newsPosts.data;
+  const allPosts = api.news.getAllNewsPosts.useQuery();
+  const allPostsData = allPosts.data;
+  const recentPosts = api.news.getRecentPosts.useQuery();
+  const recentPostsData = recentPosts.data;
 
   return (
     <section>
@@ -32,16 +35,35 @@ const News = () => {
               All Posts
             </h2>
           </div>
-          <div className="mx-16  flex flex-col  xl:grid xl:grid-cols-4">
-            {newsPostsData &&
-              newsPostsData.map((post) => {
-                return (
-                  <div className="lg:col-span-2" key={post.title}>
-                    <NewsCard post={post} />
-                  </div>
-                );
-              })}
-          </div>
+          {postMenu === "recent" ? (
+            <div className="mx-16  flex flex-col  xl:grid xl:grid-cols-4">
+              {recentPostsData ? (
+                recentPostsData.map((post) => {
+                  return (
+                    <div className="lg:col-span-2" key={post.title}>
+                      <NewsPreviewCard post={post} />
+                    </div>
+                  );
+                })
+              ) : (
+                <Spinner />
+              )}
+            </div>
+          ) : (
+            <div className="mx-16  flex flex-col  xl:grid xl:grid-cols-4">
+              {allPostsData ? (
+                allPostsData.map((post) => {
+                  return (
+                    <div className="lg:col-span-2" key={post.title}>
+                      <NewsPreviewCard post={post} />
+                    </div>
+                  );
+                })
+              ) : (
+                <Spinner />
+              )}
+            </div>
+          )}
         </div>
       </div>
     </section>

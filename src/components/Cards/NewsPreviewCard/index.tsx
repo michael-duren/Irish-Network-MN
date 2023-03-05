@@ -16,12 +16,12 @@ type NewsCardProps = {
 
 dayjs.extend(relativeTime);
 
-const NewsCard = ({ post }: NewsCardProps) => {
-  const stringDate = post.date ? dayjs(post.date).fromNow() : dayjs(post.createdAt).fromNow();
+const NewsPreviewCard = ({ post }: NewsCardProps) => {
+  const stringDate = dayjs(post.date).fromNow();
   console.log(stringDate);
 
   return (
-    <div className="mx-2 my-4 flex max-w-[40rem] flex-col items-center rounded-2xl border-2  bg-base-100 shadow-xl md:flex-row ">
+    <div className="mx-2 my-4 flex  max-w-[40rem] flex-col items-center rounded-2xl border-2  bg-base-100 shadow-xl md:flex-row ">
       <figure className="relative my-4 mx-2 min-h-[20rem] min-w-[20rem] max-w-[20rem]  rounded-3xl">
         <Image
           src={post.featuredImage}
@@ -32,9 +32,9 @@ const NewsCard = ({ post }: NewsCardProps) => {
         />
       </figure>
       <div className="mx-4 my-6 flex flex-col ">
-        <h2 className="text-2xl text-gray-700">{post.title}</h2>
+        <h2 className="mr-4 text-2xl text-gray-700">{post.title}</h2>
         <div className="mt-8 flex flex-col items-start">
-          <p className="mb-8 text-sm leading-6 text-gray-600 line-clamp-6">
+          <p className="mb-8 mr-4 text-sm leading-6 text-gray-600 line-clamp-6">
             <Interweave content={post.body} />
           </p>
 
@@ -50,4 +50,4 @@ const NewsCard = ({ post }: NewsCardProps) => {
   );
 };
 
-export default NewsCard;
+export default NewsPreviewCard;

@@ -5,7 +5,7 @@ import AdminConsoleSideNav from "../../../../components/SideNavs/AdminConsoleSid
 import { api } from "../../../../utils/api";
 import { requireAdmin } from "../../../../utils/ssrHelpers";
 import WriteNewsPostForm from "../../../../components/Forms/WriteNewsPostForm";
-import NewsCard from "../../../../components/Cards/NewsCard";
+import AdminNewsPreviewCard from "../../../../components/Cards/AdminNewsPreviewCard";
 
 const AdminConsoleNews = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -44,7 +44,7 @@ const AdminConsoleNews = () => {
                   getNewsPosts.data.map((news) => {
                     return (
                       <div className="my-8">
-                        <NewsCard post={news} />
+                        <AdminNewsPreviewCard post={news} />
                       </div>
                     );
                   })}

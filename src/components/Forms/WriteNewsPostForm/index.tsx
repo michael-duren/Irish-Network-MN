@@ -21,7 +21,7 @@ const ReactQuill = dynamic(() => import("react-quill"), {
 });
 
 export const writeNewsPostSchema = z.object({
-  title: z.string().min(4, { message: "Title must be at least 4 character(s)" }),
+  title: z.string().min(4, { message: "Title must be at least 4 character(s)" }).max(24),
   body: z.string().min(200, { message: "Description must be at least 200 character(s)" }),
   date: z.string().or(z.undefined()),
   featuredImage: z
