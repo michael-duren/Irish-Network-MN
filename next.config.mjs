@@ -23,6 +23,7 @@ const config = {
   images: {
     domains: [
       "lh3.googleusercontent.com",
+      "loremflickr.com",
       "images.unsplash.com",
       "uhfiyrlkeagwxjggxljl.supabase.co",
       "cloudflare-ipfs.com",

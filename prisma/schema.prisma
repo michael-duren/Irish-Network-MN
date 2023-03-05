@@ -123,12 +123,12 @@ model Contact {
 
 // news posts
 model News {
-  id            String    @id @default(cuid())
-  slug          String    @unique
-  title         String    @unique
+  id            String   @id @default(cuid())
+  slug          String   @unique
+  title         String   @unique
   body          String
-  date          DateTime?
+  date          DateTime
   featuredImage String
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 }
