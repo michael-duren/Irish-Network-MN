@@ -56,9 +56,7 @@ const TeamPage = ({
         <h2 className="mb-16 text-4xl text-red-400">Officers</h2>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
           {officers.map((teamMember) => {
-            return (
-              <TeamteamMemberCard key={teamMember.id} teamMember={teamMember} />
-            );
+            return <TeamteamMemberCard key={teamMember.id} teamMember={teamMember} />;
           })}
         </div>
       </div>
@@ -67,9 +65,7 @@ const TeamPage = ({
         <h2 className="mb-8 text-4xl text-red-400">Directors</h2>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
           {directors.map((teamMember) => {
-            return (
-              <TeamteamMemberCard key={teamMember.id} teamMember={teamMember} />
-            );
+            return <TeamteamMemberCard key={teamMember.id} teamMember={teamMember} />;
           })}
           {/* Advisory & Volunteers */}
           <div className="card h-[50rem] border-2 border-gray-900 bg-gray-900 text-white shadow-xl md:col-span-2 md:max-h-[40rem] md:min-h-max">
@@ -85,7 +81,7 @@ const TeamPage = ({
               <div className="pb:4 flex flex-col md:flex-row">
                 <div className="card-body ">
                   <h2 className="card-title">Advisory Board of Directors</h2>
-                  <p className="text-secondary-color/70">
+                  <div className="text-secondary-color/70">
                     <ul>
                       {advisors.map((advisor) => {
                         return (
@@ -95,12 +91,12 @@ const TeamPage = ({
                         );
                       })}
                     </ul>
-                  </p>
+                  </div>
                 </div>
                 <div className="card-body">
                   <div>
                     <h2 className="card-title">Our Essential Volunteers</h2>
-                    <p className="text-secondary-color/70">
+                    <div className="text-secondary-color/70">
                       <ul>
                         {volunteers.map((volunteer) => {
                           return (
@@ -110,7 +106,7 @@ const TeamPage = ({
                           );
                         })}
                       </ul>
-                    </p>
+                    </div>
                   </div>
                 </div>
 
@@ -118,8 +114,8 @@ const TeamPage = ({
                   <div className="h-10 space-y-4 pb-4">
                     <h2 className="card-title">Interested in Volunteering?</h2>
                     <p className="text-secondary-color/70">
-                      Join the fun and sign up to become a volunteer! We&apos;ll
-                      let you know when another event comes up.
+                      Join the fun and sign up to become a volunteer! We&apos;ll let you know when
+                      another event comes up.
                     </p>
                     <MainButton type="button">Sign Up</MainButton>
                   </div>

@@ -36,6 +36,21 @@ async function main() {
       },
     });
   }
+  await prisma.team.create({
+    data: {
+      id: faker.datatype.uuid(),
+      name: faker.name.fullName(),
+      position: "VOLUNTEER",
+    },
+  });
+
+  await prisma.team.create({
+    data: {
+      id: faker.datatype.uuid(),
+      name: faker.name.fullName(),
+      position: "ADVISORY",
+    },
+  });
 
   // news
   for (let i = 0; i < 20; i++) {
@@ -44,6 +59,7 @@ async function main() {
         id: faker.datatype.uuid(),
         slug: faker.lorem.slug(),
         title: faker.company.name(),
+        author: faker.name.fullName(),
         date: faker.date.past(),
         body: faker.lorem.paragraphs(),
         featuredImage: faker.image.city(undefined, undefined, true),

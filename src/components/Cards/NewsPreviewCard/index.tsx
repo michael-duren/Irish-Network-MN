@@ -3,10 +3,12 @@ import { Interweave } from "interweave";
 import MainButton from "../../Buttons/MainButton";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import { useRouter } from "next/router";
 
 type NewsCardProps = {
   post: {
     title: string;
+    slug: string;
     body: string;
     date: Date | null;
     featuredImage: string;
@@ -17,8 +19,13 @@ type NewsCardProps = {
 dayjs.extend(relativeTime);
 
 const NewsPreviewCard = ({ post }: NewsCardProps) => {
+  const router = useRouter();
+
   const stringDate = dayjs(post.date).fromNow();
-  console.log(stringDate);
+
+  const onClickHandler = () => {
+    void router.push(`/news/${post.slug}`);
+  };
 
   return (
     <div className="mx-2 my-4 flex  max-w-[40rem] flex-col items-center rounded-2xl border-2  bg-base-100 shadow-xl md:flex-row ">
@@ -42,7 +49,9 @@ const NewsPreviewCard = ({ post }: NewsCardProps) => {
             <i>{stringDate}</i>
           </div>
           <div className="flex w-full justify-end  space-x-2">
-            <MainButton type="button">Read More</MainButton>
+            <MainButton onClick={onClickHandler} type="button">
+              Read More
+            </MainButton>
           </div>
         </div>
       </div>

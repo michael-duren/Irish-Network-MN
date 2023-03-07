@@ -126,6 +126,7 @@ model News {
   id            String   @id @default(cuid())
   slug          String   @unique
   title         String   @unique
+  author        String
   body          String
   date          DateTime
   featuredImage String

@@ -37,7 +37,7 @@ export const newsRouter = createTRPCRouter({
   }),
   createNewsPost: protectedAdminProcedure
     .input(writeNewsPostSchema)
-    .mutation(async ({ ctx: { prisma }, input: { title, body, date, featuredImage } }) => {
+    .mutation(async ({ ctx: { prisma }, input: { author, title, body, date, featuredImage } }) => {
       const oldPost = await prisma.news.findUnique({
         where: {
           title,
@@ -50,6 +50,7 @@ export const newsRouter = createTRPCRouter({
       await prisma.news.create({
         data: {
           title,
+          author,
           body,
           date: dateObject,
           featuredImage,
