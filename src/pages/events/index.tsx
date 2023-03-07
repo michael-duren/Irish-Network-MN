@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { createProxySSGHelpers } from "@trpc/react-query/ssg";
 import type { GetStaticProps } from "next";
 import type { Event } from "@prisma/client";
@@ -15,25 +16,80 @@ export const getStaticProps: GetStaticProps = async () => {
   });
 
   // get Events
-  const res: Event[] = await ssg.event.getEvents.fetch();
+  const pastEvents: Event[] = await ssg.event.getPastEvents.fetch();
+  const futureEvents: Event[] = await ssg.event.getFutureEvents.fetch();
 
   return {
     props: {
-      events: JSON.parse(JSON.stringify(res)),
+      futureEvents: JSON.parse(JSON.stringify(futureEvents)),
+      pastEvents: JSON.parse(JSON.stringify(pastEvents)),
     },
     revalidate: 10,
   };
 };
 
-const EventsPage = ({ events }: { events: Event[] }) => {
+const EventsPage = ({
+  pastEvents,
+  futureEvents,
+}: {
+  pastEvents: Event[];
+  futureEvents: Event[];
+}) => {
+  const [eventMenu, setEventMenu] = useState<"upcomming" | "past">("upcomming");
+
   return (
     <section>
       <Banner imagePath="/images/events.jpeg.webp" title="Events" />
-      <div className="m-8 flex flex-col items-center">
-        {events.map((event) => {
-          // return <div>{event.title}</div>;
-          return <EventPreviewCard key={event.title} event={event} />;
-        })}
+      <div className="my-8">
+        <div className="m-16 flex flex-col">
+          <div className="mb-8 flex items-center justify-center">
+            <div className="tabs mb-8">
+              <h2
+                className={`tab-lifted tab  tab-lg ${
+                  eventMenu === "upcomming" ? "tab-active" : ""
+                }`}
+                onClick={() => {
+                  setEventMenu("upcomming");
+                }}
+              >
+                Upcomming Events
+              </h2>
+              <h2
+                className={`tab-lifted tab  tab-lg ${eventMenu === "past" ? "tab-active" : ""}`}
+                onClick={() => {
+                  setEventMenu("past");
+                }}
+              >
+                Past Events
+              </h2>
+            </div>
+          </div>
+          {/* past Events  */}
+          <div className=" flex flex-col items-center xl:grid xl:grid-cols-4">
+            {eventMenu === "past" &&
+              pastEvents.map((event) => {
+                // return <div>{event.title}</div>;
+                return (
+                  <div className="lg:col-span-2">
+                    <EventPreviewCard key={event.title} event={event} />
+                  </div>
+                );
+              })}
+          </div>
+
+          {/* future Events  */}
+          <div className=" flex flex-col items-center xl:grid xl:grid-cols-4">
+            {eventMenu === "upcomming" &&
+              futureEvents.map((event) => {
+                // return <div>{event.title}</div>;
+                return (
+                  <div className="lg:col-span-2">
+                    <EventPreviewCard key={event.title} event={event} />
+                  </div>
+                );
+              })}
+          </div>
+        </div>
       </div>
     </section>
   );

@@ -5,11 +5,7 @@ import slugify from "slugify";
 import z from "zod";
 import { randomUUID } from "crypto";
 
-import {
-  createTRPCRouter,
-  publicProcedure,
-  protectedAdminProcedure,
-} from "../trpc";
+import { createTRPCRouter, publicProcedure, protectedAdminProcedure } from "../trpc";
 import { writeEventSchema } from "../../../components/Forms/WriteEventForm";
 import { env } from "../../../env/server.mjs";
 import { TRPCError } from "@trpc/server";
@@ -88,8 +84,28 @@ export const eventRouter = createTRPCRouter({
       });
     }),
 
-  getEvents: publicProcedure.query(async ({ ctx: { prisma } }) => {
+  getPastEvents: publicProcedure.query(async ({ ctx: { prisma } }) => {
     const events = await prisma?.event.findMany({
+      where: {
+        date: {
+          lt: new Date(),
+        },
+      },
+      orderBy: {
+        date: "desc",
+      },
+    });
+
+    return events;
+  }),
+
+  getFutureEvents: publicProcedure.query(async ({ ctx: { prisma } }) => {
+    const events = await prisma?.event.findMany({
+      where: {
+        date: {
+          gte: new Date(),
+        },
+      },
       orderBy: {
         date: "desc",
       },
