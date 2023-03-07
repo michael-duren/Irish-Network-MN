@@ -10,10 +10,10 @@ import { requireAdmin } from "../../../../utils/ssrHelpers";
 const AdminConsoleEvents = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const getEvents = api.event.getEvents.useQuery();
+  const getAllEvents = api.event.getAllEvents.useQuery();
   const eventRoute = api.useContext().event;
   const invalidateCurrentEvents = async () => {
-    await eventRoute.getEvents.invalidate();
+    await eventRoute.getAllEvents.invalidate();
   };
 
   return (
@@ -37,15 +37,17 @@ const AdminConsoleEvents = () => {
                 </button>
               </div>
             </div>
-            <div className="flex flex-col">
-              {getEvents.isSuccess &&
-                getEvents.data.map((event) => {
+            <div className="flex flex-col items-center xl:grid xl:grid-cols-4">
+              {getAllEvents.isSuccess &&
+                getAllEvents.data.map((event) => {
                   return (
-                    <AdminEventPreviewCard
-                      invalidate={invalidateCurrentEvents}
-                      key={event.title}
-                      event={event}
-                    />
+                    <div className="xl:col-span-2">
+                      <AdminEventPreviewCard
+                        invalidate={invalidateCurrentEvents}
+                        key={event.title}
+                        event={event}
+                      />
+                    </div>
                   );
                 })}
             </div>

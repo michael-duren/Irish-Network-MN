@@ -84,6 +84,15 @@ export const eventRouter = createTRPCRouter({
       });
     }),
 
+  getAllEvents: publicProcedure.query(async ({ ctx: { prisma } }) => {
+    const events = await prisma?.event.findMany({
+      orderBy: {
+        date: "desc",
+      },
+    });
+
+    return events;
+  }),
   getPastEvents: publicProcedure.query(async ({ ctx: { prisma } }) => {
     const events = await prisma?.event.findMany({
       where: {

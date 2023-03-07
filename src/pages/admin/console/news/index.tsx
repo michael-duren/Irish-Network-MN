@@ -38,12 +38,12 @@ const AdminConsoleNews = () => {
               </div>
             </div>
             {/*  */}
-            <div className="flex flex-col">
+            <div className="flex flex-col xl:grid xl:grid-cols-4">
               <div className="mt-8">
                 {getNewsPosts.isSuccess &&
                   getNewsPosts.data.map((news) => {
                     return (
-                      <div className="my-8">
+                      <div className="col-span-2 my-8">
                         <AdminNewsPreviewCard post={news} />
                       </div>
                     );
