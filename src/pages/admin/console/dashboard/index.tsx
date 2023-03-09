@@ -1,5 +1,5 @@
 import { useSession } from "next-auth/react";
-
+import { AiOutlineMail, AiOutlineLogout } from "react-icons/ai";
 import AuthHeader from "../../../../components/Headers/AuthHeader";
 import AdminConsoleSideNav from "../../../../components/SideNavs/AdminConsoleSideNav";
 
@@ -44,7 +44,13 @@ const AdminConsoleDashboard = () => {
                   buttonTitle={"Check Messages"}
                   onClick={() => console.log("clicked")}
                   title={`Messages`}
-                ></AdminDashboardSmallCard>
+                >
+                  <div className="placeholder avatar h-full w-full pt-8 ">
+                    <div className=" w-36 rounded-full bg-black">
+                      <AiOutlineMail size={80} />
+                    </div>
+                  </div>
+                </AdminDashboardSmallCard>
               </div>
               <div className="col-span-4 row-span-1 md:col-span-2">
                 <AdminDashboardSmallCard

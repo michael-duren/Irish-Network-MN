@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { faker } from "@faker-js/faker";
+import { teamScript } from "./team-script";
 
 const prisma = new PrismaClient();
 async function main() {
@@ -10,62 +11,7 @@ async function main() {
   await prisma.contact.deleteMany();
 
   // team members
-  for (let i = 0; i < 4; i++) {
-    await prisma.team.create({
-      data: {
-        id: faker.datatype.uuid(),
-        name: faker.name.fullName(),
-        title: faker.name.jobType(),
-        occupation: faker.name.jobTitle(),
-        irishConnection: faker.commerce.productDescription(),
-        imageUrl: faker.image.people(undefined, undefined, true),
-        position: "OFFICER",
-      },
-    });
-  }
-  for (let i = 0; i < 2; i++) {
-    await prisma.team.create({
-      data: {
-        id: faker.datatype.uuid(),
-        name: faker.name.fullName(),
-        title: faker.name.jobType(),
-        occupation: faker.name.jobTitle(),
-        irishConnection: faker.commerce.productDescription(),
-        imageUrl: faker.image.people(undefined, undefined, true),
-        position: "DIRECTOR",
-      },
-    });
-  }
-  await prisma.team.create({
-    data: {
-      id: faker.datatype.uuid(),
-      name: faker.name.fullName(),
-      position: "VOLUNTEER",
-    },
-  });
-
-  await prisma.team.create({
-    data: {
-      id: faker.datatype.uuid(),
-      name: faker.name.fullName(),
-      position: "ADVISORY",
-    },
-  });
-
-  // news
-  for (let i = 0; i < 20; i++) {
-    await prisma.news.create({
-      data: {
-        id: faker.datatype.uuid(),
-        slug: faker.lorem.slug(),
-        title: faker.company.name(),
-        author: faker.name.fullName(),
-        date: faker.date.past(),
-        body: faker.lorem.paragraphs(),
-        featuredImage: faker.image.city(undefined, undefined, true),
-      },
-    });
-  }
+  teamScript(prisma, faker);
 
   // events
   for (let i = 0; i < 10; i++) {
