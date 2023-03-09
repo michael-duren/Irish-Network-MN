@@ -18,14 +18,14 @@ const AdminConsoleEvents = () => {
 
   return (
     <>
-      <section>
+      <section className="">
         <AuthHeader />
         <div className="flex">
           <AdminConsoleSideNav />
-          <div className="m-6 flex w-full flex-col">
+          <div className="m-6 flex  flex-col">
             <div className="flex items-center justify-center">
               <h2 className="text-2xl underline">Events:</h2>
-              <div className="flex w-full flex-1 justify-end">
+              <div className=" flex flex-1 justify-end">
                 <button
                   className="flex items-center rounded-lg border-2 border-gray-500 py-4 px-4 text-gray-500 hover:border-gray-700 hover:text-gray-800"
                   onClick={() => setIsOpen(true)}

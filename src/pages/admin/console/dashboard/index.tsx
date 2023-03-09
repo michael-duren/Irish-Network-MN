@@ -17,13 +17,11 @@ const AdminConsoleDashboard = () => {
         <div className="flex h-full w-full">
           <AdminConsoleSideNav />
           <div className="m-16 w-full">
-            <div className="grid h-full w-full grid-cols-4 grid-rows-5 gap-4 lg:grid-cols-6 lg:grid-rows-2 ">
-              {/* long card */}
+            <div className="grid h-full w-full grid-cols-4 grid-rows-3 gap-4 lg:grid-cols-6 lg:grid-rows-2 ">
               <div className="col-span-4 row-span-1 lg:col-span-2 lg:row-span-2">
                 <AdminDashboardLongCard session={session} />
               </div>
-              {/* write a post */}
-              <div className="col-span-2 row-span-1 ">
+              <div className="col-span-4 row-span-1 md:col-span-2 md:row-span-1 ">
                 <AdminDashboardSmallCard
                   buttonTitle={"Add Post"}
                   onClick={() => console.log("clicked")}
@@ -32,8 +30,7 @@ const AdminConsoleDashboard = () => {
                   <p>Got something to say? Add a new Post.</p>
                 </AdminDashboardSmallCard>
               </div>
-              {/* create an event */}
-              <div className="col-span-2 row-span-1">
+              <div className="col-span-4 row-span-1 md:col-span-2">
                 <AdminDashboardSmallCard
                   buttonTitle={"Create Event"}
                   onClick={() => console.log("clicked")}
@@ -42,22 +39,21 @@ const AdminConsoleDashboard = () => {
                   <p>Got your details ready? Create a new Event!</p>
                 </AdminDashboardSmallCard>
               </div>
-              {/* messages notifications */}
-              <div className="col-span-2 row-span-1">
+              <div className="col-span-4 row-span-1 md:col-span-2">
                 <AdminDashboardSmallCard
-                  buttonTitle={"Create Event"}
+                  buttonTitle={"Check Messages"}
                   onClick={() => console.log("clicked")}
                   title={`Messages`}
                 ></AdminDashboardSmallCard>
               </div>
-
-              {/* logout */}
-              <div className="col-span-2 row-span-1">
+              <div className="col-span-4 row-span-1 md:col-span-2">
                 <AdminDashboardSmallCard
                   buttonTitle={"Logout"}
                   onClick={() => console.log("clicked")}
                   title={`Logout`}
-                ></AdminDashboardSmallCard>
+                >
+                  All done for the day?
+                </AdminDashboardSmallCard>
               </div>
             </div>
           </div>

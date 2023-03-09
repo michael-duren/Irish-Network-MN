@@ -58,7 +58,7 @@ const AdminConsoleSideNav = () => {
         open ? "w-72" : "w-16"
       }`}
     >
-      <div className="flex justify-end py-3 ">
+      <div className="hidden justify-end py-3 lg:flex ">
         <GiHamburgerMenu size={26} className="cursor-pointer" onClick={() => setOpen(!open)} />
       </div>
       <div className="mt-4 flex flex-col space-y-4 ">
