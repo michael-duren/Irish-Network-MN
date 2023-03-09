@@ -10,7 +10,7 @@ import { FiMessageSquare } from "react-icons/fi";
 import { IoNewspaperOutline } from "react-icons/io5";
 
 const AdminConsoleSideNav = () => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
 
   const menus = [
     {
@@ -54,7 +54,9 @@ const AdminConsoleSideNav = () => {
 
   return (
     <div
-      className={`min-h-screen  bg-black px-4 text-gray-200 duration-500 ${open ? "w-72" : "w-16"}`}
+      className={`min-h-screen  bg-gray-800 px-4 text-gray-200 duration-500 ${
+        open ? "w-72" : "w-16"
+      }`}
     >
       <div className="flex justify-end py-3 ">
         <GiHamburgerMenu size={26} className="cursor-pointer" onClick={() => setOpen(!open)} />

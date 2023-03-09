@@ -60,10 +60,7 @@ const AdminEventPreviewCard = ({
         <div className="mr-8 flex flex-1 flex-col flex-wrap items-start justify-center border-r-2  pr-12 text-gray-600 hover:text-gray-900">
           <h2 className="m-4 flex w-fit pb-4 text-3xl ">
             <Link legacyBehavior href={`/events/${slug}`}>
-              <a
-                className="text-gray-500 hover:text-gray-800 hover:underline"
-                target="_blank"
-              >
+              <a className="text-gray-500 hover:text-gray-800 hover:underline" target="_blank">
                 {title}
               </a>
             </Link>
@@ -118,10 +115,7 @@ const AdminEventPreviewCard = ({
                 </GreenButton>
               </a>
             </Link>
-            <OrangeButton
-              onClick={() => setEditEventModalOpen(true)}
-              type="button"
-            >
+            <OrangeButton onClick={() => setEditEventModalOpen(true)} type="button">
               Edit
             </OrangeButton>
             <RedButton type="button" onClick={() => setwarningModalOpen(true)}>
@@ -151,11 +145,7 @@ const AdminEventPreviewCard = ({
           </GreenButton>
         </div>
       </VerificationModal>
-      <EditEventForm
-        isOpen={editEventModalOpen}
-        closeModal={setEditEventModalOpen}
-        slug={slug}
-      />
+      <EditEventForm isOpen={editEventModalOpen} closeModal={setEditEventModalOpen} slug={slug} />
     </div>
   );
 };

@@ -37,11 +37,11 @@ const AdminConsoleEvents = () => {
                 </button>
               </div>
             </div>
-            <div className="flex flex-col items-center xl:grid xl:grid-cols-4">
+            <div className="flex flex-col items-center ">
               {getAllEvents.isSuccess &&
                 getAllEvents.data.map((event) => {
                   return (
-                    <div className="xl:col-span-2">
+                    <div key={event.id} className="">
                       <AdminEventPreviewCard
                         invalidate={invalidateCurrentEvents}
                         key={event.title}

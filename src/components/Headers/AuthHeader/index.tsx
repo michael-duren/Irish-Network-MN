@@ -5,7 +5,7 @@ const AuthHeader = () => {
   const { data: session } = useSession();
 
   return (
-    <div className="flex items-center justify-start bg-black p-8 text-gray-200">
+    <div className="flex items-center justify-start bg-gray-800 p-8 text-gray-200">
       <h2 className="text-2xl">Admin Console</h2>
       <h2 className="w-[20rem]">Irish Network MN</h2>
       <div className="flex w-full items-center justify-end space-x-8">
