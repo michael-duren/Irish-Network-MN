@@ -161,9 +161,7 @@ const WriteNewsPostForm = ({ isOpen, closeModal }: WriteNewsPostFormProps) => {
           </div>
           {/* Buttons */}
           <div className="space-x-8">
-            <GreenButton type="submit" onClick={() => console.log(errors)}>
-              Post
-            </GreenButton>
+            <GreenButton type="submit">Post</GreenButton>
             <RedButton type="button" onClick={() => closeModal(false)}>
               Cancel
             </RedButton>

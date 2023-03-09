@@ -46,7 +46,7 @@ const AdminConsoleDashboard = () => {
                   title={`Messages`}
                 >
                   <div className="placeholder avatar h-full w-full pt-8 ">
-                    <div className=" w-36 rounded-full bg-black">
+                    <div className=" w-36 rounded-full bg-secondary-color/30">
                       <AiOutlineMail size={80} />
                     </div>
                   </div>

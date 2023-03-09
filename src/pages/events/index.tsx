@@ -35,7 +35,7 @@ const EventsPage = ({
   pastEvents: Event[];
   futureEvents: Event[];
 }) => {
-  const [eventMenu, setEventMenu] = useState<"upcomming" | "past">("upcomming");
+  const [eventMenu, setEventMenu] = useState<"upcomming" | "past" | "gallery">("upcomming");
 
   return (
     <section>
@@ -61,6 +61,14 @@ const EventsPage = ({
                 }}
               >
                 Past Events
+              </h2>
+              <h2
+                className={`tab-lifted tab  tab-lg ${eventMenu === "gallery" ? "tab-active" : ""}`}
+                onClick={() => {
+                  setEventMenu("gallery");
+                }}
+              >
+                Gallery
               </h2>
             </div>
           </div>

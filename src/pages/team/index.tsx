@@ -52,9 +52,9 @@ const TeamPage = ({
     <section>
       <Banner imagePath="/images/train.jpg" title="Meet the Team!" />
       {/* Officers */}
-      <div className="m-16 h-full">
-        <h2 className="mb-16 text-4xl text-red-400">Officers</h2>
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-4">
+      <div className="h-full bg-gray-100 p-16 ">
+        <h2 className=" pb-16 text-4xl text-red-400">Officers</h2>
+        <div className="grid grid-cols-1 gap-6 bg-gray-100 md:grid-cols-2 xl:grid-cols-4">
           {officers.map((teamMember) => {
             return <TeamteamMemberCard key={teamMember.id} teamMember={teamMember} />;
           })}
