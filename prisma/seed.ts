@@ -13,7 +13,22 @@ async function main() {
   // team members
   teamScript(prisma, faker);
 
-  // events
+  // news
+  for (let i = 0; i < 20; i++) {
+    await prisma.news.create({
+      data: {
+        id: faker.datatype.uuid(),
+        slug: faker.lorem.slug(),
+        title: faker.company.name(),
+        author: faker.name.fullName(),
+        date: faker.date.past(),
+        body: faker.lorem.paragraphs(),
+        featuredImage: faker.image.city(undefined, undefined, true),
+      },
+    });
+  }
+
+  // events - future
   for (let i = 0; i < 10; i++) {
     await prisma.event.create({
       data: {
@@ -34,6 +49,7 @@ async function main() {
     });
   }
 
+  // events - past
   for (let i = 0; i < 20; i++) {
     await prisma.event.create({
       data: {
