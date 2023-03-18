@@ -11,12 +11,10 @@ type TeamMemberCardProps = {
 };
 
 const TeamteamMemberCard = ({ teamMember }: TeamMemberCardProps) => {
-  const [selectedTab, setSelectedTab] = useState<
-    "Name" | "Occupation" | "History"
-  >("Name");
+  const [selectedTab, setSelectedTab] = useState<"Name" | "Occupation" | "History">("Name");
 
   return (
-    <div className="card max-h-[40rem] max-w-md border-2 border-gray-900 bg-gray-800 text-white shadow-xl">
+    <div className="card max-h-[40rem] min-h-[40rem] max-w-md border-2 border-gray-900 bg-gray-800 text-white shadow-xl">
       {/* Tabs-Menu */}
       <div className="tabs my-4 flex justify-center">
         <div
@@ -81,9 +79,11 @@ const TeamteamMemberCard = ({ teamMember }: TeamMemberCardProps) => {
         <>
           <div className="card-body overflow-scroll">
             <h2 className="card-title">{teamMember.name}</h2>
-            <div className="card-body">
+            <div className="card-body px-0 md:px-4">
               <p className=" text-red-400">Occupation</p>
-              <p className="text-secondary-color/70">{teamMember.occupation}</p>
+              <p className="text-sm text-secondary-color/70 md:text-base">
+                {teamMember.occupation}
+              </p>
             </div>
           </div>{" "}
         </>
@@ -93,9 +93,9 @@ const TeamteamMemberCard = ({ teamMember }: TeamMemberCardProps) => {
         <>
           <div className="card-body overflow-scroll">
             <h2 className="card-title">{teamMember.name}</h2>
-            <div className="card-body">
+            <div className="card-body px-0 md:px-4">
               <p className="text-red-400">Irish Connection</p>
-              <p className="pt-0 text-secondary-color/70">
+              <p className="text-sm text-secondary-color/70 md:text-base">
                 {teamMember.irishConnection}
               </p>
             </div>

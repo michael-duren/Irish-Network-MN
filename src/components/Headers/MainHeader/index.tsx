@@ -35,7 +35,7 @@ export default function MainHeader() {
 
   return (
     <header
-      className={`sticky top-0 left-0 z-10 my-4 flex h-[10vh] min-h-[10rem] items-center justify-between border-b border-gray-300 bg-white pb-4 md:border-b-0 md:bg-white/80 ${
+      className={`sticky top-0 left-0 z-10 my-4 flex h-[10vh] min-h-[10rem] items-center justify-between border-b border-gray-300 bg-white pb-4 lg:border-b-0 lg:bg-white/90 ${
         currentRoute.match(allAuth) ? "hidden" : ""
       }`}
     >
@@ -49,7 +49,7 @@ export default function MainHeader() {
 
       <nav>
         <ul
-          className={`absolute left-0   flex w-[100%]  flex-col space-y-8  rounded-md border-2 border-gray-300  bg-white/90 p-8 shadow-md transition-all duration-500 ease-in md:static md:z-auto md:my-0 md:mr-8 md:w-auto md:flex-row md:space-x-8 md:space-y-0 md:border-none md:bg-transparent md:p-0 md:shadow-none ${
+          className={`absolute left-0   flex w-[100%]  flex-col space-y-8  rounded-md border-2 border-gray-300  bg-white p-8 shadow-md transition-all duration-500 ease-in lg:static lg:z-auto lg:my-0 lg:mr-8 lg:w-auto lg:flex-row lg:space-x-8 lg:space-y-0 lg:border-none lg:bg-transparent lg:p-0 lg:shadow-none ${
             isMenuOpen ? "top-[100%]" : "top-[-500%]"
           } `}
         >
@@ -60,9 +60,7 @@ export default function MainHeader() {
                 <li
                   key={link.name}
                   className={`mx-2 p-2 font-light duration-500 hover:text-red-500 xl:text-xl ${
-                    currentRoute === link.link
-                      ? "text-red-400"
-                      : "text-gray-900"
+                    currentRoute === link.link ? "text-red-400" : "text-gray-900"
                   }`}
                 >
                   <Link onClick={onClickHandler} href={link.link}>
@@ -72,14 +70,14 @@ export default function MainHeader() {
               );
             }
           })}
-          <li className="mx-2 p-2 md:p-0">
+          <li className="mx-2 p-2 lg:p-0">
             <AuthButton />
           </li>
         </ul>
         {/* Hamburger */}
         <div
           onClick={onClickHandler}
-          className="absolute top-20 right-16 flex w-[20rem]  cursor-pointer justify-end text-gray-400 md:hidden"
+          className="absolute top-20 right-16 flex w-[20rem]  cursor-pointer justify-end text-gray-400 lg:hidden"
         >
           {isMenuOpen ? (
             <IoMdClose className="h-10 w-10 " />

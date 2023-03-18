@@ -68,7 +68,7 @@ const TeamPage = ({
             return <TeamteamMemberCard key={teamMember.id} teamMember={teamMember} />;
           })}
           {/* Advisory & Volunteers */}
-          <div className="card h-[50rem] border-2 border-gray-900 bg-gray-900 text-white shadow-xl md:col-span-2 md:max-h-[40rem] md:min-h-max">
+          <div className="card h-[50rem] overflow-scroll border-2 border-gray-900 bg-gray-900 pb-4 text-white shadow-xl md:col-span-2 md:max-h-[40rem] md:min-h-max">
             <figure className="relative h-40">
               <Image
                 src={"/images/balcony2.jpg"}
