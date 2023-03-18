@@ -5,7 +5,7 @@ export const teamScript = async (prisma: PrismaClient, faker: Faker) => {
   // Officers
   await prisma.team.create({
     data: {
-      id: faker.datatype.uuid(),
+      id: "0",
       name: "Mary McFarland Brooks",
       title: "President",
       occupation:
@@ -19,7 +19,7 @@ export const teamScript = async (prisma: PrismaClient, faker: Faker) => {
   });
   await prisma.team.create({
     data: {
-      id: faker.datatype.uuid(),
+      id: "1",
       name: "Patrick Duffy",
       title: "Vice President",
       occupation:
@@ -33,7 +33,7 @@ export const teamScript = async (prisma: PrismaClient, faker: Faker) => {
   });
   await prisma.team.create({
     data: {
-      id: faker.datatype.uuid(),
+      id: "2",
       name: "Martie McMahon",
       title: "Treasurer",
       occupation:
@@ -46,7 +46,7 @@ export const teamScript = async (prisma: PrismaClient, faker: Faker) => {
   });
   await prisma.team.create({
     data: {
-      id: faker.datatype.uuid(),
+      id: "3",
       name: "Jane Hall",
       title: "Secretary",
       occupation:
@@ -61,7 +61,7 @@ export const teamScript = async (prisma: PrismaClient, faker: Faker) => {
   // Directors
   await prisma.team.create({
     data: {
-      id: faker.datatype.uuid(),
+      id: "4",
       name: "James Elliott Brooks",
       occupation:
         "Occupation: Founder of Irish Gazette Media, the largest Irish media in the Midwest. Brooks has an extensive background in brand journalism and has been a board member of numerous organizations in both Minnesota and North Dakota, where he was a US Congress candidate.",
@@ -73,7 +73,7 @@ export const teamScript = async (prisma: PrismaClient, faker: Faker) => {
   });
   await prisma.team.create({
     data: {
-      id: faker.datatype.uuid(),
+      id: "5",
       name: "Laurie Ingram McCrory",
       occupation:
         "Laurie is the principal art director and designer of Laurie Ingram Art + Design, an independent art design studio in St. Paul, Minnesota specializing in book cover design, book design, print collateral, and branding. Laurie stays active in the AIGA, Graphic Artists Guild, Walker Art Center, Minneapolis Institute of Arts, Minnesota Book Publishers’ Roundtable, Bookbuilders of Boston, and Minnesota Bookbuilders. Laurie also serves on the Board of Directors for Minnesota Book Publishers’ Roundtable as Social Media Manager.",
