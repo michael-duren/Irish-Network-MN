@@ -18,14 +18,10 @@ type ProfileSideNavProps = {
   profileState: "account" | "settings";
 };
 
-const ProfileSideNav = ({
-  session,
-  setProfileState,
-  profileState,
-}: ProfileSideNavProps) => {
+const ProfileSideNav = ({ session, setProfileState, profileState }: ProfileSideNavProps) => {
   return (
-    <div className={`flex rounded-3xl  bg-white py-8 px-4 duration-500`}>
-      <div className="mt-4 flex flex-col space-y-4 ">
+    <div className={`rounded-3xl  bg-white duration-500 md:py-8 md:px-4`}>
+      <div className="flex items-center justify-around md:mt-4 md:flex-col md:space-y-4 ">
         {/* Account */}
         <div
           onClick={() => setProfileState("account")}
@@ -36,7 +32,7 @@ const ProfileSideNav = ({
           <div>
             <MdOutlineAccountCircle size={25} />
           </div>
-          <h2>Account</h2>
+          <h2 className="hidden md:block">Account</h2>
         </div>
         {/* Membership */}
         <div
@@ -48,7 +44,7 @@ const ProfileSideNav = ({
           <div>
             <MdOutlineSettings size={25} />
           </div>
-          <h2>Settings</h2>
+          <h2 className="hidden md:block">Settings</h2>
         </div>
         {/* Admin Page */}
         {session.user.role === "ADMIN" ? (
@@ -61,7 +57,8 @@ const ProfileSideNav = ({
               <MdOutlineAdminPanelSettings size={25} />
             </div>
             <h2 className={`flex whitespace-pre duration-500`}>
-              Admin <BiLinkExternal />
+              <div className="hidden md:block">Admin</div>
+              <BiLinkExternal />
             </h2>
             <div></div>
           </Link>

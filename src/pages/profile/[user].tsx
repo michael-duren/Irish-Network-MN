@@ -7,9 +7,7 @@ import Settings from "../../components/Profile/Settings";
 import { Transition } from "@headlessui/react";
 
 const UserProfile = () => {
-  const [profileState, setProfileState] = useState<"account" | "settings">(
-    "account"
-  );
+  const [profileState, setProfileState] = useState<"account" | "settings">("account");
   const accountIsShowing = profileState === "account";
   const settingsIsShowing = profileState === "settings";
   const { data: session } = useSession({ required: true });
@@ -20,8 +18,8 @@ const UserProfile = () => {
   return (
     <section className="h-full w-full overflow-scroll bg-gradient-to-r from-gray-700 via-gray-900 to-black ">
       <div className="flex justify-center">
-        <div className="flex items-start justify-center rounded-2xl p-8 ">
-          <div className="sticky mr-8">
+        <div className="flex flex-col items-start justify-center rounded-2xl p-8 md:flex-row ">
+          <div className=" sticky mb-6  md:mb-0 md:mr-8">
             <ProfileSideNav
               profileState={profileState}
               setProfileState={setProfileState}
@@ -58,9 +56,7 @@ const UserProfile = () => {
             <div className="flex flex-col">
               <div className="mx-4 flex min-h-[10rem] w-[20vw] min-w-[20rem] flex-col items-center justify-around  rounded-3xl   bg-white p-8 shadow-xl transition-all duration-300 ">
                 <h3>Membership</h3>
-                <p className="text-xs">
-                  Your memebership is not currently active
-                </p>
+                <p className="text-xs">Your memebership is not currently active</p>
               </div>
               <div className="mx-4 mt-4 flex min-h-[10rem] w-[20vw] min-w-[20rem] flex-col items-center justify-around  rounded-3xl border-2 border-solid   bg-white p-8 shadow-xl transition-all duration-300">
                 <h3>Upcoming Events</h3>
