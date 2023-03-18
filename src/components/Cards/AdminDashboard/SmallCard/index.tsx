@@ -1,5 +1,4 @@
 import type { ReactNode } from "react";
-import type { Session } from "next-auth";
 import MainButton from "../../../../components/Buttons/MainButton";
 
 type AdminDashboardSmallCardProps = {

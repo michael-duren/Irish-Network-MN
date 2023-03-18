@@ -8,7 +8,7 @@ const Membership: NextPage = () => {
     <section className="bg-gray-800">
       <Banner imagePath="/images/members.jpg" title="Membership Coming Soon!" />
       <div className="mx-8 mt-8 flex-col  items-center justify-center rounded-lg bg-secondary-color/80     ">
-        <h2 className="pt-8 text-center text-3xl font-bold">Here's what to expect</h2>
+        <h2 className="pt-8 text-center text-3xl font-bold">Here&apos;s what to expect</h2>
         <div className="flex flex-col items-center justify-center space-y-4 p-16 lg:flex-row lg:space-y-0 lg:space-x-4">
           <div className="card bg-gray-800  text-primary-content shadow-md lg:h-[25rem]  lg:w-[30rem]">
             <div className="card-body space-y-4">

@@ -6,7 +6,6 @@ import { toast } from "react-hot-toast";
 import type z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import dynamic from "next/dynamic";
-import dayjs from "dayjs";
 
 import WideModal from "../../Modals/WideModal";
 import { api } from "../../../utils/api";
@@ -50,7 +49,7 @@ const EditEventForm = ({ isOpen, closeModal, slug }: EditEventFormProps) => {
       toast.success("Updated Event!");
       closeModal(false);
       reset();
-      void eventRoute.getEvents.invalidate();
+      void eventRoute.getAllEvents.invalidate();
     },
     onError: (error) => {
       toast.error("Oh No! We ran into a problem");
@@ -168,7 +167,7 @@ const EditEventForm = ({ isOpen, closeModal, slug }: EditEventFormProps) => {
               <label id="event-image" htmlFor="event-image" className="block">
                 <span className="">Event Image</span>
               </label>
-              <UploadImageButton setImageUrl={setImageUrl} />
+              <UploadImageButton directory={"events"} setImageUrl={setImageUrl} />
             </div>
             <div className="flex flex-col items-start justify-start space-x-4 space-y-4">
               <label htmlFor="register">Attendees must register?</label>
@@ -261,8 +260,7 @@ const EditEventForm = ({ isOpen, closeModal, slug }: EditEventFormProps) => {
               )}
             ></Controller>
             <div className="text-xs">
-              <Required />{" "}
-              <span className="text-gray-400">denotes required fields</span>
+              <Required /> <span className="text-gray-400">denotes required fields</span>
             </div>
           </div>
           {/* Buttons */}

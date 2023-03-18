@@ -19,10 +19,13 @@ export const getStaticProps: GetStaticProps = async () => {
   const pastEvents: Event[] = await ssg.event.getPastEvents.fetch();
   const futureEvents: Event[] = await ssg.event.getFutureEvents.fetch();
 
+  const parsedFutureEvents: unknown = JSON.parse(JSON.stringify(pastEvents));
+  const parsedPastEvents: unknown = JSON.parse(JSON.stringify(futureEvents));
+
   return {
     props: {
-      futureEvents: JSON.parse(JSON.stringify(futureEvents)),
-      pastEvents: JSON.parse(JSON.stringify(pastEvents)),
+      futureEvents: parsedFutureEvents,
+      pastEvents: parsedPastEvents,
     },
     revalidate: 10,
   };
@@ -78,7 +81,7 @@ const EventsPage = ({
               pastEvents.map((event) => {
                 // return <div>{event.title}</div>;
                 return (
-                  <div className="lg:col-span-2">
+                  <div key={event.id} className="lg:col-span-2">
                     <EventPreviewCard key={event.title} event={event} />
                   </div>
                 );
@@ -91,7 +94,7 @@ const EventsPage = ({
               futureEvents.map((event) => {
                 // return <div>{event.title}</div>;
                 return (
-                  <div className="lg:col-span-2">
+                  <div key={event.id} className="lg:col-span-2">
                     <EventPreviewCard key={event.title} event={event} />
                   </div>
                 );

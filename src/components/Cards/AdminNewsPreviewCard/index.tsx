@@ -2,15 +2,12 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Interweave } from "interweave";
-import MainButton from "../../Buttons/MainButton";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 
 import EditEventForm from "../../Forms/EditEventForm";
 import toast from "react-hot-toast";
 import VerificationModal from "../../Modals/VerificationModal";
-import { IoCalendarNumberOutline } from "react-icons/io5";
-import { IoLocationOutline } from "react-icons/io5";
 import { GiBinoculars } from "react-icons/gi";
 import { FiEdit } from "react-icons/fi";
 import { AiOutlineClose } from "react-icons/ai";
@@ -30,11 +27,12 @@ type NewsCardProps = {
     slug: string;
     id: string;
   };
+  invalidate: () => Promise<void>;
 };
 
 dayjs.extend(relativeTime);
 
-const AdminNewsPreviewCard = ({ post }: NewsCardProps) => {
+const AdminNewsPreviewCard = ({ post, invalidate }: NewsCardProps) => {
   const [warningModalOpen, setwarningModalOpen] = useState(false);
   const [showEditOptions, setShowEditOptions] = useState(false);
   const [editEventModalOpen, setEditEventModalOpen] = useState(false);
@@ -44,6 +42,9 @@ const AdminNewsPreviewCard = ({ post }: NewsCardProps) => {
     onSuccess: () => {
       setwarningModalOpen(false);
       toast.error(`Deleted Event ${post.title}!`);
+      async () => {
+        await invalidate();
+      };
     },
   });
 

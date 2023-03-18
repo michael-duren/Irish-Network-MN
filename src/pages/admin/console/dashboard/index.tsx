@@ -1,5 +1,5 @@
 import { useSession } from "next-auth/react";
-import { AiOutlineMail, AiOutlineLogout } from "react-icons/ai";
+import { AiOutlineMail } from "react-icons/ai";
 import AuthHeader from "../../../../components/Headers/AuthHeader";
 import AdminConsoleSideNav from "../../../../components/SideNavs/AdminConsoleSideNav";
 

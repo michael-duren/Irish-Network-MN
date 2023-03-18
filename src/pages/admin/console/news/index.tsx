@@ -43,8 +43,8 @@ const AdminConsoleNews = () => {
                 {getNewsPosts.isSuccess &&
                   getNewsPosts.data.map((news) => {
                     return (
-                      <div className="col-span-2 my-8">
-                        <AdminNewsPreviewCard post={news} />
+                      <div key={news.id} className="col-span-2 my-8">
+                        <AdminNewsPreviewCard invalidate={invalidateCurrentNewsPosts} post={news} />
                       </div>
                     );
                   })}

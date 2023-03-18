@@ -65,7 +65,7 @@ const WriteEventForm = ({ isOpen, closeModal }: WriteEventFormProps) => {
       toast.success("Created Event!");
       closeModal(false);
       reset();
-      void eventRoute.getEvents.invalidate();
+      void eventRoute.getAllEvents.invalidate();
     },
     onError: (error) => {
       toast.error("Oh No! We ran into a problem");
