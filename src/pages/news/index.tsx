@@ -14,7 +14,7 @@ const News = () => {
 
   return (
     <section>
-      <Banner left="left-[75%]" imagePath="/images/news.jpg" title="News" />
+      <Banner left="left-[50%] md:left-[75%]" imagePath="/images/news.jpg" title="News" />
       <div className="my-8">
         <div className="items center m-16 flex flex-col">
           <div className="tabs mb-8">
@@ -36,7 +36,7 @@ const News = () => {
             </h2>
           </div>
           {postMenu === "recent" ? (
-            <div className="mx-16  flex flex-col  xl:grid xl:grid-cols-4">
+            <div className="flex flex-col items-center justify-center lg:mx-16 xl:grid xl:grid-cols-4">
               {recentPostsData ? (
                 recentPostsData.map((post) => {
                   return (
@@ -50,7 +50,7 @@ const News = () => {
               )}
             </div>
           ) : (
-            <div className="mx-16  flex flex-col  xl:grid xl:grid-cols-4">
+            <div className="flex flex-col items-center justify-center lg:mx-16  xl:grid xl:grid-cols-4">
               {allPostsData ? (
                 allPostsData.map((post) => {
                   return (

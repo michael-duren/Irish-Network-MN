@@ -28,7 +28,7 @@ const NewsPreviewCard = ({ post }: NewsCardProps) => {
   };
 
   return (
-    <div className="mx-2 my-4 flex max-h-[30rem] min-h-[25rem] max-w-[40rem] flex-col items-center rounded-2xl border-2  bg-base-100 shadow-xl md:flex-row ">
+    <div className="my-4 flex min-h-[25rem] min-w-[20rem] flex-col items-center rounded-2xl border-2 bg-base-100 shadow-xl md:mx-2 md:min-w-[25rem]  lg:max-h-[30rem] lg:max-w-[40rem] lg:flex-row ">
       <figure className="relative my-4 mx-2 min-h-[20rem] min-w-[20rem] max-w-[20rem]  rounded-3xl">
         <Image
           src={post.featuredImage}
