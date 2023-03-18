@@ -19,9 +19,8 @@ Built with React, Next.js, Typescript, tRPC, Prisma, Tailwind CSS, NextAuth, Sup
 ### Features still to be Built
 
 - Checkout system for handling electronic payments with Stripe.
-- Team page
+- Team page (Admin Console)
 - News page
-- News form on Admin Panel
 - Image gallery
 
 ## Screenshots
