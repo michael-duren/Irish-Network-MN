@@ -16,7 +16,7 @@ const Home: NextPage = () => {
         <div className="m-0 md:mx-8">
           <GroupBanner />
         </div>
-        <div className="flex w-full flex-col items-center bg-gray-100">
+        <div className="flex w-full flex-col items-center bg-gray-100 pb-4">
           <WelcomeCards />
         </div>
       </section>
