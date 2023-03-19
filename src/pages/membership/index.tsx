@@ -14,15 +14,15 @@ const Membership: NextPage = () => {
             <div className="card-body space-y-4">
               <h2 className="card-title text-red-400">Standard Membership</h2>
               <p className="flex text-secondary-color/70">
-                <GoCheck size={25} className="mr-2" />
+                <GoCheck size={25} className="mr-2 shrink-0" />
                 $50/year
               </p>
               <p className="flex text-secondary-color/70">
-                <GoCheck size={25} className="mr-2" />
+                <GoCheck size={25} className="mr-2 shrink-0" />
                 Discounted events, as well as access to member only events
               </p>
               <p className="flex text-secondary-color/70">
-                <GoCheck size={25} className="mr-2" />
+                <GoCheck size={25} className="mr-2 shrink-0" />
                 Access a network of Irish professionals in the Twin Cities, network and connect.
               </p>
               <div className="card-actions">
@@ -33,16 +33,16 @@ const Membership: NextPage = () => {
           <div className="card bg-gray-800 text-primary-content lg:h-[25rem]  lg:w-[30rem]">
             <div className="card-body space-y-4">
               <h2 className="card-title text-red-400">Student Membership</h2>
-              <p className="flex">
-                <GoCheck size={25} className="mr-2" />
+              <p className="flex text-secondary-color/70">
+                <GoCheck size={25} className="mr-2 shrink-0" />
                 $30/year
               </p>
-              <p className="flex">
-                <GoCheck size={25} className="mr-2" />
+              <p className="flex text-secondary-color/70">
+                <GoCheck size={25} className="mr-2 shrink-0" />
                 Discounted events, as well as access to member only events
               </p>
-              <p className="flex">
-                <GoCheck size={25} className="mr-2" />
+              <p className="flex text-secondary-color/70">
+                <GoCheck size={25} className="mr-2 shrink-0" />
                 Access a network of Irish professionals in the Twin Cities, network and connect.
               </p>
               <div className="card-actions">

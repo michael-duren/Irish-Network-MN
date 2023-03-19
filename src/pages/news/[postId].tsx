@@ -39,8 +39,8 @@ export const NewsPostPage = () => {
         <p>Back</p>
       </Link>
       {/* post information and picture */}
-      <div className="mb-8 flex items-start justify-evenly rounded-3xl bg-gray-100/10">
-        <div className=" mt-8 flex h-full flex-col items-start justify-end border-l-2 border-gray-400 pt-8 pl-8 pb-8">
+      <div className="mb-8 flex flex-col items-center  rounded-3xl bg-gray-100/10 md:flex-row md:items-start md:justify-evenly">
+        <div className="mt-8 flex h-full flex-col items-start justify-end border-gray-400 pt-8 pb-8 md:border-l-2 md:pl-8">
           <h2 className="mb-16 text-2xl">{post.title}</h2>
           <div>
             <h3 className="mb-4 font-normal">
@@ -58,17 +58,17 @@ export const NewsPostPage = () => {
               </div>
             </h3>
           </div>
-          <div className="mt-16 grid grid-cols-8">
-            {Array.from({ length: 4 }).map((_, i) => {
-              return (
-                <div className="col-span-2 mr-4 rounded-3xl bg-gray-200/50 px-4 py-3" key={i}>
-                  tag {i}
-                </div>
-              );
-            })}
-          </div>
+          {/* <div className="mt-16 grid grid-cols-8"> */}
+          {/*   {Array.from({ length: 4 }).map((_, i) => { */}
+          {/*     return ( */}
+          {/*       <div className="col-span-2 mr-4 rounded-3xl bg-gray-200/50 px-4 py-3" key={i}> */}
+          {/*         tag {i} */}
+          {/*       </div> */}
+          {/*     ); */}
+          {/*   })} */}
+          {/* </div> */}
         </div>
-        <div className="relative h-80 w-80 rounded-3xl xl:h-96 xl:w-96">
+        <div className="relative mt-8 h-60 w-60 rounded-3xl md:mt-0 md:h-80 md:w-80 xl:h-96 xl:w-96">
           <Image
             src={post.featuredImage}
             className="rounded-3xl"
@@ -79,7 +79,7 @@ export const NewsPostPage = () => {
         </div>
       </div>
       {/* description */}
-      <div className="mt-16 px-20">
+      <div className="mt-16 md:px-20 lg:px-56">
         <p>{post.body}</p>
       </div>
     </section>
