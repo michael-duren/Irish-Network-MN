@@ -36,7 +36,6 @@ const ContactForm = () => {
   });
 
   const onSubmit = (data: WriteContactFormData) => {
-    console.log(data);
     createContact.mutate(data);
   };
 
@@ -57,6 +56,7 @@ const ContactForm = () => {
           placeholder="John Doe"
           {...register("name")}
         />
+        <p className="text-red-500">{errors.name?.message}</p>
       </div>
       <div>
         <label className="mr-8" htmlFor="email">
@@ -69,6 +69,7 @@ const ContactForm = () => {
           placeholder="johndoe@example.com"
           {...register("email")}
         />
+        <p className="text-red-500">{errors.email?.message}</p>
       </div>
       <div>
         <label className="mr-8" htmlFor="title">
@@ -81,6 +82,7 @@ const ContactForm = () => {
           placeholder="Message Subject"
           {...register("title")}
         />
+        <p className="text-red-500">{errors.title?.message}</p>
       </div>
       <div className="flex flex-col">
         <label className="mb-2" htmlFor="message">
@@ -94,18 +96,10 @@ const ContactForm = () => {
           rows={10}
           {...register("message")}
         />
+        <p className="text-red-500">{errors.message?.message}</p>
       </div>
       <div>
-        <SecondaryButton
-          type="submit"
-          onClick={() => {
-            if (errors) {
-              console.log(errors);
-            }
-          }}
-        >
-          Send
-        </SecondaryButton>
+        <SecondaryButton type="submit">Send</SecondaryButton>
       </div>
     </form>
   );
