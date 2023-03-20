@@ -46,11 +46,11 @@ const EventsPage = ({
       <div className="my-8">
         <div className="m-16 flex flex-col">
           <div className="mb-8 flex items-center justify-center">
-            <div className="tabs mb-8">
+            <div className="tabs flex-nowrap md:mb-8">
               <h2
                 className={`tab-lifted tab  tab-lg ${
                   eventMenu === "upcomming" ? "tab-active" : ""
-                }`}
+                } text-sm md:text-base`}
                 onClick={() => {
                   setEventMenu("upcomming");
                 }}
@@ -58,20 +58,14 @@ const EventsPage = ({
                 Upcomming Events
               </h2>
               <h2
-                className={`tab-lifted tab  tab-lg ${eventMenu === "past" ? "tab-active" : ""}`}
+                className={`tab-lifted tab  tab-lg ${
+                  eventMenu === "past" ? "tab-active" : ""
+                } text-sm md:text-base`}
                 onClick={() => {
                   setEventMenu("past");
                 }}
               >
                 Past Events
-              </h2>
-              <h2
-                className={`tab-lifted tab  tab-lg ${eventMenu === "gallery" ? "tab-active" : ""}`}
-                onClick={() => {
-                  setEventMenu("gallery");
-                }}
-              >
-                Gallery
               </h2>
             </div>
           </div>

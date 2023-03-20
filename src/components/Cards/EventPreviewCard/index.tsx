@@ -29,9 +29,9 @@ const EventPreviewCard = ({
     <div className="m-8">
       <Link href={`/events/${slug}`}>
         <div
-          className="group flex min-h-[20rem] max-w-[70vw] flex-1 cursor-pointer flex-col items-center
-          justify-center space-x-4 rounded-lg border-2 border-gray-300 p-8
-          shadow-xl transition-all ease-in-out hover:border-gray-400 hover:shadow-gray-400 md:max-h-[30rem] md:min-w-[40rem] md:flex-row"
+          className="group flex min-h-[20rem]  flex-1 cursor-pointer flex-col items-center
+          justify-center space-x-4 rounded-lg border-2 border-gray-300 p-4 shadow-xl
+          transition-all ease-in-out hover:border-gray-400 hover:shadow-gray-400 md:max-h-[30rem] md:min-w-[35rem] md:max-w-[40rem] md:flex-row md:p-8"
         >
           <div className="relative flex h-64 w-60 flex-col items-center  ">
             {featuredImage && (
@@ -44,7 +44,7 @@ const EventPreviewCard = ({
               />
             )}
           </div>
-          <div className="mr-8 flex flex-1 flex-col flex-wrap items-start justify-center border-gray-300 pr-12 text-gray-600 hover:text-gray-900 lg:border-r-2">
+          <div className="mr-8 flex flex-1 flex-col flex-wrap items-start justify-center border-gray-300 pl-4  text-gray-600 hover:text-gray-900 lg:border-l-2">
             <h2 className="m-4 w-fit pb-4 text-3xl group-hover:underline">{title}</h2>
             <div className="flex">
               <div className="pr-2 text-xl">
