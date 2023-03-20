@@ -1,4 +1,4 @@
-import { BsFacebook, BsInstagram, BsCalendarEvent, BsInfoCircle, BsPerson } from "react-icons/bs";
+import { BsFacebook, BsInstagram, BsCalendarEvent, BsPerson } from "react-icons/bs";
 import { AiFillTwitterCircle, AiOutlineHome } from "react-icons/ai";
 import { FiMessageSquare } from "react-icons/fi";
 import { IoNewspaperOutline } from "react-icons/io5";
