@@ -1,12 +1,8 @@
-import {
-  BsFacebook,
-  BsInstagram,
-  BsCalendarEvent,
-  BsInfoCircle,
-  BsPerson,
-} from "react-icons/bs";
+import { BsFacebook, BsInstagram, BsCalendarEvent, BsInfoCircle, BsPerson } from "react-icons/bs";
 import { AiFillTwitterCircle, AiOutlineHome } from "react-icons/ai";
 import { FiMessageSquare } from "react-icons/fi";
+import { IoNewspaperOutline } from "react-icons/io5";
+import { RiTeamLine } from "react-icons/ri";
 
 export const PARTNERS = [
   { name: "Irish Gazette", link: "https://theirishgazette.com/" },
@@ -22,17 +18,18 @@ export const PARTNERS = [
 export const NAVS = [
   { name: "Home", link: "/", internal: true, icon: AiOutlineHome },
   {
-    name: "About",
-    link: "/about",
-    icon: BsInfoCircle,
+    name: "Team",
+    link: "/team",
+    icon: RiTeamLine,
     internal: true,
     size: "18",
   },
   {
-    name: "Membership",
-    link: "/membership",
+    name: "News",
+    link: "/news",
+    icon: IoNewspaperOutline,
     internal: true,
-    icon: BsPerson,
+    size: "18",
   },
   {
     name: "Events",
@@ -42,6 +39,12 @@ export const NAVS = [
     size: "17",
   },
   { name: "Contact", link: "/contact", internal: true, icon: FiMessageSquare },
+  {
+    name: "Membership",
+    link: "/membership",
+    internal: true,
+    icon: BsPerson,
+  },
 ];
 
 export const SOCIAL = [
