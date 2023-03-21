@@ -6,7 +6,7 @@ const Carousel = () => {
       <div className="carousel sticky min-w-min max-w-5xl">
         {/* slide 1 */}
         <div className="carousel-item relative w-full">
-          <h2 className="hidden text-4xl text-red-400 lg:block lg:text-3xl">Welcome</h2>
+          <h2 className="ld:text-3xl hidden text-4xl text-red-400 lg:block">Welcome</h2>
           <Image
             src="https://gpncezkvubukxrrsxtnt.supabase.co/storage/v1/object/public/public/team/Group.png"
             alt="group photo"

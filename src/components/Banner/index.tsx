@@ -10,16 +10,13 @@ type BannerProps = {
 export default function Banner({ imagePath, title, top, left }: BannerProps) {
   return (
     <div className="max-md: relative z-0 min-h-[20rem]  overflow-hidden bg-opacity-70 bg-gradient-to-r from-gray-300  to-gray-900">
-      <div className="">
-        <Image
-          className="h-auto max-w-[100%] opacity-50"
-          src={imagePath}
-          alt={`${title} background image`}
-          fill
-          style={{ objectFit: "cover" }}
-          priority
-        />
-      </div>
+      <Image
+        className="h-auto max-w-[100%] opacity-50"
+        src={imagePath}
+        alt={`${title} background image`}
+        fill
+        style={{ objectFit: "cover" }}
+      />
       {title && (
         <h1
           className={`absolute ${top ? top : "top-[50%]"} ${
