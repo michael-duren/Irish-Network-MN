@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { polyfill } from "interweave-ssr";
 import { Interweave } from "interweave";
 import { IoCalendarNumberOutline } from "react-icons/io5";
 import { IoLocationOutline } from "react-icons/io5";
@@ -24,6 +25,8 @@ const EventPreviewCard = ({
 }: EventPreviewCardProps) => {
   dayjs.extend(LocalizedFormat);
   const dateObj = new Date(date);
+
+  polyfill();
 
   return (
     <div className="m-8">

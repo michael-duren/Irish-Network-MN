@@ -55,7 +55,7 @@ const WriteNewsPostForm = ({ isOpen, closeModal }: WriteNewsPostFormProps) => {
 
   const newsRoute = api.useContext().news;
 
-  const createnews = api.news.createNewsPost.useMutation({
+  const createNews = api.news.createNewsPost.useMutation({
     onSuccess: () => {
       toast.success("Created news!");
       closeModal(false);
@@ -69,7 +69,8 @@ const WriteNewsPostForm = ({ isOpen, closeModal }: WriteNewsPostFormProps) => {
   });
 
   const onSubmit = (data: WriteNewsPostFormData) => {
-    createnews.mutate({ ...data, featuredImage: imageUrl });
+    createNews.mutate({ ...data, featuredImage: imageUrl });
+    console.log(data);
   };
   return (
     <div>
