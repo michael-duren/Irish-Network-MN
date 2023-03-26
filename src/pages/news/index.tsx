@@ -1,16 +1,39 @@
 import { useState } from "react";
+import type { GetStaticProps } from "next";
 
+import type { News } from "@prisma/client";
+import { createProxySSGHelpers } from "@trpc/react-query/ssg";
+import { createInnerTRPCContext } from "../../server/api/trpc";
+import { appRouter } from "../../server/api/root";
+import superjson from "superjson";
 import Banner from "../../components/Banner";
 import NewsPreviewCard from "../../components/Cards/NewsPreviewCard";
 import Spinner from "../../components/Spinners/Spinner";
-import { api } from "../../utils/api";
 
-const News = () => {
+export const getStaticProps: GetStaticProps = async () => {
+  const ssg = createProxySSGHelpers({
+    router: appRouter,
+    ctx: createInnerTRPCContext({ session: null }),
+    transformer: superjson,
+  });
+
+  const allPosts: News[] = await ssg.news.getAllNewsPosts.fetch();
+  const recentPosts: News[] = await ssg.news.getRecentPosts.fetch();
+
+  const parsedAllPosts: unknown = JSON.parse(JSON.stringify(allPosts));
+  const parsedRecentPosts: unknown = JSON.parse(JSON.stringify(recentPosts));
+
+  return {
+    props: {
+      allPosts: parsedAllPosts,
+      recentPosts: parsedRecentPosts,
+    },
+    revalidate: 10,
+  };
+};
+
+const News = ({ allPosts, recentPosts }: { allPosts: News[]; recentPosts: News[] }) => {
   const [postMenu, setPostMenu] = useState<"recent" | "all">("recent");
-  const allPosts = api.news.getAllNewsPosts.useQuery();
-  const allPostsData = allPosts.data;
-  const recentPosts = api.news.getRecentPosts.useQuery();
-  const recentPostsData = recentPosts.data;
 
   return (
     <section>
@@ -37,8 +60,8 @@ const News = () => {
           </div>
           {postMenu === "recent" ? (
             <div className="flex flex-col items-center justify-center lg:mx-16 xl:grid xl:grid-cols-4">
-              {recentPostsData ? (
-                recentPostsData.map((post) => {
+              {recentPosts ? (
+                recentPosts.map((post) => {
                   return (
                     <div className="lg:col-span-2" key={post.title}>
                       <NewsPreviewCard post={post} />
@@ -51,8 +74,8 @@ const News = () => {
             </div>
           ) : (
             <div className="flex flex-col items-center justify-center lg:mx-16  xl:grid xl:grid-cols-4">
-              {allPostsData ? (
-                allPostsData.map((post) => {
+              {allPosts ? (
+                allPosts.map((post) => {
                   return (
                     <div className="lg:col-span-2" key={post.title}>
                       <NewsPreviewCard post={post} />
