@@ -45,12 +45,12 @@ const ContactForm = () => {
       // eslint-disable-next-line @typescript-eslint/no-misused-promises
       onSubmit={handleSubmit(onSubmit)}
     >
-      <div>
+      <div className="flex flex-col space-y-2">
         <label className="mr-8" htmlFor="name">
           Name
         </label>
         <input
-          className="w-64 rounded-lg border-2 border-gray-300 p-2 text-sm outline-none placeholder:text-gray-300 focus:border-gray-600"
+          className="w-80 rounded-lg border-2 border-gray-300 p-2 text-sm outline-none placeholder:text-gray-300 focus:border-gray-600"
           type="text"
           id="name"
           placeholder="John Doe"
@@ -58,12 +58,12 @@ const ContactForm = () => {
         />
         <p className="text-red-500">{errors.name?.message}</p>
       </div>
-      <div>
+      <div className="flex flex-col space-y-2">
         <label className="mr-8" htmlFor="email">
           Email
         </label>
         <input
-          className="w-64 rounded-lg border-2 border-gray-300 p-2 text-sm outline-none placeholder:text-gray-300 focus:border-gray-600"
+          className="w-80 rounded-lg border-2 border-gray-300 p-2 text-sm outline-none placeholder:text-gray-300 focus:border-gray-600"
           type="email"
           id="email"
           placeholder="johndoe@example.com"
@@ -71,12 +71,10 @@ const ContactForm = () => {
         />
         <p className="text-red-500">{errors.email?.message}</p>
       </div>
-      <div>
-        <label className="mr-8" htmlFor="title">
-          Subject
-        </label>
+      <div className="flex flex-col space-y-2">
+        <label htmlFor="title">Subject</label>
         <input
-          className="w-64 rounded-lg border-2 border-gray-300 p-2 text-sm outline-none placeholder:text-gray-300 focus:border-gray-600"
+          className="w-80 rounded-lg border-2 border-gray-300 p-2 text-sm outline-none placeholder:text-gray-300 focus:border-gray-600"
           type="text"
           id="title"
           placeholder="Message Subject"

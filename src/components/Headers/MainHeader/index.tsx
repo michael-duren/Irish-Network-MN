@@ -40,11 +40,11 @@ export default function MainHeader() {
       }`}
     >
       {/* Logo */}
-      <div className="relative ml-6 mt-2 h-40 w-40">
-        <Link className="" href="/">
-          <Image src="/in-logo.svg" alt="Irish Network Logo" fill />
-        </Link>
-      </div>
+      {/* <div className="relative ml-6 mt-2 h-40 w-40"> */}
+      <Link className="relative ml-6 mt-2 h-40 w-40" href="/">
+        <Image src="/in-logo.svg" alt="Irish Network Logo" fill />
+      </Link>
+      {/* </div> */}
       {/* Nav Links */}
 
       <nav>
