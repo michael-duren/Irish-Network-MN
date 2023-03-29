@@ -50,7 +50,7 @@ const ContactForm = () => {
           Name
         </label>
         <input
-          className="w-80 rounded-lg border-2 border-gray-300 p-2 text-sm outline-none placeholder:text-gray-300 focus:border-gray-600"
+          className="w-56 rounded-lg border-2 border-gray-300 p-2 text-xs outline-none placeholder:text-gray-300 focus:border-gray-600 md:w-80 md:text-sm"
           type="text"
           id="name"
           placeholder="John Doe"
@@ -63,7 +63,7 @@ const ContactForm = () => {
           Email
         </label>
         <input
-          className="w-80 rounded-lg border-2 border-gray-300 p-2 text-sm outline-none placeholder:text-gray-300 focus:border-gray-600"
+          className="w-56 rounded-lg border-2 border-gray-300 p-2 text-xs outline-none placeholder:text-gray-300 focus:border-gray-600 md:w-80 md:text-sm"
           type="email"
           id="email"
           placeholder="johndoe@example.com"
@@ -74,7 +74,7 @@ const ContactForm = () => {
       <div className="flex flex-col space-y-2">
         <label htmlFor="title">Subject</label>
         <input
-          className="w-80 rounded-lg border-2 border-gray-300 p-2 text-sm outline-none placeholder:text-gray-300 focus:border-gray-600"
+          className="w-56 rounded-lg border-2 border-gray-300 p-2 text-xs outline-none placeholder:text-gray-300 focus:border-gray-600 md:w-80 md:text-sm"
           type="text"
           id="title"
           placeholder="Message Subject"
@@ -88,7 +88,7 @@ const ContactForm = () => {
         </label>
         <textarea
           id="message"
-          className="h-full w-full rounded-xl border border-gray-300 p-3 text-sm outline-none focus:border-gray-600 md:text-base"
+          className="h-full w-full rounded-xl border border-gray-300 p-3 text-xs outline-none focus:border-gray-600 md:text-sm lg:text-base"
           placeholder="Write your message here"
           cols={40}
           rows={10}
