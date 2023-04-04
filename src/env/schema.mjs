@@ -9,9 +9,7 @@ export const serverSchema = z.object({
   DATABASE_URL: z.string().url(),
   NODE_ENV: z.enum(["development", "test", "production"]),
   NEXTAUTH_SECRET:
-    process.env.NODE_ENV === "production"
-      ? z.string().min(1)
-      : z.string().min(1).optional(),
+    process.env.NODE_ENV === "production" ? z.string().min(1) : z.string().min(1).optional(),
   NEXTAUTH_URL: z.preprocess(
     // This makes Vercel deployments not fail if you don't set NEXTAUTH_URL
     // Since NextAuth.js automatically uses the VERCEL_URL if present.
@@ -29,6 +27,8 @@ export const serverSchema = z.object({
   LINKEDIN_CLIENT_SECRET: z.string(),
   SUPABASE_PUBLIC_URL: z.string(),
   SUPABASE_SECRET_KEY: z.string(),
+  APP_GMAIL_EMAIL: z.string(),
+  APP_GMAIL_PASSWORD: z.string(),
 });
 
 /**
@@ -51,6 +51,8 @@ export const serverEnv = {
   LINKEDIN_CLIENT_SECRET: process.env.LINKEDIN_CLIENT_SECRET,
   SUPABASE_PUBLIC_URL: process.env.SUPABASE_PUBLIC_URL,
   SUPABASE_SECRET_KEY: process.env.SUPABASE_SECRET_KEY,
+  APP_GMAIL_EMAIL: process.env.APP_GMAIL_EMAIL,
+  APP_GMAIL_PASSWORD: process.env.APP_GMAIL_PASSWORD,
 };
 
 /**
