@@ -24,18 +24,16 @@ const ContactForm = () => {
     resolver: zodResolver(writeContactSchema),
   });
 
-  // const createContact = api.contact.postMessage.useMutation({
-  //   onSuccess: () => {
-  //     toast.success("Message Recieved 😎");
-  //     reset();
-  //   },
-  //   onError: (error) => {
-  //     toast.error("Oh No! Something went wrong 😥");
-  //     console.log(error);
-  //   },
-  // });
-
-  const sendContact = api.email.emailContactForm.useMutation();
+  const sendContact = api.email.emailContactForm.useMutation({
+    onSuccess: () => {
+      toast.success("Message Recieved 😎");
+      reset();
+    },
+    onError: (error) => {
+      toast.error("Oh No! Something went wrong 😥");
+      console.log(error);
+    },
+  });
 
   const onSubmit = (data: WriteContactFormData) => {
     // createContact.mutate(data);
