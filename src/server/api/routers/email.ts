@@ -15,12 +15,12 @@ export const emailRouter = createTRPCRouter({
   emailContactForm: publicProcedure
     .input(writeContactSchema)
     .mutation(async ({ input: { name, email, title, message } }) => {
-      let mailOptions = {
+      const mailOptions = {
         from: "noreply@irishnetworkmn.org",
         to: "info@irishnetworkmn.org",
         subject: `[Irish Network MN: ContactForm]: ${title}`,
-        html: `${name} at ${email} sent the following message: \n\n ${message}`,
+        html: `${name} at ${email} sent the following message: <br><br> ${message}`,
       };
-      transporter.sendMail(mailOptions);
+      await transporter.sendMail(mailOptions);
     }),
 });
