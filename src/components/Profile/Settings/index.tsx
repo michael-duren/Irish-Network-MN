@@ -38,8 +38,10 @@ const Settings = ({ session }: AccountProps) => {
       toast.error("OOPS! We hit a snag 😬");
     },
   });
+  const deleteAccountEmail = api.email.deleteUserAccount.useMutation();
   const onDeleteAccount = () => {
     deleteAccount.mutate({ userId: session.user.id });
+    deleteAccountEmail.mutate();
     void signOut({ callbackUrl: "http://localhost:3000/" });
     toast.error("Deleted account 😞");
   };

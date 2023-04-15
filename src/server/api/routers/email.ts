@@ -1,4 +1,4 @@
-import { createTRPCRouter, publicProcedure } from "../trpc";
+import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
 import nodemailer from "nodemailer";
 import { writeContactSchema } from "../../../components/Forms/ContactForm/";
 import { env } from "../../../env/server.mjs";
@@ -23,4 +23,13 @@ export const emailRouter = createTRPCRouter({
       };
       await transporter.sendMail(mailOptions);
     }),
+  deleteUserAccount: protectedProcedure.mutation(async ({ ctx: { session } }) => {
+    const mailOptions = {
+      from: "noreply@irishnetworkmn.org",
+      to: `${session.user.email}`,
+      subject: `${session.user.name}'s Irish Network account has been deleted`,
+      html: `This is an email an automated email verifying ${session.user.name}'s account has been deleted. <br>`,
+    };
+    await transporter.sendMail(mailOptions);
+  }),
 });
