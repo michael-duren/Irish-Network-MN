@@ -26,9 +26,10 @@ export const emailRouter = createTRPCRouter({
   deleteUserAccount: protectedProcedure.mutation(async ({ ctx: { session } }) => {
     const mailOptions = {
       from: "noreply@irishnetworkmn.org",
-      to: `${session.user.email}`,
-      subject: `${session.user.name}'s Irish Network account has been deleted`,
-      html: `This is an email an automated email verifying ${session.user.name}'s account has been deleted. <br>`,
+      to: `${session.user.email!}`,
+      subject: `${session.user.name!}'s Irish Network account has been deleted`,
+      html: `This is an email an automated email verifying ${session.user
+        .name!}'s account has been deleted. <br>`,
     };
     await transporter.sendMail(mailOptions);
   }),
