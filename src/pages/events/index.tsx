@@ -19,8 +19,8 @@ export const getStaticProps: GetStaticProps = async () => {
   const pastEvents: Event[] = await ssg.event.getPastEvents.fetch();
   const futureEvents: Event[] = await ssg.event.getFutureEvents.fetch();
 
-  const parsedFutureEvents: unknown = JSON.parse(JSON.stringify(pastEvents));
-  const parsedPastEvents: unknown = JSON.parse(JSON.stringify(futureEvents));
+  const parsedFutureEvents: unknown = JSON.parse(JSON.stringify(futureEvents));
+  const parsedPastEvents: unknown = JSON.parse(JSON.stringify(pastEvents));
 
   return {
     props: {

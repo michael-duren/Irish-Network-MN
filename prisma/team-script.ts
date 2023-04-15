@@ -13,7 +13,7 @@ export const teamScript = async (prisma: PrismaClient, faker: Faker) => {
       irishConnection:
         "Mary is 100 percent Irish-American (4 corners are McFarland, Reagan, O’Hanlon & Farrell). Mary is the founding president of Irish Network Minnesota chapter. Serves on St. Patrick’s Association, founding member of Failte Minnesota and is editor of Irish Gazette Media, an Irish American publication and social media company.",
       imageUrl:
-        "https://gpncezkvubukxrrsxtnt.supabase.co/storage/v1/object/public/public/team/Mary-bw.jpg.webp",
+        "https://gpncezkvubukxrrsxtnt.supabase.co/storage/v1/object/public/public/team/IrishNetwork20180216Web-8.jpg",
       position: "OFFICER",
     },
   });

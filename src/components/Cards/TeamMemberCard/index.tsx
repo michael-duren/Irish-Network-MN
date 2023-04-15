@@ -66,11 +66,11 @@ const TeamteamMemberCard = ({ teamMember }: TeamMemberCardProps) => {
           <div className="card-body">
             <h2 className="card-title">{teamMember.name}</h2>
             <p className="text-red-400">{teamMember.title}</p>
-            <div className="card-actions h-10 justify-end">
-              <MainButton icon={HiOutlineMail} type="button">
-                Contact
-              </MainButton>
-            </div>
+            {/* <div className="card-actions h-10 justify-end"> */}
+            {/*   <MainButton icon={HiOutlineMail} type="button"> */}
+            {/*     Contact */}
+            {/*   </MainButton> */}
+            {/* </div> */}
           </div>{" "}
         </>
       )}
