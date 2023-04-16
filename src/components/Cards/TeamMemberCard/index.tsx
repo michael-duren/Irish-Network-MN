@@ -1,9 +1,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import type { Team } from "@prisma/client";
-import { HiOutlineMail } from "react-icons/hi";
 import Spinner from "../../Spinners/Spinner";
-import MainButton from "../../Buttons/MainButton";
 
 type TeamMemberCardProps = {
   teamMember: Team;

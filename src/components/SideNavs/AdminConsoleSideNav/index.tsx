@@ -4,7 +4,7 @@ import Link from "next/link";
 // icon imports
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdOutlineDashboard } from "react-icons/md";
-import { BsCalendar2Event, BsFileImage } from "react-icons/bs";
+import { BsCalendar2Event } from "react-icons/bs";
 import { AiOutlineTeam } from "react-icons/ai";
 import { FiMessageSquare } from "react-icons/fi";
 import { IoNewspaperOutline } from "react-icons/io5";
