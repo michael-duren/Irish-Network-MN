@@ -24,6 +24,8 @@ const ContactForm = () => {
     resolver: zodResolver(writeContactSchema),
   });
 
+  const sendAdminMessage = api.contact.postMessage.useMutation();
+
   const sendContact = api.email.emailContactForm.useMutation({
     onSuccess: () => {
       toast.success("Message Recieved 😎");
@@ -36,7 +38,7 @@ const ContactForm = () => {
   });
 
   const onSubmit = (data: WriteContactFormData) => {
-    // createContact.mutate(data);
+    sendAdminMessage.mutate(data);
     sendContact.mutate(data);
   };
 
