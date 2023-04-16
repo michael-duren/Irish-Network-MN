@@ -39,12 +39,6 @@ const AdminConsoleSideNav = () => {
       size: 20,
     },
     {
-      name: "Images",
-      link: "/admin/console/images",
-      icon: BsFileImage,
-      size: 20,
-    },
-    {
       name: "Messages",
       link: "/admin/console/messages",
       icon: FiMessageSquare,
