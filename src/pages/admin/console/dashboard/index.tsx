@@ -1,3 +1,5 @@
+import { useRouter } from "next/router";
+import { signOut } from "next-auth/react";
 import { useSession } from "next-auth/react";
 import { AiOutlineMail } from "react-icons/ai";
 import AuthHeader from "../../../../components/Headers/AuthHeader";
@@ -9,6 +11,7 @@ import { AdminDashboardSmallCard } from "../../../../components/Cards/AdminDashb
 
 const AdminConsoleDashboard = () => {
   const { data: session } = useSession();
+  const router = useRouter();
 
   return (
     <>
@@ -24,7 +27,7 @@ const AdminConsoleDashboard = () => {
               <div className="col-span-4 row-span-1 md:col-span-2 md:row-span-1 ">
                 <AdminDashboardSmallCard
                   buttonTitle={"Add Post"}
-                  onClick={() => console.log("clicked")}
+                  onClick={() => void router.push("/admin/console/news")}
                   title={`Create a News Post`}
                 >
                   <p>Got something to say? Add a new Post.</p>
@@ -33,7 +36,7 @@ const AdminConsoleDashboard = () => {
               <div className="col-span-4 row-span-1 md:col-span-2">
                 <AdminDashboardSmallCard
                   buttonTitle={"Create Event"}
-                  onClick={() => console.log("clicked")}
+                  onClick={() => void router.push("/admin/console/events")}
                   title={`Add an Event`}
                 >
                   <p>Got your details ready? Create a new Event!</p>
@@ -42,7 +45,7 @@ const AdminConsoleDashboard = () => {
               <div className="col-span-4 row-span-1 md:col-span-2">
                 <AdminDashboardSmallCard
                   buttonTitle={"Check Messages"}
-                  onClick={() => console.log("clicked")}
+                  onClick={() => void router.push("/admin/console/messages")}
                   title={`Messages`}
                 >
                   <div className="placeholder avatar h-full w-full pt-8 ">
@@ -55,7 +58,7 @@ const AdminConsoleDashboard = () => {
               <div className="col-span-4 row-span-1 md:col-span-2">
                 <AdminDashboardSmallCard
                   buttonTitle={"Logout"}
-                  onClick={() => console.log("clicked")}
+                  onClick={() => void signOut()}
                   title={`Logout`}
                 >
                   All done for the day?
